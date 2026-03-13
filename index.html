@@ -93,12 +93,7 @@
     display: flex; align-items: center; gap: 10px;
     font-size: 17px; font-weight: 600; letter-spacing: -.02em;
   }
-  .nav-logo-icon {
-    width: 32px; height: 32px; border-radius: 9px;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+
   .nav-links {
     display: flex; align-items: center; gap: 32px;
     font-size: 14px; color: var(--sub);
@@ -452,15 +447,18 @@
 <!-- ─── NAV ─────────────────────────────────────────────────────────────── -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a href="/" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <rect x="1" y="8" width="4" height="9" rx="1.5" fill="#080810"/>
-          <rect x="7" y="4" width="4" height="13" rx="1.5" fill="#080810"/>
-          <rect x="13" y="1" width="4" height="16" rx="1.5" fill="#080810"/>
-        </svg>
-      </div>
-      AdCrux
+    <a href="/" class="nav-logo" id="nav-logo-wrap" style="gap:0">
+      <svg id="nav-logo-svg" height="28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <defs>
+          <radialGradient id="nav-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00E5BE" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <text id="nav-txt-ad"  y="21" font-family="DM Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-.8" fill="#3D5270">Ad</text>
+        <text id="nav-txt-cru" y="21" font-family="DM Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-.8" fill="#F1F5F9">Cru</text>
+        <g id="nav-x"></g>
+      </svg>
     </a>
     <ul class="nav-links">
       <li><a href="#how-it-works">How it works</a></li>
@@ -494,7 +492,7 @@
     <p class="hero-sub fade-up" data-delay="2" id="heroSub">Every ad platform measures attribution using its own model — and every platform has an incentive to overclaim. AdCrux uses Marketing Mix Modeling to deliver an independent view of your media mix, so your budget decisions are based on data no one can dispute.</p>
     <div class="hero-actions fade-up" data-delay="3">
       <a href="https://app.getadcrux.com" class="btn-primary" style="font-size:16px;padding:14px 32px;border-radius:12px;" id="heroCta">
-        Start free — 14 days trial
+        Start free — 14-day trial
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="#how-it-works" class="btn-outline" style="font-size:16px;padding:14px 28px;border-radius:12px;" id="heroSec">See how it works</a>
@@ -505,7 +503,7 @@
         <div class="hero-stat-l" id="statL1">avg model accuracy</div>
       </div>
       <div>
-        <div class="hero-stat-n">4.2<span style="font-size:.6em;color:var(--accent)">×</span></div>
+        <div class="hero-stat-n">100<span style="font-size:.6em;color:var(--accent)">%</span></div>
         <div class="hero-stat-l" id="statL2">independent of platforms</div>
       </div>
       <div>
@@ -532,90 +530,148 @@
       <div class="dash-body">
         <!-- Sidebar -->
         <div class="dash-sidebar">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:#475569;text-transform:uppercase;padding:0 10px 8px;border-bottom:1px solid #1E293B;margin-bottom:6px">AdCrux</div>
           <div class="dash-nav-item active">
             <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
             Overview
           </div>
           <div class="dash-nav-item">
-            <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
-            Attribution
+            <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Attribution Gap
           </div>
           <div class="dash-nav-item">
             <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><path d="M1 10 C3 10, 4 4, 7 4 C10 4, 11 10, 13 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
             Saturation
           </div>
           <div class="dash-nav-item">
-            <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="6" width="3" height="7" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="5.5" y="3" width="3" height="10" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="1" width="3" height="12" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
-            Scenarios
-          </div>
-          <div class="dash-nav-item">
             <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M3 4h8M5 1h4M5 13h4M3 10h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
             Optimizer
           </div>
           <div class="dash-nav-item">
-            <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h12M5 2v3M9 2v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-            Seasonality
+            <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><path d="M1 10l3-4 3 2 3-5 3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            Scenarios
+          </div>
+          <div class="dash-nav-item">
+            <svg class="dash-nav-icon" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Diagnostics
           </div>
         </div>
 
         <!-- Main content -->
         <div class="dash-main">
-          <!-- KPI row -->
+
+          <!-- KPI row — matches real app: Total Spend · Total Leads · Blended CPL · Backtest MAPE · Confidence -->
           <div class="kpi-row">
-            <div class="kpi-card">
-              <div class="kpi-label">Est. Revenue</div>
-              <div class="kpi-value" style="color:#00E5BE">$1.24M</div>
-              <div class="kpi-delta">+12.3% vs prev period</div>
-            </div>
             <div class="kpi-card">
               <div class="kpi-label">Total Spend</div>
               <div class="kpi-value">$284K</div>
-              <div class="kpi-delta" style="color:var(--sub)">12 channels active</div>
-            </div>
-            <div class="kpi-card">
-              <div class="kpi-label">Blended ROAS</div>
-              <div class="kpi-value" style="color:#818CF8">4.37×</div>
-              <div class="kpi-delta">+0.4× vs target</div>
+              <div class="kpi-delta">26 weeks · 5 channels</div>
             </div>
             <div class="kpi-card">
               <div class="kpi-label">Total Leads</div>
               <div class="kpi-value">8,421</div>
               <div class="kpi-delta">CPL $33.72</div>
             </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Backtest MAPE</div>
+              <div class="kpi-value" style="color:#00E5BE">7.4%</div>
+              <div class="kpi-delta">✅ Strong</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Confidence</div>
+              <div class="kpi-value" style="color:#818CF8">81<span style="font-size:.55em;opacity:.7">/100</span></div>
+              <div class="kpi-delta">HIGH</div>
+            </div>
           </div>
 
-          <!-- ROAS chart -->
+          <!-- Attribution Gap chart — the real hero feature -->
           <div class="chart-card">
-            <div class="chart-title">Est. ROAS by channel</div>
-            <div class="bar-row">
-              <div class="bar-label">Email</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="--w:85%;width:85%;background:#F59E0B;color:#080810;animation-delay:.2s">5.1×</div>
-              </div>
+            <div class="chart-title" style="display:flex;align-items:center;justify-content:space-between">
+              <span>⚡ Attribution Gap — Platform claims vs Model reality</span>
+              <span style="display:flex;gap:8px;align-items:center">
+                <span style="width:8px;height:8px;background:#94A3B8;border-radius:2px;display:inline-block"></span><span style="font-size:9px;color:#94A3B8">Platform</span>
+                <span style="width:8px;height:8px;background:#6366F1;border-radius:2px;display:inline-block"></span><span style="font-size:9px;color:#94A3B8">Model (MMM)</span>
+              </span>
             </div>
-            <div class="bar-row">
-              <div class="bar-label">Google Search</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="--w:80%;width:80%;background:#00E5BE;color:#080810;animation-delay:.35s">4.8×</div>
+
+            <!-- Grouped bars per channel -->
+            <div style="display:flex;flex-direction:column;gap:7px;margin-top:6px">
+
+              <!-- Google Search — overvalued -->
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:68px;font-size:9px;color:#94A3B8;text-align:right;flex-shrink:0">Google Search</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:52%;height:100%;background:#94A3B8;border-radius:2px;display:flex;align-items:center;padding-left:4px;font-size:8px;color:#080810;font-weight:600">52%</div>
+                  </div>
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:31%;height:100%;background:#6366F1;border-radius:2px;display:flex;align-items:center;padding-left:4px;font-size:8px;color:#fff;font-weight:600">31%</div>
+                  </div>
+                </div>
+                <div style="font-size:9px;color:#EF4444;font-weight:700;width:38px;flex-shrink:0">−21pp ↓</div>
               </div>
+
+              <!-- Meta — overvalued -->
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:68px;font-size:9px;color:#94A3B8;text-align:right;flex-shrink:0">Meta</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:28%;height:100%;background:#94A3B8;border-radius:2px;display:flex;align-items:center;padding-left:4px;font-size:8px;color:#080810;font-weight:600">28%</div>
+                  </div>
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:19%;height:100%;background:#6366F1;border-radius:2px;display:flex;align-items:center;padding-left:4px;font-size:8px;color:#fff;font-weight:600">19%</div>
+                  </div>
+                </div>
+                <div style="font-size:9px;color:#EF4444;font-weight:700;width:38px;flex-shrink:0">−9pp ↓</div>
+              </div>
+
+              <!-- Email — undervalued -->
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:68px;font-size:9px;color:#94A3B8;text-align:right;flex-shrink:0">Email</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:8%;height:100%;background:#94A3B8;border-radius:2px"></div>
+                  </div>
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:27%;height:100%;background:#6366F1;border-radius:2px;display:flex;align-items:center;padding-left:4px;font-size:8px;color:#fff;font-weight:600">27%</div>
+                  </div>
+                </div>
+                <div style="font-size:9px;color:#10B981;font-weight:700;width:38px;flex-shrink:0">+19pp ↑</div>
+              </div>
+
+              <!-- YouTube — undervalued -->
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:68px;font-size:9px;color:#94A3B8;text-align:right;flex-shrink:0">YouTube</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:7%;height:100%;background:#94A3B8;border-radius:2px"></div>
+                  </div>
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:15%;height:100%;background:#6366F1;border-radius:2px;display:flex;align-items:center;padding-left:4px;font-size:8px;color:#fff;font-weight:600">15%</div>
+                  </div>
+                </div>
+                <div style="font-size:9px;color:#10B981;font-weight:700;width:38px;flex-shrink:0">+8pp ↑</div>
+              </div>
+
+              <!-- Display — fair -->
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:68px;font-size:9px;color:#94A3B8;text-align:right;flex-shrink:0">Display</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:5%;height:100%;background:#94A3B8;border-radius:2px"></div>
+                  </div>
+                  <div style="height:10px;background:#334155;border-radius:2px;overflow:hidden">
+                    <div style="width:8%;height:100%;background:#6366F1;border-radius:2px"></div>
+                  </div>
+                </div>
+                <div style="font-size:9px;color:#64748B;font-weight:700;width:38px;flex-shrink:0">+3pp</div>
+              </div>
+
             </div>
-            <div class="bar-row">
-              <div class="bar-label">YouTube</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="--w:62%;width:62%;background:#38BDF8;color:#080810;animation-delay:.5s">3.7×</div>
-              </div>
-            </div>
-            <div class="bar-row">
-              <div class="bar-label">Meta</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="--w:53%;width:53%;background:#8B5CF6;color:#fff;animation-delay:.65s">3.2×</div>
-              </div>
-            </div>
-            <div class="bar-row">
-              <div class="bar-label">Display</div>
-              <div class="bar-track">
-                <div class="bar-fill" style="--w:35%;width:35%;background:#EC4899;color:#fff;animation-delay:.8s">2.1×</div>
-              </div>
+
+            <!-- Insight callout -->
+            <div style="margin-top:10px;background:#1E293B;border-left:3px solid #EF4444;border-radius:0 6px 6px 0;padding:6px 8px;font-size:9px;color:#CBD5E1;line-height:1.5">
+              ⚠️ <strong style="color:#fff">Google Search is overcredited by 21pp.</strong> Platform attribution overstates its contribution — model suggests reallocating $18K/mo to Email & YouTube.
             </div>
           </div>
         </div>
@@ -749,7 +805,7 @@
     <p class="section-sub" style="margin:0 auto" id="priceSub">Start free for 14 days. No credit card required.</p>
 
     <div class="billing-toggle">
-      <button class="toggle-btn" id="btnMonthly" onclick="setBilling('monthly')" id="toggleMonthly">Monthly</button>
+      <button class="toggle-btn" id="btnMonthly" onclick="setBilling('monthly')">Monthly</button>
       <button class="toggle-btn active" id="btnAnnual" onclick="setBilling('annual')">
         Annual <span class="annual-badge" id="annualBadge">−20%</span>
       </button>
@@ -815,7 +871,7 @@
 <section class="cta-section" style="border-top:1px solid var(--border)">
   <div class="cta-bg"></div>
   <div class="container">
-    <h2 id="ctaTitle">Ready to see what\'s really <span class="shimmer-text">driving your results?</span></h2>
+    <h2 id="ctaTitle">Ready to see what's really <span class="shimmer-text">driving your results?</span></h2>
     <p id="ctaSub">Upload your first CSV in under 5 minutes. Independent attribution from your very first session.</p>
     <div class="cta-actions">
       <a href="https://app.getadcrux.com" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:12px;" id="ctaFinal">
@@ -831,11 +887,18 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="nav-logo">
-        <div class="nav-logo-icon" style="width:28px;height:28px;border-radius:8px;">
-          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect x="1" y="8" width="4" height="9" rx="1.5" fill="#080810"/><rect x="7" y="4" width="4" height="13" rx="1.5" fill="#080810"/><rect x="13" y="1" width="4" height="16" rx="1.5" fill="#080810"/></svg>
-        </div>
-        <span style="font-size:15px">AdCrux</span>
+      <div class="nav-logo" style="gap:0">
+        <svg id="foot-logo-svg" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <defs>
+            <radialGradient id="foot-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00E5BE" stop-opacity=".22"/>
+              <stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <text id="foot-txt-ad"  y="18" font-family="DM Sans, sans-serif" font-weight="800" font-size="18" letter-spacing="-.6" fill="#3D5270">Ad</text>
+          <text id="foot-txt-cru" y="18" font-family="DM Sans, sans-serif" font-weight="800" font-size="18" letter-spacing="-.6" fill="#64748B">Cru</text>
+          <g id="foot-x"></g>
+        </svg>
       </div>
       <div class="footer-links">
         <a href="/privacy" id="footPrivacy">Privacy</a>
@@ -886,7 +949,7 @@
       heroH1:      'Attribution data',
       heroShimmer: 'independent of platform claims',
       heroSub:     'Every ad platform measures attribution using its own model — and every platform has an incentive to overclaim. AdCrux uses Marketing Mix Modeling to deliver an independent view of your media mix, so your budget decisions are based on data no one can dispute.',
-      heroCta:     'Start free — 14 days trial',
+      heroCta:     'Start free — 14-day trial',
       heroSec:     'See how it works',
       statL1:'avg model accuracy', statL2:'independent of platforms', statL3:'analytical modules', statL4:'to first insight',
       howEyebrow:'How it works', howTitle:'From raw data to independent attribution in minutes',
@@ -930,7 +993,7 @@
       heroSub:     'Cada plataforma mide la atribución con su propio modelo — y todas tienen incentivos para sobreatribuirse el crédito. AdCrux usa Marketing Mix Modeling para darte una visión independiente de tu mix de medios, para que tus decisiones de presupuesto estén basadas en datos que nadie puede cuestionar.',
       heroCta:     'Empezar gratis — 14 días de prueba',
       heroSec:     'Ver cómo funciona',
-      statL1:'R² promedio del modelo', statL2:'ROAS combinado promedio', statL3:'módulos analíticos', statL4:'al primer insight',
+      statL1:'precisión promedio del modelo', statL2:'independiente de plataformas', statL3:'módulos analíticos', statL4:'al primer insight',
       howEyebrow:'Cómo funciona', howTitle:'De CSV a insight en minutos',
       howSub:'Sin data scientists. Sin consultoras. Sin esperar al equipo de datos. Subí tus datos y AdCrux hace el resto.',
       step1h:'Subí tu CSV', step1p:'Cuatro columnas: semana, canal, inversión, leads. AdCrux valida, modela y entrega resultados de atribución automáticamente.',
@@ -941,7 +1004,7 @@
       mod1h:'Overview', mod1p:'KPIs ejecutivos, inversión por canal en el tiempo, y la tabla de performance completa con código de colores por ROAS.',
       mod2h:'Atribución', mod2p:'Diagnósticos de precisión del modelo — R², MAPE, Holdout RMSPE — más curvas de revenue real vs predicho.',
       mod3h:'Saturación', mod3p:'Curvas de retornos decrecientes por canal. Identificá qué canales están Subinvertidos, Óptimos o Saturados.',
-      mod4h:'Escenarios', mod4p:'Comparar planes Conservador, Balanceado, Agresivo y de Eficiencia en paralelo con proyecciones de revenue.',
+      mod4h:'Escenarios', mod4p:'Compará planes Conservador, Balanceado, Agresivo y de Eficiencia en paralelo con proyecciones de revenue.',
       mod5h:'Optimizador', mod5p:'Sliders de presupuesto en vivo — mové para redistribuir la inversión y ver el impacto en revenue y ROAS al instante.',
       mod6h:'Estacionalidad', mod6p:'Descomponer el rendimiento en Tendencia, Estacional y Residual con un mapa de calor del índice de inversión.',
       quoteEyebrow:'Lo que dicen los equipos', quoteTitle:'La confianza de agencias y equipos in-house',
@@ -984,6 +1047,67 @@
     document.getElementById('langToggle').textContent = d.langSwitch
     document.documentElement.lang = lang
   }
+
+
+  // ── Integrated wordmark logo ──────────────────────────────────────────────
+  function renderWordmark(cfg) {
+    const { adId, cruId, svgId, xId, fontSize, baseline, xStroke, dotFill, glowId, strokeW } = cfg
+    const svg = document.getElementById(svgId)
+    const ad  = document.getElementById(adId)
+    const cru = document.getElementById(cruId)
+    const xg  = document.getElementById(xId)
+    if (!svg || !ad || !cru || !xg) return
+    const ns  = 'http://www.w3.org/2000/svg'
+    const adW = ad.getBBox().width
+    cru.setAttribute('x', adW)
+    const cruW = cru.getBBox().width
+    const textW = adW + cruW
+    const xW  = fontSize * 0.74
+    const xH  = fontSize * 0.74
+    const xL  = textW + fontSize * 0.01
+    const xT  = baseline - xH
+    const cx  = xL + xW / 2
+    const cy  = xT + xH / 2
+    svg.setAttribute('width', xL + xW + strokeW + 1)
+    // Glow
+    const glow = document.createElementNS(ns, 'circle')
+    glow.setAttribute('cx', cx); glow.setAttribute('cy', cy)
+    glow.setAttribute('r', xW * 0.68)
+    glow.setAttribute('fill', 'url(#' + glowId + ')')
+    xg.appendChild(glow)
+    // X strokes — extend slightly beyond bbox for prominence
+    const pad = xW * -0.06
+    ;[
+      [xL + pad, xT + pad, xL + xW - pad, xT + xH - pad],
+      [xL + xW - pad, xT + pad, xL + pad, xT + xH - pad],
+    ].forEach(([x1,y1,x2,y2]) => {
+      const l = document.createElementNS(ns, 'line')
+      l.setAttribute('x1', x1); l.setAttribute('y1', y1)
+      l.setAttribute('x2', x2); l.setAttribute('y2', y2)
+      l.setAttribute('stroke', xStroke)
+      l.setAttribute('stroke-width', strokeW)
+      l.setAttribute('stroke-linecap', 'round')
+      xg.appendChild(l)
+    })
+    // Ring + dot at exact intersection
+    const ring = document.createElementNS(ns, 'circle')
+    ring.setAttribute('cx', cx); ring.setAttribute('cy', cy)
+    ring.setAttribute('r', fontSize * 0.155)
+    ring.setAttribute('fill', dotFill); ring.setAttribute('fill-opacity', '.18')
+    xg.appendChild(ring)
+    const dot = document.createElementNS(ns, 'circle')
+    dot.setAttribute('cx', cx); dot.setAttribute('cy', cy)
+    dot.setAttribute('r', fontSize * 0.092)
+    dot.setAttribute('fill', dotFill)
+    xg.appendChild(dot)
+  }
+
+  document.fonts.ready.then(() => {
+    renderWordmark({ adId:'nav-txt-ad',  cruId:'nav-txt-cru',  svgId:'nav-logo-svg',  xId:'nav-x',
+      fontSize:21, baseline:21, xStroke:'#1A3250', dotFill:'#00E5BE', glowId:'nav-glow',  strokeW:3.0 })
+    renderWordmark({ adId:'foot-txt-ad', cruId:'foot-txt-cru', svgId:'foot-logo-svg', xId:'foot-x',
+      fontSize:18, baseline:18, xStroke:'#2A3F58', dotFill:'#00E5BE', glowId:'foot-glow', strokeW:2.5 })
+  })
 
   // ── Intersection observer for fade-up ─────────────────────────────────────
   const obs = new IntersectionObserver((entries) => {
