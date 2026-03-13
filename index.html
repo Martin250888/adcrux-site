@@ -488,7 +488,7 @@
       <span id="badgeText">Independent media measurement · no platform bias</span>
     </div>
     <h1 class="fade-up" data-delay="1">
-      Measure what<br>
+      <span id="heroH1">Attribution data</span><br>
       <span class="shimmer-text" id="heroShimmer">independent of platform claims</span>
     </h1>
     <p class="hero-sub fade-up" data-delay="2" id="heroSub">Every ad platform measures attribution using its own model — and every platform has an incentive to overclaim. AdCrux uses Marketing Mix Modeling to deliver an independent view of your media mix, so your budget decisions are based on data no one can dispute.</p>
@@ -882,18 +882,19 @@
   let lang = 'en'
   const t = {
     en: {
-      badgeText:   'Statistical Marketing Mix Modeling — no data scientists required',
+      badgeText:   'Independent media measurement · no platform bias',
+      heroH1:      'Attribution data',
       heroShimmer: 'independent of platform claims',
-      heroSub:     'Upload your spend data, get channel-level ROAS, saturation curves, and budget recommendations in minutes — not months.',
+      heroSub:     'Every ad platform measures attribution using its own model — and every platform has an incentive to overclaim. AdCrux uses Marketing Mix Modeling to deliver an independent view of your media mix, so your budget decisions are based on data no one can dispute.',
       heroCta:     'Start free — 14 days trial',
       heroSec:     'See how it works',
-      statL1:'precisión promedio del modelo', statL2:'independiente de las plataformas', statL3:'módulos de análisis', statL4:'hasta el primer insight',
-      howEyebrow:'How it works', howTitle:'De datos crudos a atribución independiente en minutos',
-      howSub:'Sin data scientists. Sin consultoras. Sin esperar al equipo de datos. Subí tus datos y AdCrux hace el resto.',
-      step1h:'Subí tus datos de medios', step1p:'Cuatro columnas: semana, canal, inversión, leads. AdCrux valida, modela y entrega resultados de atribución automáticamente.',
-      step2h:'El modelo mide la contribución real', step2p:'El motor MMM de AdCrux calcula la contribución incremental real de cada canal — separando impacto genuino de sobreatribución de plataformas, baseline orgánico y estacionalidad.',
-      step3h:'Tomá decisiones que podés defender', step3p:'Reasigná el presupuesto con datos independientes. Presentá resultados a clientes o liderazgo con confianza — respaldado por un modelo que ninguna plataforma construyó.',
-      modEyebrow:'6 modules', modTitle:'Seis módulos. Cada pregunta de atribución, respondida.',
+      statL1:'avg model accuracy', statL2:'independent of platforms', statL3:'analytical modules', statL4:'to first insight',
+      howEyebrow:'How it works', howTitle:'From raw data to independent attribution in minutes',
+      howSub:'No data scientists. No consultants. No waiting. Upload your spend data and AdCrux delivers attribution results your entire team can act on.',
+      step1h:'Upload your media data', step1p:'Four columns: week, channel, spend, leads. AdCrux validates, models, and delivers attribution results automatically — no configuration required.',
+      step2h:'The model measures true contribution', step2p:'AdCrux\'s MMM engine calculates the actual incremental contribution of each channel — separating real impact from platform overclaiming, organic baseline, and seasonality.',
+      step3h:'Make decisions you can defend', step3p:'Reallocate budget based on independent data. Present results to clients or leadership with confidence — backed by a model no platform had a hand in building.',
+      modEyebrow:'6 modules', modTitle:'Six modules. Every attribution question answered.',
       modSub:'Each module is designed around a specific decision your marketing team makes every week.',
       mod1h:'Overview', mod1p:'Executive KPIs, spend by channel over time, and the full performance table with ROAS colour-coding.',
       mod2h:'Attribution', mod2p:'Model accuracy diagnostics — R², MAPE, Holdout RMSPE — plus actual vs predicted revenue curves.',
@@ -901,13 +902,13 @@
       mod4h:'Scenarios', mod4p:'Compare Conservative, Balanced, Aggressive, and Efficiency plans side by side with full revenue projections.',
       mod5h:'Optimizer', mod5p:'Live budget sliders — drag to reallocate spend and instantly see projected revenue and ROAS impact.',
       mod6h:'Seasonality', mod6p:'Decompose performance into Trend, Seasonal, and Residual components with a spend index heatmap.',
-      quoteEyebrow:'What teams are saying', quoteTitle:'La confianza de agencias y equipos in-house',
-      q1:''Finalmente teníamos un número que nadie podía discutir. Cuando Google decía una cosa y Meta otra, AdCrux nos daba la verdad para tomar la decisión.'',
-      qa1:'Marketing Director', qr1:'E-commerce brand · $50M revenue',
-      q2:''Las curvas de saturación solas nos ahorraron seguir invirtiendo en un canal ya saturado. Datos independientes — no una recomendación de plataforma — hicieron eso obvio.'',
+      quoteEyebrow:'What teams are saying', quoteTitle:'Trusted by agencies and in-house teams',
+      q1:'"We finally had a number no one could argue with. When Google said one thing and Meta said another, AdCrux gave us the ground truth to make the call."',
+      qa1:'Marketing Director', qr1:'E-commerce brand · $40M revenue',
+      q2:'"The saturation curves alone saved us from pouring budget into a maxed-out channel. Independent data — not a platform recommendation — made that call obvious."',
       qa2:'Head of Performance', qr2:'Digital agency · 20+ clients',
-      q3:''Reemplazamos un proyecto de tres semanas con consultoras externas por una tarde en AdCrux. El mismo rigor metodológico, a una fracción del tiempo y costo.'',
-      qa3:'VP Analytics', qr3:'B2B SaaS · Series B',
+      q3:'"We replaced a three-week consulting engagement with an afternoon in AdCrux. Same methodological rigor, a fraction of the time and cost."',
+      qa3:'VP Marketing', qr3:'B2B SaaS · Series B',
       priceEyebrow:'Pricing', priceTitle:'Simple, transparent pricing',
       priceSub:'Start free for 14 days. No credit card required.',
       plan1name:'Starter', plan2name:'Growth', plan3name:'Agency', popBadge:'Most popular',
@@ -915,8 +916,8 @@
       f2a:'Up to 3 brands / clients', f2b:'Unlimited historical data', f2c:'All 6 modules', f2d:'Scenarios & Optimizer', f2e:'Priority support',
       f3a:'Unlimited brands / clients', f3b:'Unlimited data', f3c:'All 6 modules', f3d:'White-label dashboard', f3e:'Dedicated account manager',
       cta1:'Start free trial', cta2:'Start free trial', cta3:'Start free trial',
-      ctaTitle:'¿Listo para ver qué <span class="shimmer-text">realmente impulsa tus resultados?</span>',
-      ctaSub:'Subí tu primer CSV en menos de 5 minutos. Atribución independiente desde la primera sesión.',
+      ctaTitle:'Ready to see what\'s really <span class="shimmer-text">driving your results?</span>',
+      ctaSub:'Upload your first CSV in under 5 minutes. Independent attribution from your very first session.',
       ctaFinal:'Start free trial', ctaNote:'14-day trial · No credit card required · Cancel anytime',
       footPrivacy:'Privacy', footTerms:'Terms', footDocs:'Docs', footCopy:'© 2025 AdCrux. All rights reserved.',
       signIn:'Sign in', langSwitch:'ES',
@@ -924,8 +925,9 @@
     },
     es: {
       badgeText:   'Marketing Mix Modeling estadístico — sin necesidad de data scientists',
+      heroH1:      'Datos de atribución',
       heroShimmer: 'realmente impulsa el revenue',
-      heroSub:     'Subí tus datos de inversión y obtené ROAS por canal, curvas de saturación y recomendaciones de presupuesto en minutos, no en meses.',
+      heroSub:     'Cada plataforma mide la atribución con su propio modelo — y todas tienen incentivos para sobreatribuirse el crédito. AdCrux usa Marketing Mix Modeling para darte una visión independiente de tu mix de medios, para que tus decisiones de presupuesto estén basadas en datos que nadie puede cuestionar.',
       heroCta:     'Empezar gratis — 14 días de prueba',
       heroSec:     'Ver cómo funciona',
       statL1:'R² promedio del modelo', statL2:'ROAS combinado promedio', statL3:'módulos analíticos', statL4:'al primer insight',
@@ -942,7 +944,7 @@
       mod4h:'Escenarios', mod4p:'Comparar planes Conservador, Balanceado, Agresivo y de Eficiencia en paralelo con proyecciones de revenue.',
       mod5h:'Optimizador', mod5p:'Sliders de presupuesto en vivo — mové para redistribuir la inversión y ver el impacto en revenue y ROAS al instante.',
       mod6h:'Estacionalidad', mod6p:'Descomponer el rendimiento en Tendencia, Estacional y Residual con un mapa de calor del índice de inversión.',
-      quoteEyebrow:'Lo que dicen los equipos', quoteTitle:'Construido para practitioners, no teóricos',
+      quoteEyebrow:'Lo que dicen los equipos', quoteTitle:'La confianza de agencias y equipos in-house',
       q1:''Finalmente teníamos un número que nadie podía discutir. Cuando Google decía una cosa y Meta otra, AdCrux nos daba la verdad para tomar la decisión.'',
       qa1:'Directora de Marketing', qr1:'Marca e-commerce · $50M revenue',
       q2:''Las curvas de saturación solas nos ahorraron seguir invirtiendo en un canal ya saturado. Datos independientes — no una recomendación de plataforma — hicieron eso obvio.'',
