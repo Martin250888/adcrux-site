@@ -447,17 +447,23 @@
 <!-- ─── NAV ─────────────────────────────────────────────────────────────── -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a href="/" class="nav-logo" id="nav-logo-wrap" style="gap:0">
-      <svg id="nav-logo-svg" height="28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+    <a href="/" class="nav-logo" style="gap:0;line-height:1">
+      <svg width="90" height="26" viewBox="0 0 90 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="nav-glow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#00E5BE" stop-opacity=".28"/>
             <stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <text id="nav-txt-ad"  y="21" font-family="DM Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-.8" fill="#3D5270">Ad</text>
-        <text id="nav-txt-cru" y="21" font-family="DM Sans, sans-serif" font-weight="800" font-size="21" letter-spacing="-.8" fill="#F1F5F9">Cru</text>
-        <g id="nav-x"></g>
+        <!-- "Ad" subdued, "Cru" bright — system font fallback stack -->
+        <text x="0" y="20" font-family="DM Sans,-apple-system,BlinkMacSystemFont,sans-serif" font-weight="800" font-size="21" letter-spacing="-0.8" fill="#3D5270">Ad</text>
+        <text x="29" y="20" font-family="DM Sans,-apple-system,BlinkMacSystemFont,sans-serif" font-weight="800" font-size="21" letter-spacing="-0.8" fill="#F1F5F9">Cru</text>
+        <!-- X: two diagonals crossing at center of glyph position (x=69, cap-height center y=10) -->
+        <circle cx="70" cy="13" r="10" fill="url(#nav-glow)"/>
+        <line x1="62" y1="5"  x2="78" y2="21" stroke="#1A3250" stroke-width="3.2" stroke-linecap="round"/>
+        <line x1="78" y1="5"  x2="62" y2="21" stroke="#1A3250" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="70" cy="13" r="3.2" fill="#00E5BE"/>
+        <circle cx="70" cy="13" r="5.5" fill="#00E5BE" fill-opacity=".16"/>
       </svg>
     </a>
     <ul class="nav-links">
@@ -887,17 +893,21 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="nav-logo" style="gap:0">
-        <svg id="foot-logo-svg" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+      <div class="nav-logo" style="gap:0;line-height:1">
+        <svg width="78" height="22" viewBox="0 0 78 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <radialGradient id="foot-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00E5BE" stop-opacity=".22"/>
+              <stop offset="0%" stop-color="#00E5BE" stop-opacity=".2"/>
               <stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/>
             </radialGradient>
           </defs>
-          <text id="foot-txt-ad"  y="18" font-family="DM Sans, sans-serif" font-weight="800" font-size="18" letter-spacing="-.6" fill="#3D5270">Ad</text>
-          <text id="foot-txt-cru" y="18" font-family="DM Sans, sans-serif" font-weight="800" font-size="18" letter-spacing="-.6" fill="#64748B">Cru</text>
-          <g id="foot-x"></g>
+          <text x="0"  y="17" font-family="DM Sans,-apple-system,BlinkMacSystemFont,sans-serif" font-weight="800" font-size="18" letter-spacing="-0.6" fill="#2A3F58">Ad</text>
+          <text x="25" y="17" font-family="DM Sans,-apple-system,BlinkMacSystemFont,sans-serif" font-weight="800" font-size="18" letter-spacing="-0.6" fill="#475569">Cru</text>
+          <circle cx="61" cy="11" r="8" fill="url(#foot-glow)"/>
+          <line x1="54" y1="4"  x2="68" y2="18" stroke="#1E3040" stroke-width="2.6" stroke-linecap="round"/>
+          <line x1="68" y1="4"  x2="54" y2="18" stroke="#1E3040" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="61" cy="11" r="2.8" fill="#00E5BE"/>
+          <circle cx="61" cy="11" r="4.8" fill="#00E5BE" fill-opacity=".15"/>
         </svg>
       </div>
       <div class="footer-links">
@@ -1047,66 +1057,6 @@
     document.getElementById('langToggle').textContent = d.langSwitch
     document.documentElement.lang = lang
   }
-
-
-  // ── Integrated wordmark logo ──────────────────────────────────────────────
-  function renderWordmark(cfg) {
-    const { adId, cruId, svgId, xId, fontSize, baseline, xStroke, dotFill, glowId, strokeW } = cfg
-    const svg = document.getElementById(svgId)
-    const ad  = document.getElementById(adId)
-    const cru = document.getElementById(cruId)
-    const xg  = document.getElementById(xId)
-    if (!svg || !ad || !cru || !xg) return
-    const ns  = 'http://www.w3.org/2000/svg'
-    const adW = ad.getBBox().width
-    cru.setAttribute('x', adW)
-    const cruW = cru.getBBox().width
-    const textW = adW + cruW
-    const xW  = fontSize * 0.74
-    const xH  = fontSize * 0.74
-    const xL  = textW + fontSize * 0.01
-    const xT  = baseline - xH
-    const cx  = xL + xW / 2
-    const cy  = xT + xH / 2
-    svg.setAttribute('width', xL + xW + strokeW + 1)
-    // Glow
-    const glow = document.createElementNS(ns, 'circle')
-    glow.setAttribute('cx', cx); glow.setAttribute('cy', cy)
-    glow.setAttribute('r', xW * 0.68)
-    glow.setAttribute('fill', 'url(#' + glowId + ')')
-    xg.appendChild(glow)
-    // X strokes — extend slightly beyond bbox for prominence
-    const pad = xW * -0.06
-    ;[
-      [xL + pad, xT + pad, xL + xW - pad, xT + xH - pad],
-      [xL + xW - pad, xT + pad, xL + pad, xT + xH - pad],
-    ].forEach(([x1,y1,x2,y2]) => {
-      const l = document.createElementNS(ns, 'line')
-      l.setAttribute('x1', x1); l.setAttribute('y1', y1)
-      l.setAttribute('x2', x2); l.setAttribute('y2', y2)
-      l.setAttribute('stroke', xStroke)
-      l.setAttribute('stroke-width', strokeW)
-      l.setAttribute('stroke-linecap', 'round')
-      xg.appendChild(l)
-    })
-    // Ring + dot at exact intersection
-    const ring = document.createElementNS(ns, 'circle')
-    ring.setAttribute('cx', cx); ring.setAttribute('cy', cy)
-    ring.setAttribute('r', fontSize * 0.155)
-    ring.setAttribute('fill', dotFill); ring.setAttribute('fill-opacity', '.18')
-    xg.appendChild(ring)
-    const dot = document.createElementNS(ns, 'circle')
-    dot.setAttribute('cx', cx); dot.setAttribute('cy', cy)
-    dot.setAttribute('r', fontSize * 0.092)
-    dot.setAttribute('fill', dotFill)
-    xg.appendChild(dot)
-  }
-
-  document.fonts.ready.then(() => {
-    renderWordmark({ adId:'nav-txt-ad',  cruId:'nav-txt-cru',  svgId:'nav-logo-svg',  xId:'nav-x',
-      fontSize:21, baseline:21, xStroke:'#1A3250', dotFill:'#00E5BE', glowId:'nav-glow',  strokeW:3.0 })
-    renderWordmark({ adId:'foot-txt-ad', cruId:'foot-txt-cru', svgId:'foot-logo-svg', xId:'foot-x',
-      fontSize:18, baseline:18, xStroke:'#2A3F58', dotFill:'#00E5BE', glowId:'foot-glow', strokeW:2.5 })
   })
 
   // ── Intersection observer for fade-up ─────────────────────────────────────
