@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AdCrux — Sign in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#080810; --surface:#0E0E1A; --card:#131320; --border:#1C1C2E;
+    --muted:#252540; --text:#EEEEF5; --sub:#6B6B8A; --hint:#3A3A55;
+    --accent:#00E5BE; --accent2:#00B896; --error:#EF4444;
+  }
+  html,body { font-family:'DM Sans',-apple-system,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; }
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image: linear-gradient(var(--border) 1px,transparent 1px), linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
+    opacity:.4;
+  }
+  body::after {
+    content:''; position:fixed; top:0; left:50%; transform:translateX(-50%);
+    width:600px; height:300px; pointer-events:none; z-index:0;
+    background:radial-gradient(ellipse,rgba(0,229,190,.06) 0%,transparent 70%);
+  }
+  .page { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 20px; }
+  .logo { margin-bottom:36px; text-decoration:none; display:block; }
+  .card { width:100%; max-width:400px; background:var(--card); border:1px solid var(--border); border-radius:18px; padding:36px 32px; box-shadow:0 40px 80px rgba(0,0,0,.4); }
+  .card-title { font-size:22px; font-weight:700; letter-spacing:-.02em; margin-bottom:6px; }
+  .card-sub { font-size:14px; color:var(--sub); margin-bottom:28px; line-height:1.5; }
+  .field { margin-bottom:16px; }
+  label { display:block; font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--sub); margin-bottom:7px; }
+  input { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:9px; color:var(--text); font-family:inherit; font-size:15px; padding:11px 14px; outline:none; transition:border-color .15s,box-shadow .15s; }
+  input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,229,190,.12); }
+  input::placeholder { color:var(--hint); }
+  .pw-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:7px; }
+  .pw-row label { margin-bottom:0; }
+  .forgot { font-size:12px; color:var(--sub); text-decoration:none; }
+  .forgot:hover { color:var(--accent); }
+  .btn { width:100%; padding:13px; background:var(--accent); color:#080810; border:none; border-radius:9px; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; margin-top:6px; transition:background .15s,transform .1s; }
+  .btn:hover { background:var(--accent2); transform:translateY(-1px); }
+  .btn:active { transform:translateY(0); }
+  .btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+  .divider { border:none; border-top:1px solid var(--border); margin:24px 0; }
+  .link-row { text-align:center; font-size:14px; color:var(--sub); }
+  .link-row a { color:var(--accent); text-decoration:none; font-weight:600; }
+  .link-row a:hover { text-decoration:underline; }
+  .alert { border-radius:8px; padding:10px 14px; font-size:13px; line-height:1.5; margin-bottom:16px; display:none; }
+  .alert.error   { background:rgba(239,68,68,.1);  border:1px solid rgba(239,68,68,.3);  color:#FCA5A5; }
+  .alert.success { background:rgba(0,229,190,.1);  border:1px solid rgba(0,229,190,.3);  color:var(--accent); }
+  .alert.show    { display:block; }
+  /* Reset mode */
+  #reset-section { display:none; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a href="https://getadcrux.com" class="logo">
+    <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><radialGradient id="lg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00E5BE" stop-opacity=".25"/><stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/></radialGradient></defs>
+      <text x="0" y="23" font-family="DM Sans,-apple-system,sans-serif" font-weight="800" font-size="26" letter-spacing="-0.6" fill="#3D5270">Ad</text>
+      <text x="34" y="23" font-family="DM Sans,-apple-system,sans-serif" font-weight="800" font-size="26" letter-spacing="-0.6" fill="#F1F5F9">Cru</text>
+      <circle cx="88" cy="13" r="11" fill="url(#lg)"/>
+      <line x1="81" y1="6" x2="95" y2="20" stroke="#1A3250" stroke-width="3.8" stroke-linecap="round"/>
+      <line x1="95" y1="6" x2="81" y2="20" stroke="#1A3250" stroke-width="3.8" stroke-linecap="round"/>
+      <circle cx="88" cy="13" r="4.8" fill="#00E5BE" fill-opacity=".18"/>
+      <circle cx="88" cy="13" r="3" fill="#00E5BE"/>
+    </svg>
+  </a>
+
+  <div class="card">
+
+    <!-- ── Login section ── -->
+    <div id="login-section">
+      <div class="card-title">Welcome back</div>
+      <div class="card-sub">Sign in to your AdCrux account.</div>
+
+      <div id="alert" class="alert"></div>
+
+      <form id="login-form" autocomplete="on">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="you@company.com" required autocomplete="email"/>
+        </div>
+        <div class="field">
+          <div class="pw-row">
+            <label>Password</label>
+            <a href="#" class="forgot" id="forgot-link">Forgot password?</a>
+          </div>
+          <input type="password" id="pw" placeholder="Your password" required autocomplete="current-password"/>
+        </div>
+        <button type="submit" class="btn" id="btn">Sign in →</button>
+      </form>
+
+      <hr class="divider"/>
+      <div class="link-row">Don't have an account? <a href="/signup.html">Start free trial</a></div>
+    </div>
+
+    <!-- ── Reset section ── -->
+    <div id="reset-section">
+      <div class="card-title">Reset password</div>
+      <div class="card-sub">We'll send a reset link to your email.</div>
+
+      <div id="reset-alert" class="alert"></div>
+
+      <form id="reset-form">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="reset-email" placeholder="you@company.com" required/>
+        </div>
+        <button type="submit" class="btn" id="reset-btn">Send reset link →</button>
+      </form>
+
+      <hr class="divider"/>
+      <div class="link-row"><a href="#" id="back-link">← Back to sign in</a></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SB_URL = 'https://utqmhfzrjchbmdvfpkos.supabase.co'
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0cW1oZnpyamNoYm1kdmZwa29zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MjQzODIsImV4cCI6MjA4OTEwMDM4Mn0.80_Dfz_SIP72Kn3QEtCV8sIJMUbYwlEIKFAcyuIC37k'
+const APP    = 'https://app.getadcrux.com'
+const sb     = supabase.createClient(SB_URL, SB_KEY)
+
+function showAlert(id, msg, type) {
+  const el = document.getElementById(id)
+  el.innerHTML = msg; el.className = `alert ${type} show`
+}
+
+// ── Login ──────────────────────────────────────────────────────────────────
+document.getElementById('login-form').addEventListener('submit', async e => {
+  e.preventDefault()
+  const email = document.getElementById('email').value.trim()
+  const pw    = document.getElementById('pw').value
+  const btn   = document.getElementById('btn')
+
+  btn.disabled = true; btn.textContent = 'Signing in…'
+
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pw })
+
+  if (error) {
+    showAlert('alert', error.message.includes('Invalid') ? 'Incorrect email or password.' : error.message, 'error')
+    btn.disabled = false; btn.textContent = 'Sign in →'
+    return
+  }
+
+  showAlert('alert', 'Signed in! Redirecting…', 'success')
+  const { session } = data
+  setTimeout(() => {
+    location.href = `${APP}?access_token=${encodeURIComponent(session.access_token)}&refresh_token=${encodeURIComponent(session.refresh_token)}`
+  }, 700)
+})
+
+// ── Forgot password ────────────────────────────────────────────────────────
+document.getElementById('forgot-link').addEventListener('click', e => {
+  e.preventDefault()
+  document.getElementById('login-section').style.display = 'none'
+  document.getElementById('reset-section').style.display = 'block'
+})
+
+document.getElementById('back-link').addEventListener('click', e => {
+  e.preventDefault()
+  document.getElementById('reset-section').style.display = 'none'
+  document.getElementById('login-section').style.display = 'block'
+})
+
+document.getElementById('reset-form').addEventListener('submit', async e => {
+  e.preventDefault()
+  const email = document.getElementById('reset-email').value.trim()
+  const btn   = document.getElementById('reset-btn')
+  btn.disabled = true; btn.textContent = 'Sending…'
+
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: `${APP}/reset-password`
+  })
+
+  if (error) {
+    showAlert('reset-alert', error.message, 'error')
+    btn.disabled = false; btn.textContent = 'Send reset link →'
+  } else {
+    showAlert('reset-alert', 'Reset link sent — check your inbox.', 'success')
+    btn.textContent = 'Sent ✓'
+  }
+})
+</script>
+</body>
+</html>
