@@ -473,7 +473,7 @@
     </ul>
     <div class="nav-actions">
       <a href="https://getadcrux.com/login.html" class="btn-ghost" id="signInBtn">Sign in</a>
-      <a href="#waitlist" onclick="openWaitlist(event)" class="btn-primary" id="ctaBtn">
+      <a href="javascript:void(0)" onclick="openWaitlist()" class="btn-primary" id="ctaBtn">
         Start free trial
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L8 4M11 7L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -496,7 +496,7 @@
     </h1>
     <p class="hero-sub fade-up" data-delay="2" id="heroSub">Every ad platform measures attribution using its own model — and every platform has an incentive to overclaim. AdCrux uses Marketing Mix Modeling to deliver an independent view of your media mix, so your budget decisions are based on data no one can dispute.</p>
     <div class="hero-actions fade-up" data-delay="3">
-      <a href="#waitlist" onclick="openWaitlist(event)" class="btn-primary" style="font-size:16px;padding:14px 32px;border-radius:12px;" id="heroCta">
+      <a href="javascript:void(0)" onclick="openWaitlist()" class="btn-primary" style="font-size:16px;padding:14px 32px;border-radius:12px;" id="heroCta">
         Join the waitlist
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -831,7 +831,7 @@
           <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00E5BE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="f1d">CSV import</span></li>
           <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00E5BE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="f1e">Email support</span></li>
         </ul>
-        <a href="#waitlist" onclick="openWaitlist(event)" class="price-cta outline" id="cta1">Start free trial</a>
+        <a href="javascript:void(0)" onclick="openWaitlist()" class="price-cta outline" id="cta1">Start free trial</a>
       </div>
 
       <!-- Growth -->
@@ -849,7 +849,7 @@
           <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00E5BE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="f2d">Scenarios &amp; Optimizer</span></li>
           <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00E5BE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="f2e">Priority support</span></li>
         </ul>
-        <a href="#waitlist" onclick="openWaitlist(event)" class="price-cta primary" id="cta2">Start free trial</a>
+        <a href="javascript:void(0)" onclick="openWaitlist()" class="price-cta primary" id="cta2">Start free trial</a>
       </div>
 
       <!-- Agency -->
@@ -866,7 +866,7 @@
           <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00E5BE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="f3d">White-label dashboard</span></li>
           <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00E5BE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="f3e">Dedicated account manager</span></li>
         </ul>
-        <a href="#waitlist" onclick="openWaitlist(event)" class="price-cta outline" id="cta3">Start free trial</a>
+        <a href="javascript:void(0)" onclick="openWaitlist()" class="price-cta outline" id="cta3">Start free trial</a>
       </div>
     </div>
   </div>
@@ -879,7 +879,7 @@
     <h2 id="ctaTitle">Ready to see what's really <span class="shimmer-text">driving your results?</span></h2>
     <p id="ctaSub">Upload your first CSV in under 5 minutes. Independent attribution from your very first session.</p>
     <div class="cta-actions">
-      <a href="#waitlist" onclick="openWaitlist(event)" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:12px;" id="ctaFinal">
+      <a href="javascript:void(0)" onclick="openWaitlist()" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:12px;" id="ctaFinal">
         Start free trial
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -1048,12 +1048,16 @@
 
   function applyLang() {
     const d = t[lang]
+    const skipHref = new Set(['ctaBtn','heroCta','cta1','cta2','cta3','ctaFinal'])
     Object.keys(d).forEach(id => {
       const el = document.getElementById(id)
       if (!el) return
       if (id === 'ctaTitle') { el.innerHTML = d[id]; return }
+      // For CTA buttons: only update text, don't touch href/onclick
+      if (skipHref.has(id)) { el.textContent = d[id]; return }
       el.textContent = d[id]
     })
+  }
     document.getElementById('langToggle').textContent = d.langSwitch
     document.documentElement.lang = lang
   }
