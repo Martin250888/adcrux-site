@@ -509,6 +509,21 @@ if _SUPABASE_MODE:
 
         _auth.render_user_menu(sb)
 
+        # ── Run counter ───────────────────────────────────────────────────────
+        _sidebar_account = st.session_state.get("account")
+        if _sidebar_account:
+            from plans import check_run_limit as _crl
+            _rl = _crl(_sidebar_account)
+            if not _rl["unlimited"] and _rl["limit"] > 0:
+                _pct = _rl["used"] / max(_rl["limit"], 1)
+                _color = "#10B981" if _pct < 0.7 else "#F59E0B" if _pct < 1.0 else "#EF4444"
+                st.markdown(
+                    f'<div style="padding:.4rem 0;font-size:.75rem;color:#8B9DB0">'
+                    f'<span style="color:{_color};font-weight:700">{_rl["used"]}</span>'
+                    f' / {_rl["limit"]} runs this month</div>',
+                    unsafe_allow_html=True,
+                )
+
 else:
     # ── Single-password fallback (no Supabase configured) ────────────────────
     APP_PASSWORD = os.getenv("APP_PASSWORD", "adcrux")
@@ -674,12 +689,33 @@ color_map     = {ch: PALETTE[i % len(PALETTE)] for i, ch in enumerate(channels_l
 lc_available  = has_lastclick(df)
 
 
+from plans import can, check_run_limit, feature_level, get_upgrade_msg, run_counter_label, PLANS
+from insights import build_context, get_insights, render_insights_panel
+
+# Get account from session_state (set during sidebar in Supabase mode)
+_account = st.session_state.get("account") if _SUPABASE_MODE else {"plan": "professional", "runs_this_month": 0}
+
 # ─────────────────────────────────────────────────────────────────────────────
-#  Auto-tune / manual params
+#  Run limit check — before running any expensive computation
 # ─────────────────────────────────────────────────────────────────────────────
-if auto_mode:
-    # Progress bar is shown inside auto_tune_params on first run.
-    # On subsequent runs with the same data, result is returned instantly from cache.
+_run_limit = check_run_limit(_account)
+_dataset_key = st.session_state.get("_csv_key", "")
+_already_ran = st.session_state.get(f"_ran_{_dataset_key}", False)
+
+if not _run_limit["ok"] and not _already_ran:
+    msg = get_upgrade_msg("run_limit")
+    st.error(f"🚫 **{msg['title']}** — {msg['body']}")
+    if _SUPABASE_MODE:
+        st.info(f"You've used **{_run_limit['used']} / {_run_limit['limit']}** runs this month. "
+                f"Runs reset on the 1st of each month.")
+    st.stop()
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Auto-tune / manual params — gated by plan
+# ─────────────────────────────────────────────────────────────────────────────
+_can_autotune = can(_account, "auto_tune")
+
+if auto_mode and _can_autotune:
     st.markdown(
         '<small style="color:#8B9DB0">🔄 Auto-tuning model parameters '
         '(first run ~20-30s · cached after)</small>',
@@ -699,12 +735,32 @@ if auto_mode:
         alpha       = float(best["alpha"])
         ridge_alpha = float(best["ridge_alpha"])
         gamma_scale = float(best.get("gamma_scale", 1.0))
+elif auto_mode and not _can_autotune:
+    # Starter: show info banner, fall back to defaults
+    st.info("ℹ️ Auto-tune is available on **Professional** and above. "
+            "Using recommended default parameters.", icon="🔒")
+    theta, alpha, ridge_alpha, gamma_scale = 0.5, 1.5, 5.0, 1.0
+    best = None
+    leaderboard = None
 
 hp  = HyperParams(theta=theta, alpha=alpha, ridge_alpha=ridge_alpha, gamma_scale=gamma_scale)
 # auto_tune_channels=False: global hp params tuned via backtest MAPE (tuning.py)
 # Per-channel tuning requires 80+ weeks — global params are safer for MVP
 mmm = MMMLeadGen(hp=hp, auto_tune_channels=False)
 fit = mmm.fit(df)
+
+# Mark this dataset+session as "run" and increment monthly counter
+if _SUPABASE_MODE and not _already_ran and _account:
+    try:
+        db.increment_run_count(sb, _account["id"])
+        # Refresh account to get updated run count
+        _refreshed = db.refresh_account(sb, _account["id"])
+        if _refreshed:
+            st.session_state["account"] = {**_account, **_refreshed}
+            _account = st.session_state["account"]
+    except Exception:
+        pass  # Don't block the app if counter fails
+    st.session_state[f"_ran_{_dataset_key}"] = True
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -728,9 +784,14 @@ blended_cpl   = total_spend / total_leads if total_leads > 0 else 0.0
 # Data quality report (used in Overview and Diagnostics)
 dqr = data_quality_report(df)
 
-# Bootstrap confidence intervals (only if enough weeks; ~3s compute)
+# Bootstrap confidence intervals — Professional+ only
+_can_bootstrap = can(_account, "bootstrap_ci")
 with st.spinner("Computing confidence intervals…"):
-    boot_ci = mmm.bootstrap_mmm_shares(df, n_bootstrap=150) if n_weeks >= MIN_WEEKS_FOR_CI else pd.DataFrame()
+    boot_ci = (
+        mmm.bootstrap_mmm_shares(df, n_bootstrap=150)
+        if (_can_bootstrap and n_weeks >= MIN_WEEKS_FOR_CI)
+        else pd.DataFrame()
+    )
 
 
 # ─────────────────────────────────────────────────────────────────────────────────
@@ -765,7 +826,7 @@ with tab_overview:
     _dqr_color = {"GOOD": "#10B981", "FAIR": "#F59E0B", "POOR": "#EF4444"}[dqr["overall"]]
     _dqr_items = " &nbsp;·&nbsp; ".join(dqr["strengths"] + dqr["warnings"] + dqr["issues"])
     st.markdown(
-        f'<div style="background:#F8FAFC;border-left:4px solid {_dqr_color};'
+        f'<div style="border-left:3px solid {_dqr_color};background:#0A0A18;'
         f'padding:.6rem 1rem;border-radius:4px;font-size:.78rem;color:#8B9DB0;line-height:1.6">'
         f'<strong style="color:{_dqr_color}">Data quality: {dqr["overall"]}</strong>'
         f'&nbsp;&nbsp;{_dqr_items}</div>',
@@ -782,87 +843,133 @@ with tab_overview:
 
     st.markdown("")
 
-    # ── Attribution Gap teaser (hero) ─────────────────────────────────────────
-    if lc_available:
-        st.markdown('<p class="sec-header">⚡ The Attribution Problem — At a Glance</p>',
-                    unsafe_allow_html=True)
+    # ─────────────────────────────────────────────────────────────────────────
+    # Overview layout differs by plan:
+    #   Pro/Agency  → AI Insights (replaces Key Insights) + compact At a Glance
+    #   Free/Starter → Key Insights (rule-based) + full At a Glance teaser
+    # ─────────────────────────────────────────────────────────────────────────
+    _is_pro = can(_account, "attribution_gap")   # Pro+ feature as proxy
 
-        # Find most dramatic over/undervalued channel
-        valid_gaps  = attr_gap.dropna(subset=["gap_points"])
-        undervalued = valid_gaps[valid_gaps["gap_points"] >  0.05].sort_values("gap_points", ascending=False)
-        overvalued  = valid_gaps[valid_gaps["gap_points"] < -0.05].sort_values("gap_points", ascending=True)
+    if _is_pro:
+        # ── AI Insights Engine (Pro+) ─────────────────────────────────────────
+        _insights_key = st.session_state.get("_csv_key", "default")
+        _insights_ctx = build_context(
+            total_spend=total_spend, total_leads=total_leads,
+            blended_cpl=blended_cpl, n_weeks=n_weeks, conf=conf,
+            backtest_df=backtest_df, attr_gap=attr_gap, contrib=contrib,
+            pivot_spend=pivot_spend, fit=fit, tracking=tracking, dqr=dqr,
+        )
+        _insights_cached = f"_insights_{_insights_key}" in st.session_state
+        if not _insights_cached:
+            _ins_ph = st.empty()
+            with _ins_ph:
+                render_insights_panel([], is_loading=True, cache_key=_insights_key)
+            with st.spinner(""):
+                _insights = get_insights(_insights_ctx, cache_key=_insights_key)
+            _ins_ph.empty()
+            st.rerun()
+        else:
+            _insights = get_insights(_insights_ctx, cache_key=_insights_key)
+            render_insights_panel(_insights, cache_key=_insights_key)
+            if st.button("🔄 Regenerate insights", key="regen_insights_btn",
+                         help="Generate a fresh set of insights from the same model data"):
+                from insights import invalidate_insights
+                invalidate_insights(_insights_key)
+                st.rerun()
 
-        if not undervalued.empty or not overvalued.empty:
-            ha, hb = st.columns(2)
+        # ── Attribution At a Glance — compact version for Pro (has full tab) ──
+        if lc_available:
+            st.markdown("")
+            st.markdown('<p class="sec-header">Attribution Gap — Top Signals</p>',
+                        unsafe_allow_html=True)
+            valid_gaps  = attr_gap.dropna(subset=["gap_points"])
+            undervalued = valid_gaps[valid_gaps["gap_points"] >  0.05].sort_values("gap_points", ascending=False)
+            overvalued  = valid_gaps[valid_gaps["gap_points"] < -0.05].sort_values("gap_points", ascending=True)
+            if not undervalued.empty or not overvalued.empty:
+                ha, hb = st.columns(2)
+                with ha:
+                    if not undervalued.empty:
+                        top = undervalued.iloc[0]
+                        st.markdown(
+                            f'<div class="gap-card gap-undervalued">' +
+                            f'<div class="ch-name">{top["channel"]}<span class="gap-badge badge-under">UNDERVALUED</span></div>' +
+                            f'<div class="rec"><strong>+{top["gap_points"]*100:.1f} pp</strong> undercredited · ' +
+                            f'Platform: {top["lastclick_share"]*100:.1f}% → Model: {top["mmm_share"]*100:.1f}%</div></div>',
+                            unsafe_allow_html=True)
+                with hb:
+                    if not overvalued.empty:
+                        bot = overvalued.iloc[0]
+                        st.markdown(
+                            f'<div class="gap-card gap-overvalued">' +
+                            f'<div class="ch-name">{bot["channel"]}<span class="gap-badge badge-over">OVERVALUED</span></div>' +
+                            f'<div class="rec"><strong>{bot["gap_points"]*100:.1f} pp</strong> overcredited · ' +
+                            f'Platform: {bot["lastclick_share"]*100:.1f}% → Model: {bot["mmm_share"]*100:.1f}%</div></div>',
+                            unsafe_allow_html=True)
+            st.caption("👉 Go to **Attribution Gap** tab for the full breakdown.")
 
-            # ── Most undervalued channel ──────────────────────────────────────
-            with ha:
-                if not undervalued.empty:
-                    top     = undervalued.iloc[0]
-                    lc_pct  = top["lastclick_share"] * 100
-                    mmm_pct = top["mmm_share"] * 100
-                    gap_pts = top["gap_points"] * 100
-                    st.markdown(f"""
-                    <div class="gap-card gap-undervalued">
-                        <div class="ch-name">
-                            {top['channel']}
-                            <span class="gap-badge badge-under">UNDERVALUED</span>
-                        </div>
-                        <div style="margin:.6rem 0;font-size:.85rem;color:#8B9DB0">
-                            Platforms say: <strong>{lc_pct:.1f}%</strong> of leads
-                            &nbsp;·&nbsp; Model says: <strong>{mmm_pct:.1f}%</strong> of leads
-                        </div>
-                        <div style="font-size:1.4rem;font-weight:800;color:#10B981">
-                            +{gap_pts:.1f} pp undercredited by platforms
-                        </div>
-                        <div class="rec">{top['recommendation']}</div>
-                    </div>""", unsafe_allow_html=True)
-                else:
-                    st.markdown("""
-                    <div class="gap-card gap-fair">
-                        <div class="ch-name">No undervalued channels detected</div>
-                        <div class="rec">All channels are either fairly attributed or overvalued by platforms.</div>
-                    </div>""", unsafe_allow_html=True)
-
-            # ── Most overvalued channel ───────────────────────────────────────
-            with hb:
-                if not overvalued.empty:
-                    bottom   = overvalued.iloc[0]
-                    lc_pct2  = bottom["lastclick_share"] * 100
-                    mmm_pct2 = bottom["mmm_share"] * 100
-                    gap_pts2 = bottom["gap_points"] * 100
-                    st.markdown(f"""
-                    <div class="gap-card gap-overvalued">
-                        <div class="ch-name">
-                            {bottom['channel']}
-                            <span class="gap-badge badge-over">OVERVALUED</span>
-                        </div>
-                        <div style="margin:.6rem 0;font-size:.85rem;color:#8B9DB0">
-                            Platforms say: <strong>{lc_pct2:.1f}%</strong> of leads
-                            &nbsp;·&nbsp; Model says: <strong>{mmm_pct2:.1f}%</strong> of leads
-                        </div>
-                        <div style="font-size:1.4rem;font-weight:800;color:#EF4444">
-                            {gap_pts2:.1f} pp overcredited by platforms
-                        </div>
-                        <div class="rec">{bottom['recommendation']}</div>
-                    </div>""", unsafe_allow_html=True)
-                else:
-                    st.markdown("""
-                    <div class="gap-card gap-fair">
-                        <div class="ch-name">No overvalued channels detected</div>
-                        <div class="rec">Platform attribution looks consistent with the model across all channels.</div>
-                    </div>""", unsafe_allow_html=True)
-
-        st.caption("👉 Go to the **Attribution Gap** tab for the full breakdown.")
     else:
-        st.markdown('<p class="sec-header">Attribution</p>', unsafe_allow_html=True)
-        st.markdown("""
-        <div class="insight warn">
-            ⭐ <strong>Unlock the Attribution Gap feature</strong> — add a
-            <code>lastclick_leads</code> column to your CSV to compare what each
-            platform claims vs what the model actually finds.
-            This is the core insight of AdCrux.
-        </div>""", unsafe_allow_html=True)
+        # ── Key Insights — rule-based (Free / Starter) ────────────────────────
+        st.markdown('<p class="sec-header">Key Insights</p>', unsafe_allow_html=True)
+        best_ch  = chan_contrib_df.sort_values("est_roas", ascending=False).iloc[0]["channel"]
+        worst_ch = chan_contrib_df.sort_values("est_roas").iloc[0]["channel"]
+        _ki = [
+            ("info",   f"🏆 <b>{best_ch}</b> has the highest estimated ROAS in your mix."),
+            ("warn",   f"⚠️ <b>{worst_ch}</b> has the lowest estimated ROAS — review allocation."),
+            ("info",   f"📊 Blended CPL across the portfolio: <b>${blended_cpl:,.2f}</b>."),
+        ]
+        if conf["score"] < 55:
+            _ki.append(("danger", f"🔴 Model confidence is LOW ({conf['score']}/100) — check Diagnostics."))
+        elif conf["score"] < 75:
+            _ki.append(("warn",   f"🟡 Model confidence is MEDIUM ({conf['score']}/100) — directional only."))
+        else:
+            _ki.append(("info",   f"✅ Model confidence is HIGH ({conf['score']}/100) — results are reliable."))
+        for kind, text in _ki:
+            css = "warn" if kind == "warn" else ("danger" if kind == "danger" else "")
+            st.markdown(f'<div class="insight {css}">{text}</div>', unsafe_allow_html=True)
+
+        # ── Attribution At a Glance — full teaser for Starter ────────────────
+        st.markdown("")
+        if lc_available:
+            st.markdown('<p class="sec-header">⚡ The Attribution Problem — At a Glance</p>',
+                        unsafe_allow_html=True)
+            valid_gaps  = attr_gap.dropna(subset=["gap_points"])
+            undervalued = valid_gaps[valid_gaps["gap_points"] >  0.05].sort_values("gap_points", ascending=False)
+            overvalued  = valid_gaps[valid_gaps["gap_points"] < -0.05].sort_values("gap_points", ascending=True)
+            if not undervalued.empty or not overvalued.empty:
+                ha, hb = st.columns(2)
+                with ha:
+                    if not undervalued.empty:
+                        top = undervalued.iloc[0]
+                        _ch2  = top["channel"]
+                        _rec2 = top["recommendation"]
+                        st.markdown(
+                            f'<div class="gap-card gap-undervalued">' +
+                            f'<div class="ch-name">{_ch2}<span class="gap-badge badge-under">UNDERVALUED</span></div>' +
+                            f'<div style="margin:.6rem 0;font-size:.85rem;color:#8B9DB0">Platforms say: <strong>{top["lastclick_share"]*100:.1f}%</strong> · Model says: <strong>{top["mmm_share"]*100:.1f}%</strong></div>' +
+                            f'<div style="font-size:1.4rem;font-weight:800;color:#10B981">+{top["gap_points"]*100:.1f} pp undercredited</div>' +
+                            f'<div class="rec">{_rec2}</div></div>',
+                            unsafe_allow_html=True)
+                with hb:
+                    if not overvalued.empty:
+                        bot = overvalued.iloc[0]
+                        _ch3  = bot["channel"]
+                        _rec3 = bot["recommendation"]
+                        st.markdown(
+                            f'<div class="gap-card gap-overvalued">' +
+                            f'<div class="ch-name">{_ch3}<span class="gap-badge badge-over">OVERVALUED</span></div>' +
+                            f'<div style="margin:.6rem 0;font-size:.85rem;color:#8B9DB0">Platforms say: <strong>{bot["lastclick_share"]*100:.1f}%</strong> · Model says: <strong>{bot["mmm_share"]*100:.1f}%</strong></div>' +
+                            f'<div style="font-size:1.4rem;font-weight:800;color:#EF4444">{bot["gap_points"]*100:.1f} pp overcredited</div>' +
+                            f'<div class="rec">{_rec3}</div></div>',
+                            unsafe_allow_html=True)
+            st.caption("👉 Upgrade to **Professional** to unlock the full Attribution Gap analysis.")
+        else:
+            st.markdown('<p class="sec-header">Attribution</p>', unsafe_allow_html=True)
+            st.markdown("""
+            <div class="insight warn">
+                ⭐ <strong>Unlock the Attribution Gap feature</strong> — add a
+                <code>lastclick_leads</code> column to your CSV to compare what each
+                platform claims vs what the model actually finds.
+            </div>""", unsafe_allow_html=True)
 
     # ── Spend over time ───────────────────────────────────────────────────────
     st.markdown('<p class="sec-header">Spend by Channel Over Time</p>', unsafe_allow_html=True)
@@ -923,49 +1030,23 @@ with tab_overview:
             st.caption(f"⚠️ Channels marked with ⚠️ have constrained model coefficients — ROAS estimates are directional only.")
 
     # ── Key insights ──────────────────────────────────────────────────────────
-    st.markdown('<p class="sec-header">Key Insights</p>', unsafe_allow_html=True)
 
-    best_ch  = chan_contrib_df.sort_values("est_roas", ascending=False).iloc[0]["channel"]
-    worst_ch = chan_contrib_df.sort_values("est_roas").iloc[0]["channel"]
-
-    insights = [
-        ("info",   f"🏆 <b>{best_ch}</b> has the highest estimated ROAS in your mix."),
-        ("warn",   f"⚠️ <b>{worst_ch}</b> has the lowest estimated ROAS — review allocation."),
-        ("info",   f"📊 Blended CPL across the portfolio: <b>${blended_cpl:,.2f}</b>."),
-    ]
-    if lc_available:
-        _valid    = attr_gap.dropna(subset=["gap_points"])
-        _undv_ins = _valid[_valid["gap_points"] >  0.05].sort_values("gap_points", ascending=False)
-        _ovv_ins  = _valid[_valid["gap_points"] < -0.05].sort_values("gap_points")
-        if not _undv_ins.empty:
-            mv = _undv_ins.iloc[0]
-            insights.append(("warn",
-                f"🔍 <b>{mv['channel']}</b> is undercredited by "
-                f"<b>{mv['gap_points']*100:.0f} pp</b> in platform attribution — "
-                f"yet the model shows it's one of your strongest incremental drivers."))
-        if not _ovv_ins.empty:
-            mv2 = _ovv_ins.iloc[0]
-            insights.append(("warn",
-                f"🔍 <b>{mv2['channel']}</b> is overcredited by "
-                f"<b>{abs(mv2['gap_points'])*100:.0f} pp</b> — "
-                f"you may be over-allocating budget based on misleading platform data."))
-
-    if conf["score"] < 55:
-        insights.append(("danger", f"🔴 Model confidence is LOW ({conf['score']}/100) — check Diagnostics."))
-    elif conf["score"] < 75:
-        insights.append(("warn", f"🟡 Model confidence is MEDIUM ({conf['score']}/100) — results are directionally correct but use with some caution."))
-    else:
-        insights.append(("info", f"✅ Model confidence is HIGH ({conf['score']}/100) — results are reliable."))
-
-    for kind, text in insights:
-        css = "warn" if kind == "warn" else ("danger" if kind == "danger" else "")
-        st.markdown(f'<div class="insight {css}">{text}</div>', unsafe_allow_html=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  MODULE 2 — ATTRIBUTION GAP
 # ─────────────────────────────────────────────────────────────────────────────
 with tab_attribution:
+
+    if not can(_account, "attribution_gap"):
+        _msg = get_upgrade_msg("attribution_gap")
+        st.markdown(f'<p class="sec-header">🔒 {_msg["title"]}</p>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="insight">{_msg["body"]}<br><br>'
+            f'<strong>Available on Professional ($399/mo) and Agency ($799/mo).</strong></div>',
+            unsafe_allow_html=True,
+        )
+        st.stop()
 
     st.markdown('<p class="sec-header">The Platform Bias Problem</p>', unsafe_allow_html=True)
 
@@ -1750,6 +1831,37 @@ with tab_scenarios:
 # ─────────────────────────────────────────────────────────────────────────────
 with tab_diagnostics:
 
+    _diag_level = feature_level(_account, "diagnostics")
+
+    if not _diag_level:
+        _msg = get_upgrade_msg("diagnostics")
+        st.markdown(f'<p class="sec-header">🔒 {_msg["title"]}</p>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="insight">{_msg["body"]}<br><br>'
+            f'<strong>Available on Starter ($149/mo) and above.</strong></div>',
+            unsafe_allow_html=True,
+        )
+        st.stop()
+
+    if _diag_level == "basic":
+        # Starter: show only R² and MAPE, then block the rest
+        st.markdown('<p class="sec-header">Model Accuracy</p>', unsafe_allow_html=True)
+        _c1, _c2 = st.columns(2)
+        with _c1:
+            st.metric("Training R²", f"{fit['r2']:.3f}")
+        with _c2:
+            _mape_val = backtest_df["mape"].mean() if not backtest_df.empty else None
+            st.metric("Backtest MAPE", f"{_mape_val:.1%}" if _mape_val else "—")
+        st.markdown("---")
+        _msg = get_upgrade_msg("confidence_score_full")
+        st.markdown(
+            f'<div class="insight">🔒 <strong>{_msg["title"]}</strong> — {_msg["body"]}<br><br>'
+            f'Upgrade to <strong>Professional</strong> for the full diagnostics suite.</div>',
+            unsafe_allow_html=True,
+        )
+        st.stop()
+
+    # ── Full diagnostics — Professional+ ─────────────────────────────────────
     # ── Confidence score ──────────────────────────────────────────────────────
     st.markdown('<p class="sec-header">Model Confidence Score</p>', unsafe_allow_html=True)
 
