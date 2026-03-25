@@ -454,6 +454,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ9T3X83"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+
 <!-- ─── NAV ─────────────────────────────────────────────────────────────── -->
 <nav id="nav">
   <div class="container nav-inner">
@@ -1076,4 +1078,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ── Intersection observer for fade-up ─────────────────────────────────────
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; obs.unobserve(e.target) } })
-  }, { th
+  }, { threshold: 0.1 })
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.opacity = '0'
+    obs.observe(el)
+  })
+</script>
+
+<!-- ─── WAITLIST MODAL ──────────────────────────────────────────────────────── -->
+<style>
+.wl-overlay{position:fixed;inset:0;z-index:1000;background:rgba(8,8,16,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.wl-overlay.open{opacity:1;pointer-events:all;}
+.wl-modal{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:40px 36px;max-width:420px;width:100%;box-shadow:0 40px 80px rgba(0,0,0,.6);transform:translateY(16px);transition:transform .2s;position:relative;}
+.wl-overlay.open .wl-modal{transform:translateY(0);}
+.wl-close{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--sub);font-size:20px;cursor:pointer;line-height:1;padding:4px;}
+.wl-close:hover{color:var(--text);}
+.wl-icon{font-size:32px;margin-bottom:16px;}
+.wl-title{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
+.wl-sub{font-size:14px;color:var(--sub);line-height:1.6;margin-bottom:24px;}
+.wl-form{display:flex;gap:8px;}
+.wl-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:inherit;font-size:14px;padding:11px 14px;outline:none;transition:border-color .15s,box-shadow .15s;}
+.wl-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,190,.12);}
+.wl-input::placeholder{color:var(--hint);}
+.wl-btn{background:var(--accent);color:#080810;border:none;border-radius:9px;font-family:inherit;font-size:14px;font-weight:700;padding:11px 20px;cursor:pointer;white-space:nowrap;transition:background .15s;}
+.wl-btn:hover{background:var(--accent2);}
+.wl-btn:disabled{opacity:.5;cursor:not-allowed;}
+.wl-success{background:rgba(0,229,190,.1);border:1px solid rgba(0,229,190,.25);border-radius:10px;padding:16px;text-align:center;color:var(--accent);font-size:14px;line-height:1.6;display:none;}
+.wl-note{font-size:12px;color:var(--hint);margin-top:12px;text-align:center;}
+</style>
+<div class="wl-overlay" id="wl-overlay">
+  <div class="wl-modal">
+    <button class="wl-close" onclick="closeWaitlist()">✕</button>
+    <div class="wl-icon">⚡</div>
+    <div class="wl-title">Join the waitlist</div>
+    <div class="wl-sub">AdCrux is currently in private beta. Leave your email and we'll reach out when we open access.</div>
+    <div class="wl-form" id="wl-form-row">
+      <input class="wl-input" type="email" id="wl-email" placeholder="you@company.com"/>
+      <button class="wl-btn" id="wl-btn" onclick="submitWaitlist()">Notify me</button>
+    </div>
+    <div class="wl-success" id="wl-success">✅ <strong>You're on the list.</strong><br>We'll reach out when AdCrux opens access.</div>
+    <p class="wl-note">No spam. One email when we launch.</p>
+  </div>
+</div>
+<script>
+function openWaitlist(){document.getElementById('wl-overlay').classList.add('open');setTimeout(()=>document.getElementById('wl-email').focus(),200);}
+function closeWaitlist(){document.getElementById('wl-overlay').classList.remove('open');}
+document.getElementById('wl-overlay').addEventListener('click',function(e){if(e.target===this)closeWaitlist();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeWaitlist();});
+async function submitWaitlist(){
+  const email=document.getElementById('wl-email').value.trim();
+  if(!email||!email.includes('@')){document.getElementById('wl-email').focus();return;}
+  const btn=document.getElementById('wl-btn');
+  btn.disabled=true;btn.textContent='Saving…';
+  try{await fetch('https://utqmhfzrjchbmdvfpkos.supabase.co/rest/v1/waitlist',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0cW1oZnpyamNoYm1kdmZwa29zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MjQzODIsImV4cCI6MjA4OTEwMDM4Mn0.80_Dfz_SIP72Kn3QEtCV8sIJMUbYwlEIKFAcyuIC37k','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0cW1oZnpyamNoYm1kdmZwa29zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MjQzODIsImV4cCI6MjA4OTEwMDM4Mn0.80_Dfz_SIP72Kn3QEtCV8sIJMUbYwlEIKFAcyuIC37k','Prefer':'return=minimal'},body:JSON.stringify({email,source:'website',created_at:new Date().toISOString()})})}catch(e){}
+  document.getElementById('wl-form-row').style.display='none';
+  document.getElementById('wl-success').style.display='block';
+}
+document.getElementById('wl-email').addEventListener('keydown',e=>{if(e.key==='Enter')submitWaitlist();});
+</script>
+
+</body>
+</html>
