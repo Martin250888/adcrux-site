@@ -376,8 +376,9 @@ footer{
 .wl-note{font-size:11px;color:var(--hint);text-align:center;margin-top:12px}
 
 /* ── Animations ── */
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+.js-ready .fade-up{opacity:0;transform:translateY(24px)}
+.js-ready .fade-up.visible{opacity:1;transform:translateY(0)}
 
 /* ── Responsive ── */
 @media(max-width:768px){
@@ -912,6 +913,9 @@ window.addEventListener('scroll', () => {
 })
 
 // ── Fade-up observer ───────────────────────────────────────────────────────
+// Progressive enhancement — only animate if JS fully loaded
+document.body.classList.add('js-ready')
+
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
