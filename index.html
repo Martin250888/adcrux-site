@@ -406,11 +406,11 @@ footer{
       <li><a href="#product" id="nl-product">Product</a></li>
       <li><a href="#pricing" id="nl-pricing">Pricing</a></li>
       <li><a href="#faq" id="nl-faq">FAQ</a></li>
-      <li><a href="#" id="langToggle" onclick="toggleLang(event)">ES</a></li>
+      <li><a href="#" id="langToggle">ES</a></li>
     </ul>
     <div class="nav-actions">
       <a href="https://getadcrux.com/login.html" class="btn-ghost" id="signInBtn">Sign in</a>
-      <a href="javascript:void(0)" onclick="openWaitlist()" class="btn-primary" id="ctaBtn">Request early access</a>
+      <a href="javascript:void(0)" class="btn-primary" id="ctaBtn" data-action="waitlist">Request early access</a>
     </div>
   </div>
 </nav>
@@ -432,7 +432,7 @@ footer{
       so you can make better budget decisions.
     </p>
     <div class="hero-ctas fade-up" data-delay="3">
-      <a href="javascript:void(0)" onclick="openWaitlist()" class="btn-primary" id="heroCta">Request early access</a>
+      <a href="javascript:void(0)" class="btn-primary" id="heroCta" data-action="waitlist">Request early access</a>
     </div>
     <p class="hero-note fade-up" data-delay="4" id="hero-note">Setup in minutes · No engineers required · No credit card needed</p>
   </div>
@@ -625,12 +625,12 @@ footer{
   </div>
   <div class="fade-up" data-delay="1">
     <div class="product-tabs">
-      <button class="ptab active" onclick="switchTab('overview')" id="tab-overview">Overview</button>
-      <button class="ptab" onclick="switchTab('attribution')" id="tab-attribution">Attribution Gap</button>
-      <button class="ptab" onclick="switchTab('saturation')" id="tab-saturation">Saturation</button>
-      <button class="ptab" onclick="switchTab('optimizer')" id="tab-optimizer">Optimizer</button>
-      <button class="ptab" onclick="switchTab('scenarios')" id="tab-scenarios">Scenarios</button>
-      <button class="ptab" onclick="switchTab('diagnostics')" id="tab-diagnostics">Diagnostics</button>
+      <button class="ptab active" id="tab-overview">Overview</button>
+      <button class="ptab" id="tab-attribution">Attribution Gap</button>
+      <button class="ptab" id="tab-saturation">Saturation</button>
+      <button class="ptab" id="tab-optimizer">Optimizer</button>
+      <button class="ptab" id="tab-scenarios">Scenarios</button>
+      <button class="ptab" id="tab-diagnostics">Diagnostics</button>
     </div>
     <p id="tab-desc" style="font-size:14px;color:var(--sub);margin-bottom:16px;min-height:20px;transition:opacity .2s">Your full media performance in one place.</p>
     <div class="product-frame">
@@ -641,49 +641,571 @@ footer{
         <div class="pbar-url">app.getadcrux.com</div>
       </div>
       <div class="product-panel active" id="panel-overview">
-        <div class="screenshot-placeholder">
-          <div class="sp-icon">🏠</div>
-          <div class="sp-label">Overview — screenshot coming soon</div>
-          <div class="sp-note">Replace with: overview-screenshot.png</div>
-        </div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Your full performance, without platform bias</span></div>
+        <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
+  
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div>
+      <div style="font-size:13px;color:#6B6B8A;margin-bottom:2px">Acme Agency · Q1 2024</div>
+      <div style="font-size:18px;font-weight:700;color:#EEEEF5">Performance Overview</div>
+    </div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:8px;padding:6px 14px;font-size:12px;color:#6B6B8A">Jan 1 – Mar 31, 2024</div>
+  </div>
+
+  <!-- KPIs -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:18px 20px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#6B6B8A;margin-bottom:6px">Model Leads</div>
+  <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#00E5BE;font-family:'DM Mono',monospace">120</div>
+  <div style="font-size:11px;color:#6B6B8A;margin-top:4px">Independent estimate</div>
+</div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:18px 20px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#6B6B8A;margin-bottom:6px">Total Spend</div>
+  <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#EEEEF5;font-family:'DM Mono',monospace">$84,320</div>
+  <div style="font-size:11px;color:#6B6B8A;margin-top:4px">Across all channels</div>
+</div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:18px 20px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#6B6B8A;margin-bottom:6px">Blended ROAS</div>
+  <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#10B981;font-family:'DM Mono',monospace">3.4×</div>
+  <div style="font-size:11px;color:#6B6B8A;margin-top:4px">Revenue / spend</div>
+</div>
+  </div>
+
+  <!-- Contribution chart -->
+  <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Contribution by channel (model estimate)</div>
+  <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Google Search</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:62%;height:100%;background:#38BDF8;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#38BDF8;width:36px;text-align:right">37%</span>
+</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Meta Ads</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:44%;height:100%;background:#8B5CF6;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#8B5CF6;width:36px;text-align:right">26%</span>
+</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Email</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:38%;height:100%;background:#00E5BE;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#00E5BE;width:36px;text-align:right">22%</span>
+</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">YouTube</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:24%;height:100%;background:#F59E0B;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#F59E0B;width:36px;text-align:right">15%</span>
+</div>
+  </div>
+
+  <!-- Baseline vs Paid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:14px 16px">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px">Organic baseline</div>
+      <div style="font-size:20px;font-weight:800;color:#3A3A55;font-family:'DM Mono',monospace">38 leads</div>
+      <div style="font-size:11px;color:#3A3A55;margin-top:2px">Would occur without media</div>
+    </div>
+    <div style="background:#0E0E1A;border:1px solid rgba(0,229,190,.15);border-radius:10px;padding:14px 16px">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px">Incremental (paid)</div>
+      <div style="font-size:20px;font-weight:800;color:#00E5BE;font-family:'DM Mono',monospace">82 leads</div>
+      <div style="font-size:11px;color:#00E5BE;margin-top:2px;opacity:.7">Driven by your spend</div>
+    </div>
+  </div>
+
+</div>
       </div>
       <div class="product-panel" id="panel-attribution">
-        <div class="screenshot-placeholder">
-          <div class="sp-icon">🔍</div>
-          <div class="sp-label">Attribution Gap — screenshot coming soon</div>
-          <div class="sp-note">Replace with: attribution-screenshot.png</div>
-        </div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Platforms claim more than what actually happened</span></div>
+        <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
+  
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div style="font-size:18px;font-weight:700;color:#EEEEF5">Attribution Gap Analysis</div>
+    <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:6px 14px;font-size:13px;font-weight:700;color:#EF4444">+60% overreported</div>
+  </div>
+
+  <!-- Table header -->
+  <div style="display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:1px solid #1C1C2E;margin-bottom:4px">
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3A3A55">Channel</span>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3A3A55">Platform claim</span>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#00E5BE">Model (MMM)</span>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3A3A55">Gap</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #1C1C2E">
+  <span style="font-size:13px;color:#EEEEF5;font-weight:500">Google Search</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">87 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#00E5BE;font-weight:700">31 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EF4444;font-weight:700">−64%</span>
+</div>
+  <div style="display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #1C1C2E">
+  <span style="font-size:13px;color:#EEEEF5;font-weight:500">Meta Ads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">74 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#00E5BE;font-weight:700">22 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EF4444;font-weight:700">−70%</span>
+</div>
+  <div style="display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #1C1C2E">
+  <span style="font-size:13px;color:#EEEEF5;font-weight:500">Email</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">31 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#00E5BE;font-weight:700">19 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EF4444;font-weight:700">−39%</span>
+</div>
+  <div style="display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #1C1C2E">
+  <span style="font-size:13px;color:#EEEEF5;font-weight:500">YouTube</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">— leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#00E5BE;font-weight:700">15 leads</span>
+  <span style="font-size:13px;font-family:'DM Mono',monospace;color:#10B981;font-weight:700">—</span>
+</div>
+
+  <!-- Totals -->
+  <div style="display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:8px;padding:12px 0;margin-top:4px">
+    <span style="font-size:13px;font-weight:700;color:#EEEEF5">Total</span>
+    <span style="font-size:14px;font-weight:800;font-family:'DM Mono',monospace;color:#EF4444">192</span>
+    <span style="font-size:14px;font-weight:800;font-family:'DM Mono',monospace;color:#00E5BE">120</span>
+    <span style="font-size:14px;font-weight:800;font-family:'DM Mono',monospace;color:#EF4444">−38%</span>
+  </div>
+
+  <!-- Visual comparison bars -->
+  <div style="margin-top:16px">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Platform vs Model</div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px 20px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Platform total</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:100%;height:100%;background:#EF4444;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#EF4444;width:36px;text-align:right">192</span>
+</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Model total</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:62%;height:100%;background:#00E5BE;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#00E5BE;width:36px;text-align:right">120</span>
+</div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px;padding:12px 16px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;font-size:13px;color:#EF4444">
+    ⚠️ Platforms are claiming credit for <strong>72 leads that didn't happen</strong> — or happened organically.
+  </div>
+
+</div>
       </div>
       <div class="product-panel" id="panel-saturation">
-        <div class="screenshot-placeholder">
-          <div class="sp-icon">📈</div>
-          <div class="sp-label">Saturation — screenshot coming soon</div>
-          <div class="sp-note">Replace with: saturation-screenshot.png</div>
-        </div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">You're past the point of diminishing returns</span></div>
+        <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
+  
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div style="font-size:18px;font-weight:700;color:#EEEEF5">Saturation Curves</div>
+    <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:6px 14px;font-size:12px;color:#EF4444">2 channels past optimal</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div>
+      <div style="margin-bottom:12px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <span style="font-size:12px;font-weight:600;color:#EEEEF5">Google Search</span>
+    <span style="font-size:11px;font-weight:700;color:#EF4444;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🔴 78% saturated</span>
+  </div>
+  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+    <defs>
+      <linearGradient id="sg_Google_Search" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#38BDF8" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#38BDF8" stop-opacity=".01"/>
+      </linearGradient>
+    </defs>
+    <!-- Grid lines -->
+    <line x1="0" y1="90" x2="260" y2="90" stroke="#1C1C2E" stroke-width="1"/>
+    <!-- Area -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3 L 240,90 L 0,90 Z" fill="url(#sg_Google_Search)" transform="translate(10,5)"/>
+    <!-- Curve -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3" fill="none" stroke="#38BDF8" stroke-width="2" transform="translate(10,5)"/>
+    <!-- Optimal zone -->
+    <rect x="118.0" y="5" width="24" height="90" fill="#10B981" fill-opacity=".06" transform=""/>
+    <!-- Optimal dot (green) -->
+    <circle cx="130.0" cy="31.151721439572427" r="5" fill="#10B981" stroke="#131320" stroke-width="2"/>
+    <text x="130.0" y="23.151721439572427" text-anchor="middle" font-size="8" fill="#10B981" font-weight="700">Optimal</text>
+    <!-- Current dot (red) -->
+    <circle cx="182.79999999999998" cy="22.98868874802426" r="5" fill="#EF4444" stroke="#131320" stroke-width="2"/>
+    <text x="182.79999999999998" y="14.98868874802426" text-anchor="middle" font-size="8" fill="#EF4444" font-weight="700">Current</text>
+    <!-- Inefficient zone shade -->
+    <rect x="182.79999999999998" y="5" width="67.20000000000002" height="90" fill="#EF4444" fill-opacity=".04"/>
+    <text x="216.39999999999998" y="55" text-anchor="middle" font-size="8" fill="#EF4444" fill-opacity=".6">Inefficient spend</text>
+    <!-- Labels -->
+    <text x="10" y="98" font-size="9" fill="#3A3A55">$0</text>
+    <text x="250" y="98" font-size="9" fill="#3A3A55" text-anchor="end">Max spend</text>
+  </svg>
+</div>
+      <div style="margin-bottom:12px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <span style="font-size:12px;font-weight:600;color:#EEEEF5">Email</span>
+    <span style="font-size:11px;font-weight:700;color:#F59E0B;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🟡 42% saturated</span>
+  </div>
+  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+    <defs>
+      <linearGradient id="sg_Email" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#00E5BE" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#00E5BE" stop-opacity=".01"/>
+      </linearGradient>
+    </defs>
+    <!-- Grid lines -->
+    <line x1="0" y1="90" x2="260" y2="90" stroke="#1C1C2E" stroke-width="1"/>
+    <!-- Area -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3 L 240,90 L 0,90 Z" fill="url(#sg_Email)" transform="translate(10,5)"/>
+    <!-- Curve -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3" fill="none" stroke="#00E5BE" stroke-width="2" transform="translate(10,5)"/>
+    <!-- Optimal zone -->
+    <rect x="118.0" y="5" width="24" height="90" fill="#10B981" fill-opacity=".06" transform=""/>
+    <!-- Optimal dot (green) -->
+    <circle cx="130.0" cy="31.151721439572427" r="5" fill="#10B981" stroke="#131320" stroke-width="2"/>
+    <text x="130.0" y="23.151721439572427" text-anchor="middle" font-size="8" fill="#10B981" font-weight="700">Optimal</text>
+    <!-- Current dot (red) -->
+    <circle cx="106.0" cy="37.242984036255535" r="5" fill="#EF4444" stroke="#131320" stroke-width="2"/>
+    <text x="106.0" y="29.242984036255535" text-anchor="middle" font-size="8" fill="#EF4444" font-weight="700">Current</text>
+    <!-- Inefficient zone shade -->
+    <rect x="106.0" y="5" width="144.0" height="90" fill="#EF4444" fill-opacity=".04"/>
+    <text x="178.0" y="55" text-anchor="middle" font-size="8" fill="#EF4444" fill-opacity=".6">Inefficient spend</text>
+    <!-- Labels -->
+    <text x="10" y="98" font-size="9" fill="#3A3A55">$0</text>
+    <text x="250" y="98" font-size="9" fill="#3A3A55" text-anchor="end">Max spend</text>
+  </svg>
+</div>
+    </div>
+    <div>
+      <div style="margin-bottom:12px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <span style="font-size:12px;font-weight:600;color:#EEEEF5">Meta Ads</span>
+    <span style="font-size:11px;font-weight:700;color:#EF4444;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🔴 85% saturated</span>
+  </div>
+  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+    <defs>
+      <linearGradient id="sg_Meta_Ads" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#8B5CF6" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#8B5CF6" stop-opacity=".01"/>
+      </linearGradient>
+    </defs>
+    <!-- Grid lines -->
+    <line x1="0" y1="90" x2="260" y2="90" stroke="#1C1C2E" stroke-width="1"/>
+    <!-- Area -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3 L 240,90 L 0,90 Z" fill="url(#sg_Meta_Ads)" transform="translate(10,5)"/>
+    <!-- Curve -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3" fill="none" stroke="#8B5CF6" stroke-width="2" transform="translate(10,5)"/>
+    <!-- Optimal zone -->
+    <rect x="118.0" y="5" width="24" height="90" fill="#10B981" fill-opacity=".06" transform=""/>
+    <!-- Optimal dot (green) -->
+    <circle cx="130.0" cy="31.151721439572427" r="5" fill="#10B981" stroke="#131320" stroke-width="2"/>
+    <text x="130.0" y="23.151721439572427" text-anchor="middle" font-size="8" fill="#10B981" font-weight="700">Optimal</text>
+    <!-- Current dot (red) -->
+    <circle cx="202.0" cy="21.18437923546398" r="5" fill="#EF4444" stroke="#131320" stroke-width="2"/>
+    <text x="202.0" y="13.184379235463979" text-anchor="middle" font-size="8" fill="#EF4444" font-weight="700">Current</text>
+    <!-- Inefficient zone shade -->
+    <rect x="202.0" y="5" width="48.0" height="90" fill="#EF4444" fill-opacity=".04"/>
+    <text x="226.0" y="55" text-anchor="middle" font-size="8" fill="#EF4444" fill-opacity=".6">Inefficient spend</text>
+    <!-- Labels -->
+    <text x="10" y="98" font-size="9" fill="#3A3A55">$0</text>
+    <text x="250" y="98" font-size="9" fill="#3A3A55" text-anchor="end">Max spend</text>
+  </svg>
+</div>
+      <div style="margin-bottom:12px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <span style="font-size:12px;font-weight:600;color:#EEEEF5">YouTube</span>
+    <span style="font-size:11px;font-weight:700;color:#F59E0B;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🟡 31% saturated</span>
+  </div>
+  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+    <defs>
+      <linearGradient id="sg_YouTube" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F59E0B" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#F59E0B" stop-opacity=".01"/>
+      </linearGradient>
+    </defs>
+    <!-- Grid lines -->
+    <line x1="0" y1="90" x2="260" y2="90" stroke="#1C1C2E" stroke-width="1"/>
+    <!-- Area -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3 L 240,90 L 0,90 Z" fill="url(#sg_YouTube)" transform="translate(10,5)"/>
+    <!-- Curve -->
+    <path d="M 0.0,90.0 L 4.8,85.0 L 9.6,80.4 L 14.4,76.0 L 19.2,71.9 L 24.0,68.1 L 28.8,64.5 L 33.6,61.1 L 38.4,57.9 L 43.2,55.0 L 48.0,52.2 L 52.8,49.6 L 57.6,47.1 L 62.4,44.8 L 67.2,42.7 L 72.0,40.6 L 76.8,38.7 L 81.6,37.0 L 86.4,35.3 L 91.2,33.7 L 96.0,32.2 L 100.8,30.9 L 105.6,29.6 L 110.4,28.4 L 115.2,27.2 L 120.0,26.2 L 124.8,25.2 L 129.6,24.2 L 134.4,23.3 L 139.2,22.5 L 144.0,21.7 L 148.8,21.0 L 153.6,20.3 L 158.4,19.7 L 163.2,19.1 L 168.0,18.5 L 172.8,18.0 L 177.6,17.5 L 182.4,17.0 L 187.2,16.6 L 192.0,16.2 L 196.8,15.8 L 201.6,15.4 L 206.4,15.1 L 211.2,14.8 L 216.0,14.5 L 220.8,14.2 L 225.6,14.0 L 230.4,13.7 L 235.2,13.5 L 240.0,13.3" fill="none" stroke="#F59E0B" stroke-width="2" transform="translate(10,5)"/>
+    <!-- Optimal zone -->
+    <rect x="118.0" y="5" width="24" height="90" fill="#10B981" fill-opacity=".06" transform=""/>
+    <!-- Optimal dot (green) -->
+    <circle cx="130.0" cy="31.151721439572427" r="5" fill="#10B981" stroke="#131320" stroke-width="2"/>
+    <text x="130.0" y="23.151721439572427" text-anchor="middle" font-size="8" fill="#10B981" font-weight="700">Optimal</text>
+    <!-- Current dot (red) -->
+    <circle cx="77.2" cy="47.65593562223381" r="5" fill="#EF4444" stroke="#131320" stroke-width="2"/>
+    <text x="77.2" y="39.65593562223381" text-anchor="middle" font-size="8" fill="#EF4444" font-weight="700">Current</text>
+    <!-- Inefficient zone shade -->
+    <rect x="77.2" y="5" width="172.8" height="90" fill="#EF4444" fill-opacity=".04"/>
+    <text x="163.6" y="55" text-anchor="middle" font-size="8" fill="#EF4444" fill-opacity=".6">Inefficient spend</text>
+    <!-- Labels -->
+    <text x="10" y="98" font-size="9" fill="#3A3A55">$0</text>
+    <text x="250" y="98" font-size="9" fill="#3A3A55" text-anchor="end">Max spend</text>
+  </svg>
+</div>
+    </div>
+  </div>
+
+</div>
       </div>
       <div class="product-panel" id="panel-optimizer">
-        <div class="screenshot-placeholder">
-          <div class="sp-icon">⚙️</div>
-          <div class="sp-label">Optimizer — screenshot coming soon</div>
-          <div class="sp-note">Replace with: optimizer-screenshot.png</div>
-        </div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Where to move your next dollar</span></div>
+        <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
+  
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div style="font-size:18px;font-weight:700;color:#EEEEF5">Budget Optimizer</div>
+    <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;padding:8px 18px;font-size:16px;font-weight:800;color:#10B981">+18% projected leads</div>
+  </div>
+
+  <!-- Table header -->
+  <div style="display:grid;grid-template-columns:120px 1fr 1fr 100px;gap:8px;padding:8px 0;border-bottom:1px solid #1C1C2E;margin-bottom:4px">
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3A3A55">Channel</span>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3A3A55">Current</span>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#00E5BE">Recommended</span>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3A3A55">Change</span>
+  </div>
+
+  <!-- Rows -->
+  <div style="padding:10px 0;border-bottom:1px solid #1C1C2E;display:grid;grid-template-columns:120px 1fr 1fr 100px;gap:8px;align-items:center">
+    <span style="font-size:13px;color:#EEEEF5">Google Search</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">$5,000</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EEEEF5;font-weight:600">$7,200</span>
+    <span style="font-size:12px;font-weight:700;color:#10B981;background:rgba(16,185,129,.08);border-radius:6px;padding:3px 8px;text-align:center">↑ +44%</span>
+  </div>
+  <div style="padding:10px 0;border-bottom:1px solid #1C1C2E;display:grid;grid-template-columns:120px 1fr 1fr 100px;gap:8px;align-items:center">
+    <span style="font-size:13px;color:#EEEEF5">Meta Ads</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">$8,000</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EEEEF5;font-weight:600">$5,100</span>
+    <span style="font-size:12px;font-weight:700;color:#EF4444;background:rgba(239,68,68,.08);border-radius:6px;padding:3px 8px;text-align:center">↓ −36%</span>
+  </div>
+  <div style="padding:10px 0;border-bottom:1px solid #1C1C2E;display:grid;grid-template-columns:120px 1fr 1fr 100px;gap:8px;align-items:center">
+    <span style="font-size:13px;color:#EEEEF5">Email</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">$2,000</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EEEEF5;font-weight:600">$3,400</span>
+    <span style="font-size:12px;font-weight:700;color:#10B981;background:rgba(16,185,129,.08);border-radius:6px;padding:3px 8px;text-align:center">↑ +70%</span>
+  </div>
+  <div style="padding:10px 0;display:grid;grid-template-columns:120px 1fr 1fr 100px;gap:8px;align-items:center">
+    <span style="font-size:13px;color:#EEEEF5">YouTube</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#6B6B8A">$1,500</span>
+    <span style="font-size:13px;font-family:'DM Mono',monospace;color:#EEEEF5;font-weight:600">$1,300</span>
+    <span style="font-size:12px;font-weight:700;color:#EF4444;background:rgba(239,68,68,.08);border-radius:6px;padding:3px 8px;text-align:center">↓ −13%</span>
+  </div>
+
+  <!-- Summary -->
+  <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:14px 16px;text-align:center">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em">Same budget</div>
+      <div style="font-size:18px;font-weight:800;color:#EEEEF5;font-family:'DM Mono',monospace">$16,500</div>
+    </div>
+    <div style="background:#0E0E1A;border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:14px 16px;text-align:center">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em">Projected leads</div>
+      <div style="font-size:18px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace">142 <span style="font-size:13px">vs 120</span></div>
+    </div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:14px 16px;text-align:center">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em">CPA improvement</div>
+      <div style="font-size:18px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace">−15%</div>
+    </div>
+  </div>
+
+</div>
       </div>
       <div class="product-panel" id="panel-scenarios">
-        <div class="screenshot-placeholder">
-          <div class="sp-icon">🎯</div>
-          <div class="sp-label">Scenarios — screenshot coming soon</div>
-          <div class="sp-note">Replace with: scenarios-screenshot.png</div>
-        </div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Test decisions before committing budget</span></div>
+        <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
+  
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div style="font-size:18px;font-weight:700;color:#EEEEF5">Scenario Planning</div>
+    <div style="font-size:12px;color:#6B6B8A">Test decisions before committing</div>
+  </div>
+
+  <!-- Scenario cards -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px">
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px;position:relative">
+  
+  <div style="font-size:13px;font-weight:700;color:#EEEEF5;margin-bottom:10px">Conservative</div>
+  <div style="font-size:22px;font-weight:800;color:#EF4444;font-family:'DM Mono',monospace;margin-bottom:2px">-10%</div>
+  <div style="font-size:11px;color:#6B6B8A">108 leads · −10% budget</div>
+</div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px;position:relative">
+  
+  <div style="font-size:13px;font-weight:700;color:#EEEEF5;margin-bottom:10px">Balanced</div>
+  <div style="font-size:22px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace;margin-bottom:2px">+0%</div>
+  <div style="font-size:11px;color:#6B6B8A">120 leads · Current budget</div>
+</div>
+    <div style="background:rgba(0,229,190,.04);border:1px solid rgba(0,229,190,.35);border-radius:10px;padding:16px;position:relative">
+  <div style="position:absolute;top:-1px;right:12px;background:#00E5BE;color:#080810;font-size:10px;font-weight:800;border-radius:0 0 6px 6px;padding:2px 8px">ACTIVE</div>
+  <div style="font-size:13px;font-weight:700;color:#EEEEF5;margin-bottom:10px">Optimized</div>
+  <div style="font-size:22px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace;margin-bottom:2px">+18%</div>
+  <div style="font-size:11px;color:#6B6B8A">142 leads · Same budget</div>
+</div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px;position:relative">
+  
+  <div style="font-size:13px;font-weight:700;color:#EEEEF5;margin-bottom:10px">Aggressive</div>
+  <div style="font-size:22px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace;margin-bottom:2px">+30%</div>
+  <div style="font-size:11px;color:#6B6B8A">156 leads · +25% budget</div>
+</div>
+  </div>
+
+  <!-- Comparison chart -->
+  <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Leads comparison</div>
+  <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Conservative</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:68%;height:100%;background:#EF4444;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#EF4444;width:36px;text-align:right">108</span>
+</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Balanced</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:76%;height:100%;background:#6B6B8A;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#6B6B8A;width:36px;text-align:right">120</span>
+</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Optimized</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:100%;height:100%;background:#00E5BE;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#00E5BE;width:36px;text-align:right">142 ← active</span>
+</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+  <span style="font-size:12px;color:#6B6B8A;width:90px;flex-shrink:0">Aggressive</span>
+  <div style="flex:1;height:8px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:100%;height:100%;background:#8B5CF6;border-radius:100px"></div>
+  </div>
+  <span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:#8B5CF6;width:36px;text-align:right">156</span>
+</div>
+  </div>
+
+  <!-- Delta metrics -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="background:#0E0E1A;border:1px solid rgba(0,229,190,.2);border-radius:10px;padding:14px 16px">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px">vs current budget</div>
+      <div style="font-size:24px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace">+22 leads</div>
+      <div style="font-size:11px;color:#00E5BE;margin-top:2px">Optimized scenario</div>
+    </div>
+    <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:14px 16px">
+      <div style="font-size:11px;color:#6B6B8A;margin-bottom:4px">CPA change</div>
+      <div style="font-size:24px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace">↓ −15%</div>
+      <div style="font-size:11px;color:#6B6B8A;margin-top:2px">More leads, same spend</div>
+    </div>
+  </div>
+
+</div>
       </div>
       <div class="product-panel" id="panel-diagnostics">
-        <div class="screenshot-placeholder">
-          <div class="sp-icon">🔬</div>
-          <div class="sp-label">Diagnostics — screenshot coming soon</div>
-          <div class="sp-note">Replace with: diagnostics-screenshot.png</div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Know when to trust the model</span></div>
+        <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
+  
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div style="font-size:18px;font-weight:700;color:#EEEEF5">Model Diagnostics</div>
+    <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:6px 14px;font-size:13px;font-weight:700;color:#10B981">🟢 High confidence</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <!-- Left: score + metrics -->
+    <div>
+      <!-- Confidence score -->
+      <div style="background:#0E0E1A;border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#6B6B8A;margin-bottom:8px">Confidence Score</div>
+        <div style="font-size:56px;font-weight:800;color:#10B981;font-family:'DM Mono',monospace;line-height:1">82</div>
+        <div style="font-size:12px;color:#10B981;margin-top:4px;opacity:.8">/ 100 · High confidence</div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Model fit metrics</div>
+      <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px">
+        <div style="margin-bottom:12px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <span style="font-size:12px;color:#6B6B8A">R² (variance explained)</span>
+    <span style="font-size:13px;font-weight:700;color:#00E5BE;font-family:'DM Mono',monospace">94.7%</span>
+  </div>
+  <div style="height:6px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:94%;height:100%;background:#00E5BE;border-radius:100px"></div>
+  </div>
+</div>
+        <div style="margin-bottom:12px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <span style="font-size:12px;color:#6B6B8A">MAPE (prediction error)</span>
+    <span style="font-size:13px;font-weight:700;color:#10B981;font-family:'DM Mono',monospace">4.2%</span>
+  </div>
+  <div style="height:6px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:96%;height:100%;background:#10B981;border-radius:100px"></div>
+  </div>
+</div>
+        <div style="margin-bottom:12px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <span style="font-size:12px;color:#6B6B8A">Holdout RMSPE</span>
+    <span style="font-size:13px;font-weight:700;color:#10B981;font-family:'DM Mono',monospace">6.8%</span>
+  </div>
+  <div style="height:6px;background:#252540;border-radius:100px;overflow:hidden">
+    <div style="width:93%;height:100%;background:#10B981;border-radius:100px"></div>
+  </div>
+</div>
+      </div>
+    </div>
+
+    <!-- Right: CI chart + residuals -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Actual vs predicted</div>
+      <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px;margin-bottom:14px">
+        <svg viewBox="0 0 220 90" style="width:100%;display:block">
+          <!-- CI band -->
+          <path d="M10,70 C40,60 70,45 110,38 C150,31 180,28 210,25
+                   L210,35 C180,38 150,42 110,50 C70,58 40,72 10,80 Z"
+                fill="#00E5BE" fill-opacity=".08"/>
+          <!-- Predicted line -->
+          <path d="M10,75 C40,66 70,52 110,44 C150,36 180,33 210,30"
+                fill="none" stroke="#00E5BE" stroke-width="2" stroke-dasharray="4,3"/>
+          <!-- Actual line -->
+          <path d="M10,78 C30,64 60,55 90,46 C120,38 160,32 210,28"
+                fill="none" stroke="#EEEEF5" stroke-width="2"/>
+          <!-- Dots -->
+          <circle cx="60"  cy="55" r="3" fill="#EEEEF5"/>
+          <circle cx="110" cy="46" r="3" fill="#EEEEF5"/>
+          <circle cx="160" cy="32" r="3" fill="#EEEEF5"/>
+          <!-- Labels -->
+          <text x="10" y="88" font-size="8" fill="#3A3A55">Week 1</text>
+          <text x="175" y="88" font-size="8" fill="#3A3A55">Week 12</text>
+        </svg>
+        <div style="display:flex;gap:16px;margin-top:8px">
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#6B6B8A">
+            <div style="width:14px;height:2px;background:#EEEEF5"></div> Actual
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#6B6B8A">
+            <div style="width:14px;height:2px;background:#00E5BE"></div> Predicted
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Confidence breakdown</div>
+      <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:14px 16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="font-size:12px;color:#6B6B8A">Data quality</span>
+          <span style="font-size:12px;font-weight:700;color:#10B981">Good · 26 weeks</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="font-size:12px;color:#6B6B8A">Channel variation</span>
+          <span style="font-size:12px;font-weight:700;color:#10B981">Sufficient</span>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="font-size:12px;color:#6B6B8A">Negative coefficients</span>
+          <span style="font-size:12px;font-weight:700;color:#00E5BE">None detected</span>
         </div>
       </div>
     </div>
-    <p style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px" id="prod-note">Real dashboard · Your data stays in your account · Export to PDF</p>
+  </div>
+
+</div>
+      </div>
+    </div>
+    <p id="prod-note" style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">Real dashboard · Your data stays in your account · Export to PDF</p>
   </div>
 </section>
 
@@ -695,26 +1217,10 @@ footer{
     <p class="section-sub" id="out-sub" style="margin:0 auto">AdCrux turns model results into decisions. Every module ends with a specific recommendation.</p>
   </div>
   <div class="output-grid fade-up" data-delay="1">
-    <div class="output-card">
-      <div class="output-icon">📊</div>
-      <h4 id="oc1-title">What to increase</h4>
-      <p id="oc1-body">Channels with room to grow and efficient returns at current spend levels.</p>
-    </div>
-    <div class="output-card">
-      <div class="output-icon">✂️</div>
-      <h4 id="oc2-title">What to reduce</h4>
-      <p id="oc2-body">Channels past their saturation point where incremental spend is no longer efficient.</p>
-    </div>
-    <div class="output-card">
-      <div class="output-icon">⚠️</div>
-      <h4 id="oc3-title">Where returns are flattening</h4>
-      <p id="oc3-body">Early warnings before you hit diminishing returns — so you can act before efficiency drops.</p>
-    </div>
-    <div class="output-card">
-      <div class="output-icon">🎯</div>
-      <h4 id="oc4-title">How to reallocate</h4>
-      <p id="oc4-body">A specific budget scenario showing projected outcome improvement from shifting spend across channels.</p>
-    </div>
+    <div class="output-card"><div class="output-icon">📊</div><h4 id="oc1-title">What to increase</h4><p id="oc1-body">Channels with room to grow and efficient returns at current spend levels.</p></div>
+    <div class="output-card"><div class="output-icon">✂️</div><h4 id="oc2-title">What to reduce</h4><p id="oc2-body">Channels past their saturation point where incremental spend is no longer efficient.</p></div>
+    <div class="output-card"><div class="output-icon">⚠️</div><h4 id="oc3-title">Where returns are flattening</h4><p id="oc3-body">Early warnings before you hit diminishing returns.</p></div>
+    <div class="output-card"><div class="output-icon">🎯</div><h4 id="oc4-title">How to reallocate</h4><p id="oc4-body">A specific budget scenario showing projected outcome improvement from shifting spend.</p></div>
   </div>
 </section>
 
@@ -723,32 +1229,20 @@ footer{
   <div class="fade-up" style="text-align:center">
     <div class="section-eyebrow" id="diff-eyebrow">Built for real teams</div>
     <h2 class="section-title" id="diff-title">Not enterprise-only. Not a black box.</h2>
-    <p class="section-sub" id="diff-sub" style="margin:0 auto">AdCrux brings rigorous measurement to teams that don't have data science resources.</p>
+    <p class="section-sub" id="diff-sub" style="margin:0 auto">AdCrux brings rigorous measurement to teams without data science resources.</p>
   </div>
   <div class="diff-grid fade-up" data-delay="1">
     <div class="diff-card">
-      <div class="vs">
-        <div class="vs-row"><span class="vs-no">✗</span> <span style="color:var(--sub);font-size:13px">MMM consulting: $50K+ and 8 weeks</span></div>
-        <div class="vs-row"><span class="vs-yes">✓</span> <span style="color:var(--text);font-size:13px">AdCrux: results in under 5 minutes</span></div>
-      </div>
-      <h4 id="dc1-title">Accessible from day one</h4>
-      <p id="dc1-body">Marketing Mix Modeling used to require data scientists and consulting fees. AdCrux makes it available to any team with a CSV file.</p>
+      <div class="vs"><div class="vs-row"><span class="vs-no">✗</span><span style="color:var(--sub);font-size:13px">MMM consulting: $50K+ and 8 weeks</span></div><div class="vs-row"><span class="vs-yes">✓</span><span style="color:var(--text);font-size:13px">AdCrux: results in under 5 minutes</span></div></div>
+      <h4 id="dc1-title">Accessible from day one</h4><p id="dc1-body">Marketing Mix Modeling used to require data scientists. AdCrux makes it available to any team with a CSV file.</p>
     </div>
     <div class="diff-card">
-      <div class="vs">
-        <div class="vs-row"><span class="vs-no">✗</span> <span style="color:var(--sub);font-size:13px">Platform dashboards: each silo optimizes itself</span></div>
-        <div class="vs-row"><span class="vs-yes">✓</span> <span style="color:var(--text);font-size:13px">AdCrux: one model across all channels</span></div>
-      </div>
-      <h4 id="dc2-title">Truly independent</h4>
-      <p id="dc2-body">Our model doesn't report to any platform. No pixel, no SDK, no API key that connects back to Google or Meta. The numbers come from statistics, not incentives.</p>
+      <div class="vs"><div class="vs-row"><span class="vs-no">✗</span><span style="color:var(--sub);font-size:13px">Platform dashboards: each silo optimizes itself</span></div><div class="vs-row"><span class="vs-yes">✓</span><span style="color:var(--text);font-size:13px">AdCrux: one model across all channels</span></div></div>
+      <h4 id="dc2-title">Truly independent</h4><p id="dc2-body">Built independently from any platform attribution model. No pixel, no SDK, no API key connecting back to Google or Meta.</p>
     </div>
     <div class="diff-card">
-      <div class="vs">
-        <div class="vs-row"><span class="vs-no">✗</span> <span style="color:var(--sub);font-size:13px">Black-box tools: outputs you can't explain</span></div>
-        <div class="vs-row"><span class="vs-yes">✓</span> <span style="color:var(--text);font-size:13px">AdCrux: transparent model diagnostics</span></div>
-      </div>
-      <h4 id="dc3-title">Transparent outputs</h4>
-      <p id="dc3-body">Every result comes with a confidence score and model diagnostics. You know when the model is reliable and when it needs more data.</p>
+      <div class="vs"><div class="vs-row"><span class="vs-no">✗</span><span style="color:var(--sub);font-size:13px">Black-box tools: outputs you cannot explain</span></div><div class="vs-row"><span class="vs-yes">✓</span><span style="color:var(--text);font-size:13px">AdCrux: transparent model diagnostics</span></div></div>
+      <h4 id="dc3-title">Transparent outputs</h4><p id="dc3-body">Every result comes with a confidence score and model diagnostics. You know when the model is reliable.</p>
     </div>
   </div>
 </section>
@@ -758,72 +1252,40 @@ footer{
   <div class="fade-up" style="text-align:center">
     <div class="section-eyebrow" id="price-eyebrow">Pricing</div>
     <h2 class="section-title" id="price-title">Less than 1% of your media budget</h2>
-    <p class="section-sub" id="price-sub" style="margin:0 auto 32px">If you're spending $10K–$30K/month on ads, AdCrux pays for itself with even small improvements in allocation.</p>
+    <p class="section-sub" id="price-sub" style="margin:0 auto 32px">If you are spending $10K to $30K per month on ads, AdCrux pays for itself with even small improvements in allocation.</p>
   </div>
   <div class="pricing-toggle fade-up">
-    <button class="ptoggle active" id="tog-monthly" onclick="setBilling('monthly')">Monthly</button>
-    <button class="ptoggle" id="tog-annual" onclick="setBilling('annual')">Annual <span class="save-badge">Save 20%</span></button>
+    <button class="ptoggle active" id="tog-monthly">Monthly</button>
+    <button class="ptoggle" id="tog-annual">Annual <span class="save-badge">Save 20%</span></button>
   </div>
   <div class="pricing-grid fade-up" data-delay="1">
     <div class="price-card">
       <div class="price-plan" id="p1-plan">Starter</div>
-      <div class="price-amount">
-        <span class="dollar">$</span>
-        <span class="num" id="p1-price">149</span>
-        <span class="per">/mo</span>
-      </div>
+      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p1-price">149</span><span class="per">/mo</span></div>
       <div class="price-budget-note" id="p1-note">~1% of a $15K/mo media budget</div>
       <p class="price-desc" id="p1-desc">For brands and small teams running paid media and looking for their first independent view of performance.</p>
       <hr class="price-divider"/>
-      <ul class="price-features">
-        <li id="pf1-1">1 brand</li>
-        <li id="pf1-2">Up to 2 years of weekly data</li>
-        <li id="pf1-3">All 6 analysis modules</li>
-        <li id="pf1-4">Budget optimizer</li>
-        <li id="pf1-5">PDF export</li>
-      </ul>
-      <a href="javascript:void(0)" onclick="openWaitlist()" class="price-cta outline" id="cta1">Request early access</a>
+      <ul class="price-features"><li id="pf1-1">1 brand</li><li id="pf1-2">Up to 2 years of weekly data</li><li id="pf1-3">All 6 analysis modules</li><li id="pf1-4">Budget optimizer</li><li id="pf1-5">PDF export</li></ul>
+      <a href="javascript:void(0)" class="price-cta outline" id="cta1" data-action="waitlist">Request early access</a>
     </div>
     <div class="price-card popular">
       <div class="popular-badge" id="pop-badge">Most popular</div>
       <div class="price-plan" id="p2-plan">Growth</div>
-      <div class="price-amount">
-        <span class="dollar">$</span>
-        <span class="num" id="p2-price">299</span>
-        <span class="per">/mo</span>
-      </div>
+      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p2-price">299</span><span class="per">/mo</span></div>
       <div class="price-budget-note" id="p2-note">~1% of a $30K/mo media budget</div>
       <p class="price-desc" id="p2-desc">For growing teams managing multiple brands or clients who need a reliable measurement process.</p>
       <hr class="price-divider"/>
-      <ul class="price-features">
-        <li id="pf2-1">Up to 3 brands</li>
-        <li id="pf2-2">Unlimited data history</li>
-        <li id="pf2-3">All 6 analysis modules</li>
-        <li id="pf2-4">Advanced scenario planning</li>
-        <li id="pf2-5">PDF + PPT export</li>
-        <li id="pf2-6">Priority support</li>
-      </ul>
-      <a href="javascript:void(0)" onclick="openWaitlist()" class="price-cta primary" id="cta2">Request early access</a>
+      <ul class="price-features"><li id="pf2-1">Up to 3 brands</li><li id="pf2-2">Unlimited data history</li><li id="pf2-3">All 6 analysis modules</li><li id="pf2-4">Advanced scenario planning</li><li id="pf2-5">PDF + PPT export</li><li id="pf2-6">Priority support</li></ul>
+      <a href="javascript:void(0)" class="price-cta primary" id="cta2" data-action="waitlist">Request early access</a>
     </div>
     <div class="price-card">
       <div class="price-plan" id="p3-plan">Agency</div>
-      <div class="price-amount">
-        <span class="dollar">$</span>
-        <span class="num" id="p3-price">699</span>
-        <span class="per">/mo</span>
-      </div>
+      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p3-price">699</span><span class="per">/mo</span></div>
       <div class="price-budget-note" id="p3-note">For agencies with multiple active clients</div>
       <p class="price-desc" id="p3-desc">For digital agencies that want to deliver independent measurement as part of their client service offering.</p>
       <hr class="price-divider"/>
-      <ul class="price-features">
-        <li id="pf3-1">Unlimited brands / clients</li>
-        <li id="pf3-2">White-label exports</li>
-        <li id="pf3-3">All 6 analysis modules</li>
-        <li id="pf3-4">Custom scenario templates</li>
-        <li id="pf3-5">Client-facing dashboards</li>
-        <li id="pf3-6">Dedicated support</li>
-      </ul>
-      <a href="javascript:void(0)" onclick="openWaitlist()" class="price-cta outline" id="cta3">Request early access</a>
+      <ul class="price-features"><li id="pf3-1">Unlimited brands / clients</li><li id="pf3-2">White-label exports</li><li id="pf3-3">All 6 analysis modules</li><li id="pf3-4">Custom scenario templates</li><li id="pf3-5">Client-facing dashboards</li><li id="pf3-6">Dedicated support</li></ul>
+      <a href="javascript:void(0)" class="price-cta outline" id="cta3" data-action="waitlist">Request early access</a>
     </div>
   </div>
   <p class="pricing-note fade-up" id="price-note">All plans include a 14-day free trial. Cancel anytime.</p>
@@ -836,30 +1298,12 @@ footer{
     <h2 class="section-title" id="faq-title">Common questions</h2>
   </div>
   <div class="faq-list fade-up" data-delay="1">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)"><span id="fq1">Do I need a data scientist or technical team?</span><span class="faq-arrow">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner" id="fa1">No. AdCrux is designed for marketing teams, not data teams. You upload a CSV, the model runs automatically, and results are presented in plain language. No code, no configuration, no data science background required.</div></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)"><span id="fq2">What data do I need?</span><span class="faq-arrow">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner" id="fa2">A CSV file with four columns: week (date), channel (name), spend (amount), and leads or conversions. You need at least 8 weeks of data across at least 2 channels to get meaningful results. More history improves model accuracy.</div></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)"><span id="fq3">How is this different from platform attribution?</span><span class="faq-arrow">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner" id="fa3">Platform attribution (last-click, view-through, etc.) assigns credit based on individual touchpoints — and each platform runs its own model with its own incentives. AdCrux uses Marketing Mix Modeling, which works at the aggregate level using statistical regression. It doesn't rely on any platform's data or tracking. It sees what actually happened in your business when you changed spend.</div></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)"><span id="fq4">How long does it take to get results?</span><span class="faq-arrow">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner" id="fa4">First run takes 20–30 seconds. After that, results are cached — loading takes under 2 seconds. You can go from uploading your CSV to seeing your first attribution gap analysis in under 5 minutes.</div></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)"><span id="fq5">Is this accurate for small budgets ($5K–$30K/month)?</span><span class="faq-arrow">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner" id="fa5">Yes, with appropriate expectations. AdCrux includes a confidence score that reflects data quality and model reliability. At smaller budgets with fewer weeks of data, the model gives directional guidance rather than precise point estimates. Every result shows its confidence level — we don't hide uncertainty.</div></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)"><span id="fq6">What happens to my data?</span><span class="faq-arrow">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner" id="fa6">Your data is stored in your private account and never shared or used to train models for other clients. AdCrux is hosted on infrastructure in the US. You can delete your data at any time.</div></div>
-    </div>
+    <div class="faq-item"><button class="faq-q"><span id="fq1">Do I need a data scientist or technical team?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa1">No. AdCrux is designed for marketing teams. You upload a CSV, the model runs automatically, and results are in plain language.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span id="fq2">What data do I need?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa2">A CSV with four columns: week, channel, spend, and leads. You need at least 8 weeks of data across 2+ channels. More history improves accuracy.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span id="fq3">How is this different from platform attribution?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa3">Platform attribution assigns credit based on individual touchpoints with built-in incentives. AdCrux uses Marketing Mix Modeling — statistical regression at the aggregate level, independent of any platform tracking.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span id="fq4">How long does it take to get results?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa4">First run takes 20 to 30 seconds. After that, results are cached and load in under 2 seconds. From CSV upload to first insight in under 5 minutes.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span id="fq5">Is this accurate for small budgets?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa5">Yes, with appropriate expectations. AdCrux shows a confidence score with every result. At smaller budgets, the model gives directional guidance. We never hide uncertainty.</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span id="fq6">What happens to my data?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa6">Your data is stored in your private account and never shared. You can delete it at any time.</div></div></div>
   </div>
 </section>
 
@@ -868,270 +1312,289 @@ footer{
   <div class="cta-bottom-glow"></div>
   <div class="container fade-up">
     <h2 id="cta-title">Stop guessing where your budget should go.</h2>
-    <p id="cta-sub">Join the waitlist. We'll reach out when we open access.</p>
-    <a href="javascript:void(0)" onclick="openWaitlist()" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:10px" id="ctaFinal">Request early access →</a>
-    <p class="hero-note" style="margin-top:16px" id="cta-note">Setup in minutes · No engineers required · No credit card needed</p>
+    <p id="cta-sub">Request early access. We will be in touch to get you started.</p>
+    <a href="javascript:void(0)" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:10px" id="ctaFinal" data-action="waitlist">Request early access &rarr;</a>
+    <p class="hero-note" style="margin-top:16px" id="cta-note">Setup in minutes &middot; No engineers required &middot; No credit card needed</p>
   </div>
 </section>
 
 <!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-inner">
-    <a href="/" class="nav-logo"><svg width="72.0" height="20.7" viewBox="0 0 72.0 20.7" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><style>@font-face{font-family:'PB';src:url('data:font/ttf;base64,AAEAAAAMAIAAAwBAR1BPU0R2THUAAAVoAAAAIEdTVUIfSCdrAAAFiAAAADBPUy8yWsxgYwAAAwgAAABgY21hcAFkAZcAAANoAAAAXGdseWY3CrhEAAAAzAAAAZRoZWFkGlEkcQAAApAAAAA2aGhlYQv8AV8AAALkAAAAJGhtdHgREADJAAACyAAAABxsb2NhAT8BnAAAAoAAAAAQbWF4cAAdAQcAAAJgAAAAIG5hbWUf9zbOAAADxAAAAYJwb3N0/7gAMgAABUgAAAAgAAIAEAAAAtICvgAHAAoAACUhByMTMxMjCwIB8/76KrP+xv61VldWfHwCvv1CAQABAf7/AAABACH/+wLPAsYAGwAAEjY2MzIWFyMmJiMiBhUUFjMyNjczBgYjIiYmNSFaoWZ9sh68FU0xT2JiTzFNFbwesn1moVoByKNbhHIsLm5cXG4uLHKDW6JoAAIAHP/4AmkC5AASAB4AABI2NjMyFhcRMxEjNQYGIyImJjUkJiMiBhUUFjMyNjUcQXBFN1saq6sYWTtFcEEBokczM0dHMzNHAW6CRi4nAQP9HFAoMEeDVj9KSUBAS0pAAAEAPgAAAZgCNAAMAAAANjMVIyIGFREjETMVAQdaNy9AQKurAf81tTdF/v0CLl0AAAEAOf/6AmUCLgAUAAABESM1BgYjIiYmNREzERQWMzI2NRECZasaWTZAYjaqOjEyOgIu/dJMJS05bEkBRv7ROD4+OAEvAAABAAUAAAJIAi4ACwAAIScHIxMDMxc3MwMTAYhrWrm4vcBrWrm7wJubAR0BEZqa/uf+6wAAAQAAAAcAkAAMAHQABgABAAAAAAAAAAAAAAAAAAMAAgAAAAAAGgBFAHUAjQCwAMoAAQAAAAQBBngu/oZfDzz1AAMD6AAAAADYpKnIAAAAANsWNsn9zv2iCa0EVAABAAcAAgAAAAAAAAH0AAAC4QAQAvoAIQKnABwBrAA+AqIAOQJMAAUAAQAABBr+ogBkCZ39zvkYCa0AAQAAAAAAAAAAAAAAAAAAAAcABANpArwABQAAAooCWAAAAEsCigJYAAABXgAyAU4AAAAACAAAAAAAAAAAAAABAAAAAAAAAAAAAAAASVRGTwCgAEEAeAQa/qIAZARvAnMAAAABAAAAAAIuAsEAAAAgAAQAAAACAAAAAwAAABQAAwABAAAAFAAEAEgAAAAOAAgAAgAGAEEAQwBkAHIAdQB4//8AAABBAEMAZAByAHUAeP///8D/v/+f/5L/kP+OAAEAAAAAAAAAAAAAAAAAAAAAAAcAWgADAAEECQAAAKIAAAADAAEECQABAA4AogADAAEECQACAAgAsAADAAEECQADADYAuAADAAEECQAEABgA7gADAAEECQAFAAoBBgADAAEECQAGABgBEABDAG8AcAB5AHIAaQBnAGgAdAAgADIAMAAyADAAIABUAGgAZQAgAFAAbwBwAHAAaQBuAHMAIABQAHIAbwBqAGUAYwB0ACAAQQB1AHQAaABvAHIAcwAgACgAaAB0AHQAcABzADoALwAvAGcAaQB0AGgAdQBiAC4AYwBvAG0ALwBpAHQAZgBvAHUAbgBkAHIAeQAvAFAAbwBwAHAAaQBuAHMAKQBQAG8AcABwAGkAbgBzAEIAbwBsAGQASQBUAEYATwA7ACAAUABvAHAAcABpAG4AcwAgAEIAbwBsAGQAOwAgADQALgAwADAANABiADgAUABvAHAAcABpAG4AcwAgAEIAbwBsAGQANAAuADAAMAA0AFAAbwBwAHAAaQBuAHMALQBCAG8AbABkAAAAAwAAAAAAAP+1ADIAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAACgAcAB4AAURGTFQACAAEAAAAAP//AAAAAAAAAAEAAAAKACwALgADREZMVAAUZGV2MgAeZGV2YQAeAAQAAAAA//8AAAAAAAAAAAAA') format('truetype');font-weight:800;}</style><radialGradient id="fg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00E5BE" stop-opacity=".25"/><stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/></radialGradient></defs><text x="0" y="17" font-family="PB,DM Sans,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="-0.43" fill="#3D5270">Ad</text><text x="23.8" y="17" font-family="PB,DM Sans,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="-0.43" fill="#F1F5F9">Cru</text><circle cx="61.3" cy="12.0" r="8.6" fill="url(#fg)"/><line x1="55.3" y1="6.0" x2="67.3" y2="18.0" stroke="#1A3250" stroke-width="2.74" stroke-linecap="round"/><line x1="67.3" y1="6.0" x2="55.3" y2="18.0" stroke="#1A3250" stroke-width="2.74" stroke-linecap="round"/><circle cx="61.3" cy="12.0" r="4.3" fill="#00E5BE" fill-opacity=".18"/><circle cx="61.3" cy="12.0" r="2.6" fill="#00E5BE"/></svg></a>
+    <a href="/" class="nav-logo"><svg width="72.0" height="20.7" viewBox="0 0 72.0 20.7" fill="none"><defs><style>@font-face{font-family:'PB';src:url('data:font/ttf;base64,AAEAAAAMAIAAAwBAR1BPU0R2THUAAAVoAAAAIEdTVUIfSCdrAAAFiAAAADBPUy8yWsxgYwAAAwgAAABgY21hcAFkAZcAAANoAAAAXGdseWY3CrhEAAAAzAAAAZRoZWFkGlEkcQAAApAAAAA2aGhlYQv8AV8AAALkAAAAJGhtdHgREADJAAACyAAAABxsb2NhAT8BnAAAAoAAAAAQbWF4cAAdAQcAAAJgAAAAIG5hbWUf9zbOAAADxAAAAYJwb3N0/7gAMgAABUgAAAAgAAIAEAAAAtICvgAHAAoAACUhByMTMxMjCwIB8/76KrP+xv61VldWfHwCvv1CAQABAf7/AAABACH/+wLPAsYAGwAAEjY2MzIWFyMmJiMiBhUUFjMyNjczBgYjIiYmNSFaoWZ9sh68FU0xT2JiTzFNFbwesn1moVoByKNbhHIsLm5cXG4uLHKDW6JoAAIAHP/4AmkC5AASAB4AABI2NjMyFhcRMxEjNQYGIyImJjUkJiMiBhUUFjMyNjUcQXBFN1saq6sYWTtFcEEBokczM0dHMzNHAW6CRi4nAQP9HFAoMEeDVj9KSUBAS0pAAAEAPgAAAZgCNAAMAAAANjMVIyIGFREjETMVAQdaNy9AQKurAf81tTdF/v0CLl0AAAEAOf/6AmUCLgAUAAABESM1BgYjIiYmNREzERQWMzI2NRECZasaWTZAYjaqOjEyOgIu/dJMJS05bEkBRv7ROD4+OAEvAAABAAUAAAJIAi4ACwAAIScHIxMDMxc3MwMTAYhrWrm4vcBrWrm7wJubAR0BEZqa/uf+6wAAAQAAAAcAkAAMAHQABgABAAAAAAAAAAAAAAAAAAMAAgAAAAAAGgBFAHUAjQCwAMoAAQAAAAQBBngu/oZfDzz1AAMD6AAAAADYpKnIAAAAANsWNsn9zv2iCa0EVAABAAcAAgAAAAAAAAH0AAAC4QAQAvoAIQKnABwBrAA+AqIAOQJMAAUAAQAABBr+ogBkCZ39zvkYCa0AAQAAAAAAAAAAAAAAAAAAAAcABANpArwABQAAAooCWAAAAEsCigJYAAABXgAyAU4AAAAACAAAAAAAAAAAAAABAAAAAAAAAAAAAAAASVRGTwCgAEEAeAQa/qIAZARvAnMAAAABAAAAAAIuAsEAAAAgAAQAAAACAAAAAwAAABQAAwABAAAAFAAEAEgAAAAOAAgAAgAGAEEAQwBkAHIAdQB4//8AAABBAEMAZAByAHUAeP///8D/v/+f/5L/kP+OAAEAAAAAAAAAAAAAAAAAAAAAAAcAWgADAAEECQAAAKIAAAADAAEECQABAA4AogADAAEECQACAAgAsAADAAEECQADADYAuAADAAEECQAEABgA7gADAAEECQAFAAoBBgADAAEECQAGABgBEABDAG8AcAB5AHIAaQBnAGgAdAAgADIAMAAyADAAIABUAGgAZQAgAFAAbwBwAHAAaQBuAHMAIABQAHIAbwBqAGUAYwB0ACAAQQB1AHQAaABvAHIAcwAgACgAaAB0AHQAcABzADoALwAvAGcAaQB0AGgAdQBiAC4AYwBvAG0ALwBpAHQAZgBvAHUAbgBkAHIAeQAvAFAAbwBwAHAAaQBuAHMAKQBQAG8AcABwAGkAbgBzAEIAbwBsAGQASQBUAEYATwA7ACAAUABvAHAAcABpAG4AcwAgAEIAbwBsAGQAOwAgADQALgAwADAANABiADgAUABvAHAAcABpAG4AcwAgAEIAbwBsAGQANAAuADAAMAA0AFAAbwBwAHAAaQBuAHMALQBCAG8AbABkAAAAAwAAAAAAAP+1ADIAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAACgAcAB4AAURGTFQACAAEAAAAAP//AAAAAAAAAAEAAAAKACwALgADREZMVAAUZGV2MgAeZGV2YQAeAAQAAAAA//8AAAAAAAAAAAAA') format('truetype');font-weight:800;}</style><radialGradient id="fg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00E5BE" stop-opacity=".25"/><stop offset="100%" stop-color="#00E5BE" stop-opacity="0"/></radialGradient></defs><text x="0" y="17" font-family="PB,DM Sans,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="-0.43" fill="#3D5270">Ad</text><text x="23.8" y="17" font-family="PB,DM Sans,-apple-system,sans-serif" font-weight="800" font-size="18" letter-spacing="-0.43" fill="#F1F5F9">Cru</text><circle cx="61.3" cy="12.0" r="8.6" fill="url(#fg)"/><line x1="55.3" y1="6.0" x2="67.3" y2="18.0" stroke="#1A3250" stroke-width="2.74" stroke-linecap="round"/><line x1="67.3" y1="6.0" x2="55.3" y2="18.0" stroke="#1A3250" stroke-width="2.74" stroke-linecap="round"/><circle cx="61.3" cy="12.0" r="4.3" fill="#00E5BE" fill-opacity=".18"/><circle cx="61.3" cy="12.0" r="2.6" fill="#00E5BE"/></svg></a>
     <div class="footer-links">
       <a href="https://getadcrux.com/privacy" id="fl-privacy">Privacy</a>
       <a href="https://getadcrux.com/terms" id="fl-terms">Terms</a>
-      <a href="/cdn-cgi/l/email-protection#d2bab7bebebd92b5b7a6b3b6b1a0a7aafcb1bdbf" id="fl-contact">Contact</a>
+      <a href="mailto:hello@getadcrux.com" id="fl-contact">Contact</a>
     </div>
-    <span class="footer-copy" id="fl-copy">© 2025 AdCrux. All rights reserved.</span>
+    <span class="footer-copy" id="fl-copy">&copy; 2025 AdCrux. All rights reserved.</span>
   </div>
 </footer>
 
 <!-- ─── WAITLIST MODAL ─────────────────────────────────────────────────────── -->
 <div class="wl-overlay" id="wl-overlay">
   <div class="wl-modal">
-    <button class="wl-close" onclick="closeWaitlist()">✕</button>
-    <div style="font-size:28px;margin-bottom:14px">⚡</div>
+    <button class="wl-close">&#x2715;</button>
+    <div style="font-size:28px;margin-bottom:14px">&#x26A1;</div>
     <div class="wl-title" id="wl-title">Request early access</div>
-    <div class="wl-sub" id="wl-sub">AdCrux is currently in private beta. Leave your email and we'll reach out when we open access.</div>
+    <div class="wl-sub" id="wl-sub">AdCrux is in private beta. Request early access and we will reach out to get you started.</div>
     <div class="wl-form" id="wl-form-row">
       <input class="wl-input" type="email" id="wl-email" placeholder="you@company.com"/>
-      <button class="wl-btn" id="wl-btn" onclick="submitWaitlist()">Notify me</button>
+      <button class="wl-btn" id="wl-btn">Notify me</button>
     </div>
-    <div class="wl-success" id="wl-success">✅ <strong>You're on the list.</strong><br>We'll reach out when AdCrux opens access.</div>
-    <p class="wl-note" id="wl-note">Private beta · Limited spots.</p>
+    <div class="wl-success" id="wl-success">&#x2705; <strong>You are on the list.</strong><br>We will reach out when AdCrux opens access.</div>
+    <div id="wl-error" style="display:none;margin-top:10px;font-size:13px;color:#EF4444;text-align:center;line-height:1.5"></div>
+    <p class="wl-note" id="wl-note">Private beta &middot; Limited spots.</p>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const SB_URL = 'https://utqmhfzrjchbmdvfpkos.supabase.co'
+<script>const SB_URL = 'https://utqmhfzrjchbmdvfpkos.supabase.co'
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0cW1oZnpyamNoYm1kdmZwa29zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MjQzODIsImV4cCI6MjA4OTEwMDM4Mn0.80_Dfz_SIP72Kn3QEtCV8sIJMUbYwlEIKFAcyuIC37k'
 
-// ── Nav scroll ─────────────────────────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20)
-})
+document.addEventListener('DOMContentLoaded', function() {
 
-// ── Fade-up observer ───────────────────────────────────────────────────────
-// Progressive enhancement — only animate if JS fully loaded
-document.body.classList.add('js-ready')
-
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const delay = e.target.dataset.delay || 0
-      setTimeout(() => e.target.classList.add('visible'), delay * 120)
-      obs.unobserve(e.target)
-    }
+  // ── Nav scroll ────────────────────────────────────────────────────────────
+  window.addEventListener('scroll', function() {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20)
   })
-}, { threshold: 0.1 })
-document.querySelectorAll('.fade-up').forEach(el => obs.observe(el))
 
-// ── Bar chart animation ────────────────────────────────────────────────────
-const barObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      setTimeout(() => {
-        document.getElementById('bar1').style.width = '62%'
-        document.getElementById('bar2').style.width = '44%'
-        document.getElementById('bar3').style.width = '38%'
-        document.getElementById('bar4').style.width = '24%'
-        document.getElementById('bar5').style.width = '32%'
-      }, 300)
-      barObs.unobserve(e.target)
-    }
-  })
-}, { threshold: 0.3 })
-const solVisual = document.getElementById('sol-visual')
-if (solVisual) barObs.observe(solVisual)
-
-// ── Product tabs ───────────────────────────────────────────────────────────
-const tabDescs = {"overview":"Your full media performance in one place.","attribution":"See exactly how much each platform is overclaiming.","saturation":"Identify which channels still have room to grow.","optimizer":"Find where to move budget for better returns.","scenarios":"Model different budget allocations before committing.","diagnostics":"Understand how reliable your model results are."}
-function switchTab(name) {
-  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'))
-  document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'))
-  document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active')
-  document.getElementById(`panel-${name}`).classList.add('active')
-  const desc = document.getElementById('tab-desc')
-  if (desc) { desc.style.opacity='0'; setTimeout(()=>{ desc.textContent=tabDescs[name]||''; desc.style.opacity='1' },150) }
-}
-
-// ── Pricing toggle ─────────────────────────────────────────────────────────
-const prices = { monthly: [149,299,699], annual: [119,239,559] }
-function setBilling(mode) {
-  document.getElementById('tog-monthly').classList.toggle('active', mode==='monthly')
-  document.getElementById('tog-annual').classList.toggle('active', mode==='annual')
-  const p = prices[mode]
-  document.getElementById('p1-price').textContent = p[0]
-  document.getElementById('p2-price').textContent = p[1]
-  document.getElementById('p3-price').textContent = p[2]
-}
-
-// ── FAQ ────────────────────────────────────────────────────────────────────
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item')
-  const isOpen = item.classList.contains('open')
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'))
-  if (!isOpen) item.classList.add('open')
-}
-
-// ── Waitlist modal ─────────────────────────────────────────────────────────
-function openWaitlist() {
-  document.getElementById('wl-overlay').classList.add('open')
-  setTimeout(() => document.getElementById('wl-email').focus(), 200)
-}
-function closeWaitlist() {
-  document.getElementById('wl-overlay').classList.remove('open')
-}
-document.getElementById('wl-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeWaitlist()
-})
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWaitlist() })
-
-async function submitWaitlist() {
-  const email = document.getElementById('wl-email').value.trim()
-  if (!email || !email.includes('@')) { document.getElementById('wl-email').focus(); return }
-  const btn = document.getElementById('wl-btn')
-  btn.disabled = true; btn.textContent = 'Saving…'
-  try {
-    await fetch(SB_URL + '/rest/v1/waitlist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SB_KEY,
-        'Authorization': 'Bearer ' + SB_KEY,
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({ email, source: 'website', created_at: new Date().toISOString() })
+  // ── Progressive enhancement — fade-up animations ─────────────────────────
+  document.body.classList.add('js-ready')
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var delay = e.target.dataset.delay || 0
+        setTimeout(function() { e.target.classList.add('visible') }, delay * 120)
+        obs.unobserve(e.target)
+      }
     })
-  } catch(e) {}
-  document.getElementById('wl-form-row').style.display = 'none'
-  document.getElementById('wl-success').style.display = 'block'
-}
-document.getElementById('wl-email').addEventListener('keydown', e => {
-  if (e.key === 'Enter') submitWaitlist()
-})
+  }, { threshold: 0.1 })
+  document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el) })
 
-// ── i18n ───────────────────────────────────────────────────────────────────
-let lang = 'en'
-const t = {
-  en: {
-    signInBtn:'Sign in', ctaBtn:'Request early access', heroCta:'Request early access',
-    'eyebrow-text':'Marketing Mix Intelligence',
-    'hero-h1':'Every platform shows results.<br><em>None shows the full picture.</em>',
-    'hero-sub':`AdCrux gives you an independent view of what's actually driving growth — so you can make better budget decisions.`,
-    'hero-note':'Setup in minutes · No engineers required · No credit card needed',
-    'nl-how':'How it works','nl-product':'Product','nl-pricing':'Pricing','nl-faq':'FAQ',
-    'prob-eyebrow':'The problem','prob-title':'Why your current reporting is misleading',
-    'prob-sub':`Most platforms measure performance in isolation — using their own models, their own windows, their own incentives.`,
-    'prob-total-label':'Sum of claims','prob-real-label':'Actual leads generated',
-    'prob-copy1':'<strong>Platforms overclaim.</strong> Each platform counts conversions using its own attribution window. A single customer journey gets counted multiple times.',
-    'prob-copy2':'The result: your data shows 192 leads. Your business generated 120. <strong>That 60% gap is where budget decisions go wrong.</strong>',
-    'prob-copy3':`This isn't a flaw in any specific platform. It's a structural problem — platforms have every incentive to show their own numbers in the best light.`,
-    'rec-eyebrow':'Sound familiar?','rec-title':`You've probably seen this before`,
-    'ri1-title':'Every channel looks like a winner','ri1-body':`Meta looks like your best performer. Google also looks like your best performer. Both show green numbers. But total growth doesn't match the sum.`,
-    'ri2-title':`You increase spend and results don't follow`,'ri2-body':`A channel that looked efficient at $5K/month starts underperforming at $15K. The platform dashboard didn't warn you.`,
-    'ri3-title':`You can't tell what's actually working`,'ri3-body':`When you pause a campaign, results drop. But you don't know if that channel was the cause, or if you just removed the last touch in a longer journey.`,
-    'ri4-title':'Budget decisions feel like guesswork','ri4-body':`You move money between channels based on ROAS reported by the platforms themselves. You're asking Google if you should spend more on Google.`,
-    'impact-eyebrow':'What this means','impact-title':'This leads to bad decisions',
-    'impact-sub':'When your data is biased, every decision downstream inherits that bias.',
-    'ic1-title':'You scale channels that are already saturated','ic1-body':`The platform shows strong ROAS. You increase spend. Returns flatten. You've pushed past the point of diminishing returns without knowing it.`,
-    'ic2-title':'You cut channels that are actually working','ic2-body':'A channel with low last-click attribution looks inefficient. You reduce spend. Overall leads drop.',
-    'ic3-title':`You misread what's driving growth`,'ic3-body':'Organic traffic, seasonality, and brand momentum get absorbed into paid channel metrics.',
-    'ic4-title':'You lose efficiency without realizing it','ic4-body':`Budget inefficiency is invisible when everyone's dashboard shows positive numbers.`,
-    'sol-title':'An independent view of your performance',
-    'sol-body':`AdCrux combines your media data into a unified model to estimate real contribution, identify diminishing returns, and help you make better budget decisions — independently of what any platform reports.`,
-    'sp1-title':'Independent measurement','sp1-body':'Built independently from any platform attribution model. The numbers come from statistics, not incentives.',
-    'sp2-title':'Unified view','sp2-body':'All your channels in a single model. No more comparing silos.',
-    'sp3-title':'Actionable outputs','sp3-body':'Not just charts. Specific budget recommendations you can act on.',
-    'sp4-title':'Setup in minutes','sp4-body':'Upload a CSV. No engineers, no consultants, no waiting weeks for results.',
-    'how-eyebrow':'How it works','how-title':'From data to decisions in minutes','how-sub':'No data scientists. No consultants. No configuration required.',
-    'step1-title':'Upload your data','step1-body':'A simple CSV with four columns: week, channel, spend, and leads. AdCrux validates and processes it automatically.','step1-badge':'CSV upload',
-    'step2-title':'Get your independent model','step2-body':'AdCrux runs a Marketing Mix Model on your data — estimating real contribution, saturation curves, and baseline effects for every channel.','step2-badge':'~30 seconds',
-    'step3-title':'Make better budget decisions','step3-body':'Explore reallocation scenarios, identify over- and under-invested channels, and export a clear summary for your team or clients.','step3-badge':'Actionable outputs',
-    'prod-eyebrow':'The platform','prod-title':'See inside AdCrux','prod-sub':'Six modules. One unified view of your marketing performance.',
-    'out-eyebrow':'What you get','out-title':'Clear outputs, not just charts','out-sub':'AdCrux turns model results into decisions. Every module ends with a specific recommendation.',
-    'oc1-title':'What to increase','oc1-body':'Channels with room to grow and efficient returns at current spend levels.',
-    'oc2-title':'What to reduce','oc2-body':'Channels past their saturation point where incremental spend is no longer efficient.',
-    'oc3-title':'Where returns are flattening','oc3-body':'Early warnings before you hit diminishing returns — so you can act before efficiency drops.',
-    'oc4-title':'How to reallocate','oc4-body':'A specific budget scenario showing projected outcome improvement from shifting spend across channels.',
-    'diff-eyebrow':'Built for real teams','diff-title':'Not enterprise-only. Not a black box.','diff-sub':`AdCrux brings rigorous measurement to teams that don't have data science resources.`,
-    'dc1-title':'Accessible from day one','dc1-body':'Marketing Mix Modeling used to require data scientists and consulting fees. AdCrux makes it available to any team with a CSV file.',
-    'dc2-title':'Truly independent','dc2-body':`Our model doesn't report to any platform. No pixel, no SDK, no API key connecting back to Google or Meta.`,
-    'dc3-title':'Transparent outputs','dc3-body':'Every result comes with a confidence score and model diagnostics. You know when the model is reliable.',
-    'price-eyebrow':'Pricing','price-title':'Less than 1% of your media budget','price-sub':`If you're spending $10K–$30K/month on ads, AdCrux pays for itself with even small improvements in allocation.`,
-    'price-note':'All plans include a 14-day free trial. Cancel anytime.',
-    'cta-title':'See what your channels actually do.','cta-sub':`Join the waitlist. We'll reach out when we open access.`,
-    'cta-note':'Setup in minutes · No engineers required · No credit card needed',
-    'faq-eyebrow':'FAQ','faq-title':'Common questions',
-    'wl-title':'Request early access','wl-sub':`AdCrux is currently in private beta. Leave your email and we'll reach out when we open access.`,'wl-note':'Private beta · Limited spots.',
-  },
-  es: {
-    signInBtn:'Ingresar', ctaBtn:'Solicitar acceso', heroCta:'Solicitar acceso anticipado',
-    'eyebrow-text':'Marketing Mix Intelligence',
-    'hero-h1':'Cada plataforma muestra resultados.<br><em>Ninguna muestra el panorama completo.</em>',
-    'hero-sub':`AdCrux te da una visión independiente de lo que realmente impulsa tu crecimiento — para tomar mejores decisiones de presupuesto.`,
-    'hero-note':'Configuración en minutos · Sin ingenieros · Sin tarjeta de crédito',
-    'nl-how':'Cómo funciona','nl-product':'Producto','nl-pricing':'Precios','nl-faq':'FAQ',
-    'prob-eyebrow':'El problema','prob-title':'Por qué tus reportes actuales son engañosos',
-    'prob-sub':`La mayoría de las plataformas miden el rendimiento de forma aislada — con sus propios modelos, sus propias ventanas, sus propios incentivos.`,
-    'prob-total-label':'Suma de atribuciones','prob-real-label':'Leads reales generados',
-    'prob-copy1':'<strong>Las plataformas sobreestiman.</strong> Cada plataforma cuenta conversiones con su propia ventana de atribución. Un mismo recorrido de cliente se cuenta múltiples veces.',
-    'prob-copy2':'El resultado: tus datos muestran 192 leads. Tu negocio generó 120. <strong>Esa brecha del 60% es donde las decisiones de presupuesto se equivocan.</strong>',
-    'prob-copy3':`No es un defecto de ninguna plataforma en particular. Es un problema estructural — las plataformas tienen todos los incentivos para mostrar sus números en el mejor contexto.`,
-    'rec-eyebrow':'¿Te suena familiar?','rec-title':'Probablemente ya lo viste',
-    'ri1-title':'Todos los canales parecen ganadores','ri1-body':`Meta parece tu mejor canal. Google también parece tu mejor canal. Ambos muestran números positivos. Pero el crecimiento total no coincide con la suma.`,
-    'ri2-title':`Aumentás el gasto y los resultados no siguen`,'ri2-body':`Un canal eficiente a $5K/mes empieza a rendir menos a $15K. El dashboard de la plataforma no te avisó.`,
-    'ri3-title':`No podés saber qué está funcionando`,'ri3-body':`Cuando pausás una campaña, los resultados caen. Pero no sabés si ese canal fue la causa o si era solo el último toque.`,
-    'ri4-title':'Las decisiones de presupuesto se sienten adivinanzas','ri4-body':`Movés dinero entre canales basándote en ROAS reportado por las mismas plataformas. Le estás preguntando a Google si deberías gastar más en Google.`,
-    'impact-eyebrow':'Lo que esto significa','impact-title':'Esto lleva a malas decisiones',
-    'impact-sub':'Cuando tus datos están sesgados, cada decisión posterior hereda ese sesgo.',
-    'ic1-title':'Escalás canales que ya están saturados','ic1-body':`La plataforma muestra buen ROAS. Aumentás el gasto. Los retornos se aplanan. Cruzaste el punto de rendimientos decrecientes sin saberlo.`,
-    'ic2-title':'Cortás canales que en realidad están funcionando','ic2-body':'Un canal con baja atribución last-click parece ineficiente. Reducís el gasto. Los leads totales caen.',
-    'ic3-title':`Mal interpretás qué impulsa el crecimiento`,'ic3-body':'El tráfico orgánico, la estacionalidad y el momentum de marca quedan absorbidos en las métricas de canales pagos.',
-    'ic4-title':'Perdés eficiencia sin darte cuenta','ic4-body':`La ineficiencia presupuestaria es invisible cuando todos los dashboards muestran números positivos.`,
-    'sol-title':'Una visión independiente de tu rendimiento',
-    'sol-body':`AdCrux combina tus datos de medios en un modelo unificado para estimar la contribución real, identificar rendimientos decrecientes y ayudarte a tomar mejores decisiones de presupuesto — independientemente de lo que reporta cualquier plataforma.`,
-    'sp1-title':'Medición independiente','sp1-body':'Ninguna plataforma participó en construir nuestro modelo. Los números vienen de estadística, no de incentivos.',
-    'sp2-title':'Visión unificada','sp2-body':'Todos tus canales en un solo modelo. Sin comparar silos.',
-    'sp3-title':'Resultados accionables','sp3-body':'No solo gráficos. Recomendaciones específicas de presupuesto.',
-    'sp4-title':'Configuración en minutos','sp4-body':'Subí un CSV. Sin ingenieros, sin consultores, sin esperar semanas.',
-    'how-eyebrow':'Cómo funciona','how-title':'De los datos a las decisiones en minutos','how-sub':'Sin científicos de datos. Sin consultores. Sin configuración.',
-    'step1-title':'Subí tus datos','step1-body':'Un CSV simple con cuatro columnas: semana, canal, gasto y leads. AdCrux valida y procesa automáticamente.','step1-badge':'Subida de CSV',
-    'step2-title':'Obtené tu modelo independiente','step2-body':'AdCrux corre un Marketing Mix Model sobre tus datos — estimando contribución real, curvas de saturación y efectos de línea base para cada canal.','step2-badge':'~30 segundos',
-    'step3-title':'Tomá mejores decisiones de presupuesto','step3-body':'Explorá escenarios de reasignación, identificá canales sobre e infra-invertidos, y exportá un resumen claro.','step3-badge':'Resultados accionables',
-    'prod-eyebrow':'La plataforma','prod-title':'Mirá adentro de AdCrux','prod-sub':'Seis módulos. Una visión unificada de tu rendimiento de marketing.',
-    'out-eyebrow':'Qué obtenés','out-title':'Resultados claros, no solo gráficos','out-sub':'AdCrux convierte los resultados del modelo en decisiones. Cada módulo termina con una recomendación específica.',
-    'oc1-title':'Qué aumentar','oc1-body':'Canales con espacio para crecer y retornos eficientes en los niveles actuales de gasto.',
-    'oc2-title':'Qué reducir','oc2-body':'Canales que pasaron su punto de saturación donde el gasto incremental ya no es eficiente.',
-    'oc3-title':'Dónde los retornos se aplanan','oc3-body':'Alertas tempranas antes de llegar a rendimientos decrecientes — para actuar antes de que caiga la eficiencia.',
-    'oc4-title':'Cómo reasignar','oc4-body':'Un escenario específico de presupuesto que muestra la mejora proyectada al redistribuir el gasto.',
-    'diff-eyebrow':'Hecho para equipos reales','diff-title':'No solo para empresas grandes. Sin caja negra.','diff-sub':`AdCrux lleva medición rigurosa a equipos sin recursos de ciencia de datos.`,
-    'dc1-title':'Accesible desde el primer día','dc1-body':'El Marketing Mix Modeling solía requerir científicos de datos y consultoras. AdCrux lo hace disponible para cualquier equipo con un CSV.',
-    'dc2-title':'Verdaderamente independiente','dc2-body':`Nuestro modelo no reporta a ninguna plataforma. Sin pixel, sin SDK, sin API key que conecte de vuelta a Google o Meta.`,
-    'dc3-title':'Resultados transparentes','dc3-body':`Cada resultado incluye un score de confianza y diagnósticos del modelo. Sabés cuándo el modelo es confiable.`,
-    'price-eyebrow':'Precios','price-title':'Menos del 1% de tu presupuesto de medios','price-sub':`Si gastás $10K–$30K/mes en publicidad, AdCrux se paga solo con pequeñas mejoras en la asignación.`,
-    'price-note':'Todos los planes incluyen 14 días de prueba gratuita. Cancelá cuando quieras.',
-    'cta-title':'Mirá qué hacen realmente tus canales.','cta-sub':`Solicitá acceso anticipado. Te contactamos para comenzar.`,
-    'cta-note':'Configuración en minutos · Sin ingenieros · Sin tarjeta de crédito',
-    'faq-eyebrow':'Preguntas frecuentes','faq-title':'Preguntas comunes',
-    'wl-title':'Solicitar acceso anticipado','wl-sub':`AdCrux está en beta privada. Dejá tu email y te avisamos cuando abramos el acceso.`,'wl-note':'Sin spam. Un solo email cuando lancemos.',
+  // ── Bar chart animation ───────────────────────────────────────────────────
+  var solVisual = document.getElementById('sol-visual')
+  if (solVisual) {
+    var barObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          setTimeout(function() {
+            var b = function(id, w) { var el = document.getElementById(id); if(el) el.style.width = w }
+            b('bar1','62%'); b('bar2','44%'); b('bar3','38%'); b('bar4','24%'); b('bar5','32%')
+          }, 300)
+          barObs.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.3 })
+    barObs.observe(solVisual)
   }
-}
-function toggleLang(e) {
-  e.preventDefault()
-  lang = lang === 'en' ? 'es' : 'en'
-  document.getElementById('langToggle').textContent = lang === 'en' ? 'ES' : 'EN'
-  document.documentElement.lang = lang
-  applyLang()
-}
 
-const htmlIds = new Set(['hero-h1','prob-copy1','prob-copy2','prob-copy3'])
-const skipHref = new Set(['ctaBtn','heroCta','cta1','cta2','cta3','ctaFinal'])
+  // ── Product tabs ──────────────────────────────────────────────────────────
+  var tabDescs = {"overview":"Your full media performance in one place.","attribution":"See exactly how much each platform is overclaiming.","saturation":"Identify which channels still have room to grow.","optimizer":"Find where to move budget for better returns.","scenarios":"Model different budget allocations before committing.","diagnostics":"Understand how reliable your model results are."}
 
-function applyLang() {
-  const d = t[lang]
-  Object.keys(d).forEach(id => {
-    const el = document.getElementById(id)
-    if (!el) return
-    if (skipHref.has(id)) { 
+  function switchTab(name) {
+    document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active') })
+    document.querySelectorAll('.product-panel').forEach(function(p) { p.classList.remove('active') })
+    var btn = document.querySelector('[data-tab="' + name + '"]')
+    if (btn) btn.classList.add('active')
+    var panel = document.getElementById('panel-' + name)
+    if (panel) panel.classList.add('active')
+    var desc = document.getElementById('tab-desc')
+    if (desc) { desc.style.opacity='0'; setTimeout(function(){ desc.textContent=tabDescs[name]||''; desc.style.opacity='1' }, 150) }
+  }
+
+  document.querySelectorAll('.ptab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      switchTab(this.dataset.tab)
+    })
+  })
+
+  // ── Pricing toggle ────────────────────────────────────────────────────────
+  var prices = { monthly: [149,299,699], annual: [119,239,559] }
+  function setBilling(mode) {
+    document.getElementById('tog-monthly').classList.toggle('active', mode==='monthly')
+    document.getElementById('tog-annual').classList.toggle('active', mode==='annual')
+    var p = prices[mode]
+    document.getElementById('p1-price').textContent = p[0]
+    document.getElementById('p2-price').textContent = p[1]
+    document.getElementById('p3-price').textContent = p[2]
+  }
+  var togMonthly = document.getElementById('tog-monthly')
+  var togAnnual  = document.getElementById('tog-annual')
+  if (togMonthly) togMonthly.addEventListener('click', function() { setBilling('monthly') })
+  if (togAnnual)  togAnnual.addEventListener('click',  function() { setBilling('annual') })
+
+  // ── FAQ ───────────────────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item')
+      var isOpen = item.classList.contains('open')
+      document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open') })
+      if (!isOpen) item.classList.add('open')
+    })
+  })
+
+  // ── Waitlist modal ────────────────────────────────────────────────────────
+  function openWaitlist() {
+    var overlay = document.getElementById('wl-overlay')
+    if (overlay) {
+      overlay.classList.add('open')
+      setTimeout(function() {
+        var emailInput = document.getElementById('wl-email')
+        if (emailInput) emailInput.focus()
+      }, 200)
+    }
+  }
+  function closeWaitlist() {
+    var overlay = document.getElementById('wl-overlay')
+    if (overlay) overlay.classList.remove('open')
+  }
+
+  // Bind all CTA buttons
+  document.querySelectorAll('[data-action="waitlist"]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault()
+      openWaitlist()
+    })
+  })
+
+  // Close on overlay click
+  var overlay = document.getElementById('wl-overlay')
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) closeWaitlist()
+    })
+  }
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeWaitlist()
+  })
+
+  // Close button
+  var closeBtn = document.querySelector('.wl-close')
+  if (closeBtn) closeBtn.addEventListener('click', closeWaitlist)
+
+  // Submit
+  async function submitWaitlist() {
+    var emailInput = document.getElementById('wl-email')
+    var btn        = document.getElementById('wl-btn')
+    var errEl      = document.getElementById('wl-error')
+    var successEl  = document.getElementById('wl-success')
+    var formRow    = document.getElementById('wl-form-row')
+    if (!emailInput) return
+    var email = emailInput.value.trim()
+    if (!email || !email.includes('@')) { emailInput.focus(); return }
+    btn.disabled = true; btn.textContent = 'Saving...'
+    if (errEl) errEl.style.display = 'none'
+    try {
+      var res = await fetch(SB_URL + '/rest/v1/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SB_KEY,
+          'Authorization': 'Bearer ' + SB_KEY,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email: email, source: 'website', created_at: new Date().toISOString() })
+      })
+      if (!res.ok) {
+        var body = await res.text()
+        throw new Error('HTTP ' + res.status + ': ' + body)
+      }
+      if (formRow) formRow.style.display = 'none'
+      if (successEl) successEl.style.display = 'block'
+    } catch(err) {
+      console.error('Waitlist error:', err)
+      btn.disabled = false; btn.textContent = 'Notify me'
+      if (errEl) {
+        errEl.textContent = 'Something went wrong — try again or email hello@getadcrux.com'
+        errEl.style.display = 'block'
+      }
+    }
+  }
+
+  var submitBtn = document.getElementById('wl-btn')
+  if (submitBtn) submitBtn.addEventListener('click', submitWaitlist)
+
+  var emailInput = document.getElementById('wl-email')
+  if (emailInput) {
+    emailInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') submitWaitlist()
+    })
+  }
+
+  // ── Language toggle ───────────────────────────────────────────────────────
+  var lang = 'en'
+  var langToggle = document.getElementById('langToggle')
+  if (langToggle) {
+    langToggle.addEventListener('click', function(e) {
+      e.preventDefault()
+      lang = lang === 'en' ? 'es' : 'en'
+      langToggle.textContent = lang === 'en' ? 'ES' : 'EN'
+      document.documentElement.lang = lang
+      applyLang()
+    })
+  }
+
+  var htmlIds = {'hero-h1':1,'prob-copy1':1,'prob-copy2':1,'prob-copy3':1}
+  var skipSet  = {'ctaBtn':1,'heroCta':1,'cta1':1,'cta2':1,'cta3':1,'ctaFinal':1}
+  var i18n = {
+    en: {
+      ctaBtn:'Request early access', heroCta:'Request early access',
+      'eyebrow-text':'Marketing Mix Intelligence',
+      'hero-note':'Setup in minutes · No engineers required · No credit card needed',
+      'nl-how':'How it works','nl-product':'Product','nl-pricing':'Pricing','nl-faq':'FAQ',
+      'prob-eyebrow':'The problem','prob-title':'Why your current reporting is misleading',
+      'prob-total-label':'Sum of claims','prob-real-label':'Actual leads generated',
+      'rec-eyebrow':'Sound familiar?',
+      'impact-eyebrow':'What this means','impact-title':'This leads to bad decisions',
+      'sol-title':'An independent view of your performance',
+      'how-eyebrow':'How it works','how-title':'From data to decisions in minutes',
+      'prod-eyebrow':'The platform','prod-title':'See inside AdCrux',
+      'out-eyebrow':'What you get','out-title':'Clear outputs, not just charts',
+      'diff-eyebrow':'Built for real teams','diff-title':'Not enterprise-only. Not a black box.',
+      'price-eyebrow':'Pricing','price-title':'Less than 1% of your media budget',
+      'price-note':'All plans include a 14-day free trial. Cancel anytime.',
+      'cta-title':'Stop guessing where your budget should go.',
+      'faq-eyebrow':'FAQ','faq-title':'Common questions',
+      'wl-title':'Request early access','wl-note':'Private beta · Limited spots.',
+      signInBtn:'Sign in',
+    },
+    es: {
+      ctaBtn:'Solicitar acceso', heroCta:'Solicitar acceso anticipado',
+      'eyebrow-text':'Marketing Mix Intelligence',
+      'hero-note':'Configuración en minutos · Sin ingenieros · Sin tarjeta de crédito',
+      'nl-how':'Cómo funciona','nl-product':'Producto','nl-pricing':'Precios','nl-faq':'FAQ',
+      'prob-eyebrow':'El problema','prob-title':'Por qué tus reportes actuales son engañosos',
+      'prob-total-label':'Suma de atribuciones','prob-real-label':'Leads reales generados',
+      'rec-eyebrow':'¿Te suena familiar?',
+      'impact-eyebrow':'Lo que esto significa','impact-title':'Esto lleva a malas decisiones',
+      'sol-title':'Una visión independiente de tu rendimiento',
+      'how-eyebrow':'Cómo funciona','how-title':'De los datos a las decisiones en minutos',
+      'prod-eyebrow':'La plataforma','prod-title':'Mirá adentro de AdCrux',
+      'out-eyebrow':'Qué obtenés','out-title':'Resultados claros, no solo gráficos',
+      'diff-eyebrow':'Hecho para equipos reales','diff-title':'No solo para empresas grandes.',
+      'price-eyebrow':'Precios','price-title':'Menos del 1% de tu presupuesto de medios',
+      'price-note':'14 días de prueba gratuita. Cancelá cuando quieras.',
+      'cta-title':'Dejá de adivinar dónde va tu presupuesto.',
+      'faq-eyebrow':'Preguntas frecuentes','faq-title':'Preguntas comunes',
+      'wl-title':'Solicitar acceso anticipado','wl-note':'Beta privada · Cupos limitados.',
+      signInBtn:'Ingresar',
+    }
+  }
+
+  function applyLang() {
+    var d = i18n[lang]
+    if (!d) return
+    Object.keys(d).forEach(function(id) {
+      var el = document.getElementById(id)
+      if (!el) return
+      if (htmlIds[id]) { el.innerHTML = d[id]; return }
+      el.textContent = d[id]
+    })
+  }
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
