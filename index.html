@@ -463,6 +463,7 @@ footer{
     </p>
     <div class="hero-ctas fade-up" data-delay="3">
       <a href="javascript:void(0)" class="btn-primary" id="heroCta" data-action="waitlist">Request early access</a>
+      <a href="https://check.getadcrux.com" class="btn-ghost" id="checkDataCta" style="font-size:16px;padding:14px 32px;border-radius:10px">Check your data &rarr;</a>
     </div>
     <p class="hero-note fade-up" data-delay="4" id="hero-note">Setup in minutes · No engineers required · No credit card needed</p>
   </div>
@@ -1291,34 +1292,34 @@ footer{
   <div class="pricing-grid fade-up" data-delay="1">
     <div class="price-card">
       <div class="price-plan" id="p1-plan">Starter</div>
-      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p1-price">149</span><span class="per">/mo</span></div>
-      <div class="price-budget-note" id="p1-note">~1% of a $15K/mo media budget</div>
+      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p1-price">249</span><span class="per">/mo</span></div>
+      <div class="price-budget-note" id="p1-note">~1% of a $25K/mo media budget</div>
       <p class="price-desc" id="p1-desc">For brands and small teams running paid media and looking for their first independent view of performance.</p>
       <hr class="price-divider"/>
-      <ul class="price-features"><li id="pf1-1">1 brand</li><li id="pf1-2">Up to 2 years of weekly data</li><li id="pf1-3">All 6 analysis modules</li><li id="pf1-4">Budget optimizer</li><li id="pf1-5">PDF export</li></ul>
+      <ul class="price-features"><li id="pf1-1">1 active model</li><li id="pf1-2">4 analysis runs/month</li><li id="pf1-3">All 6 analysis modules</li><li id="pf1-4">Budget optimizer &amp; scenarios</li><li id="pf1-5">Confidence score + diagnostics</li><li id="pf1-6">AI insights</li></ul>
       <a href="javascript:void(0)" class="price-cta outline" id="cta1" data-action="waitlist">Request early access</a>
     </div>
     <div class="price-card popular">
       <div class="popular-badge" id="pop-badge">Most popular</div>
       <div class="price-plan" id="p2-plan">Growth</div>
-      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p2-price">299</span><span class="per">/mo</span></div>
-      <div class="price-budget-note" id="p2-note">~1% of a $30K/mo media budget</div>
-      <p class="price-desc" id="p2-desc">For growing teams managing multiple brands or clients who need a reliable measurement process.</p>
+      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p2-price">599</span><span class="per">/mo</span></div>
+      <div class="price-budget-note" id="p2-note">~1% of a $60K/mo media budget</div>
+      <p class="price-desc" id="p2-desc">For growing teams managing multiple brands or business units who need a reliable, repeatable measurement process.</p>
       <hr class="price-divider"/>
-      <ul class="price-features"><li id="pf2-1">Up to 3 brands</li><li id="pf2-2">Unlimited data history</li><li id="pf2-3">All 6 analysis modules</li><li id="pf2-4">Advanced scenario planning</li><li id="pf2-5">PDF + PPT export</li><li id="pf2-6">Priority support</li></ul>
+      <ul class="price-features"><li id="pf2-1">Up to 3 active models</li><li id="pf2-2">12 analysis runs/month</li><li id="pf2-3">Everything in Starter</li><li id="pf2-4">Business unit grouping</li><li id="pf2-5">3 user seats</li><li id="pf2-6">Priority support</li></ul>
       <a href="javascript:void(0)" class="price-cta primary" id="cta2" data-action="waitlist">Request early access</a>
     </div>
     <div class="price-card">
       <div class="price-plan" id="p3-plan">Agency</div>
-      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p3-price">699</span><span class="per">/mo</span></div>
-      <div class="price-budget-note" id="p3-note">For agencies with multiple active clients</div>
-      <p class="price-desc" id="p3-desc">For digital agencies that want to deliver independent measurement as part of their client service offering.</p>
+      <div class="price-amount"><span class="dollar">$</span><span class="num" id="p3-price">999</span><span class="per">/mo</span></div>
+      <div class="price-budget-note" id="p3-note">For agencies managing multiple clients</div>
+      <p class="price-desc" id="p3-desc">For digital agencies that deliver independent measurement as part of their client service offering.</p>
       <hr class="price-divider"/>
-      <ul class="price-features"><li id="pf3-1">Unlimited brands / clients</li><li id="pf3-2">White-label exports</li><li id="pf3-3">All 6 analysis modules</li><li id="pf3-4">Custom scenario templates</li><li id="pf3-5">Client-facing dashboards</li><li id="pf3-6">Dedicated support</li></ul>
+      <ul class="price-features"><li id="pf3-1">Up to 10 active models</li><li id="pf3-2">40 analysis runs/month</li><li id="pf3-3">Everything in Growth</li><li id="pf3-4">Client &rarr; Model workspace</li><li id="pf3-5">5 user seats</li><li id="pf3-6">Dedicated support</li></ul>
       <a href="javascript:void(0)" class="price-cta outline" id="cta3" data-action="waitlist">Request early access</a>
     </div>
   </div>
-  <p class="pricing-note fade-up" id="price-note">All plans include a 14-day free trial. Cancel anytime.</p>
+  <p class="pricing-note fade-up" id="price-note">All plans include a 14-day free trial. Cancel anytime. Need more? <a href="mailto:hello@getadcrux.com" style="color:var(--accent);text-decoration:none">Contact us</a> about Enterprise.</p>
 </section>
 
 <!-- ─── FAQ ───────────────────────────────────────────────────────────────── -->
@@ -1618,7 +1619,7 @@ document.addEventListener('DOMContentLoaded', function() {
   })
 
   // ── Pricing toggle ────────────────────────────────────────────────────────
-  var prices = { monthly: [149,299,699], annual: [119,239,559] }
+  var prices = { monthly: [249,599,999], annual: [199,479,799] }
   function setBilling(mode) {
     document.getElementById('tog-monthly').classList.toggle('active', mode==='monthly')
     document.getElementById('tog-annual').classList.toggle('active', mode==='annual')
@@ -1746,6 +1747,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var htmlIds = {'hero-h1':1,'prob-copy1':1,'prob-copy2':1,'prob-copy3':1}
   var skipSet  = {'ctaBtn':1,'heroCta':1,'cta1':1,'cta2':1,'cta3':1,'ctaFinal':1}
+  var i18n = {
+    en: {
+      ctaBtn:'Request early access', heroCta:'Request early access',
+      'eyebrow-text':'Marketing Mix Intelligence',
+      'hero-note':'Setup in minutes · No engineers required · No credit card needed',
+      'nl-how':'How it works','nl-product':'Product','nl-pricing':'Pricing','nl-faq':'FAQ',
+      'prob-eyebrow':'The problem','prob-title':'Why your current reporting is misleading',
+      'prob-total-label':'Sum of claims','prob-real-label':'Actual leads generated',
+      'rec-eyebrow':'Sound familiar?',
+      'impact-eyebrow':'What this means','impact-title':'This leads to bad decisions',
+      'sol-title':'An independent view of your performance',
+      'how-eyebrow':'How it works','how-title':'From data to decisions in minutes',
+      'prod-eyebrow':'The platform','prod-title':'See inside AdCrux',
+      'out-eyebrow':'What you get','out-title':'Clear outputs, not just charts',
+      'diff-eyebrow':'Built for real teams','diff-title':'Not enterprise-only. Not a black box.',
+      'price-eyebrow':'Pricing','price-title':'Less than 1% of your media budget',
+      'price-note':'All plans include a 14-day free trial. Cancel anytime.',
+      'cta-title':'Stop guessing where your budget should go.',
+      'faq-eyebrow':'FAQ','faq-title':'Common questions',
+      'wl-title':'Request early access','wl-note':'Private beta · Limited spots.',
+      signInBtn:'Sign in',
+    },
+    es: {
+      ctaBtn:'Solicitar acceso', heroCta:'Solicitar acceso anticipado',
+      'eyebrow-text':'Marketing Mix Intelligence',
+      'hero-note':'Configuración en minutos · Sin ingenieros · Sin tarjeta de crédito',
+      'nl-how':'Cómo funciona','nl-product':'Producto','nl-pricing':'Precios','nl-faq':'FAQ',
+      'prob-eyebrow':'El problema','prob-title':'Por qué tus reportes actuales son engañosos',
+      'prob-total-label':'Suma de atribuciones','prob-real-label':'Leads reales generados',
+      'rec-eyebrow':'¿Te suena familiar?',
+      'impact-eyebrow':'Lo que esto significa','impact-title':'Esto lleva a malas decisiones',
+      'sol-title':'Una visión independiente de tu rendimiento',
+      'how-eyebrow':'Cómo funciona','how-title':'De los datos a las decisiones en minutos',
+      'prod-eyebrow':'La plataforma','prod-title':'Mirá adentro de AdCrux',
+      'out-eyebrow':'Qué obtenés','out-title':'Resultados claros, no solo gráficos',
+      'diff-eyebrow':'Hecho para equipos reales','diff-title':'No solo para empresas grandes.',
+      'price-eyebrow':'Precios','price-title':'Menos del 1% de tu presupuesto de medios',
+      'price-note':'14 días de prueba gratuita. Cancelá cuando quieras.',
+      'cta-title':'Dejá de adivinar dónde va tu presupuesto.',
+      'faq-eyebrow':'Preguntas frecuentes','faq-title':'Preguntas comunes',
+      'wl-title':'Solicitar acceso anticipado','wl-note':'Beta privada · Cupos limitados.',
+      signInBtn:'Ingresar',
+    }
+  }
 
   function applyLang() {
     var d = i18n[lang]
