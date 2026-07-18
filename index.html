@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PZ9T3X83');</script>
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>AdCrux — See what's actually driving growth</title>
-<meta name="description" content="AdCrux is a marketing mix management platform. Independent measurement, plus the tools to plan budget, defend the call, and learn what worked — no data scientists required."/>
-<meta property="og:title" content="AdCrux — Plan, defend, and learn what drives growth"/>
-<meta property="og:description" content="See what's actually driving growth — then plan, defend, and test the next move."/>
+<title>AdCrux — Plan your media budget with real history, not guesses</title>
+<meta name="description" content="AdCrux helps media planners recommend what to do with the budget using each brand's real investment and results history — a clearer starting point than intuition or generic assumptions."/>
+<meta property="og:title" content="AdCrux — A clearer starting point for your budget recommendation"/>
+<meta property="og:description" content="Compare scenarios, understand channel contribution, and plan tests — grounded in your brand's real history, not assumptions."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://getadcrux.com"/>
 <link rel="icon" type="image/png" href="favicon.png"/>
@@ -63,8 +63,8 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
 
 /* ── HERO ── */
 .hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:120px 24px 80px;position:relative;z-index:1;
+  min-height:auto;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:96px 24px 64px;position:relative;z-index:1;
 }
 .hero-glow{
   position:absolute;top:0;left:50%;transform:translateX(-50%);
@@ -81,10 +81,10 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
 .hero h1{
-  font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-.04em;
-  line-height:1.08;margin-bottom:24px;
+  font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.15;margin-bottom:22px;
 }
-.hero h1 em{font-style:normal;color:var(--accent)}
+.hero h1 em{font-style:normal;color:var(--accent2)}
 .hero-sub{
   font-size:clamp(16px,2vw,20px);color:var(--sub);line-height:1.65;
   max-width:560px;margin:0 auto 40px;font-weight:400;
@@ -395,7 +395,10 @@ footer{
   .btn-primary{font-size:13px;padding:8px 14px}
   .nav-inner{padding:0 4px}
   .hero-ctas{flex-direction:column;align-items:center}
-  .hero h1{font-size:clamp(32px,8vw,56px)}
+  .hero h1{font-size:clamp(26px,6.5vw,38px)}
+  .hero{padding:64px 20px 44px}
+  .hero-eyebrow{margin-bottom:18px}
+  .nav-logo svg{width:96px;height:auto}
   .pricing-toggle{flex-direction:column}
   .product-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
   .ptab{white-space:nowrap;flex-shrink:0}
@@ -403,8 +406,9 @@ footer{
 }
 @media(max-width:480px){
   .nav-actions .btn-primary{font-size:12px;padding:7px 12px}
-  .hero{padding:100px 16px 60px}
+  .hero{padding:52px 16px 36px}
   .container{padding:0 16px}
+  .nav-logo svg{width:80px;height:auto}
 }
 </style>
 </head>
@@ -434,15 +438,15 @@ footer{
 </svg>
 </a>
     <ul class="nav-links">
-      <li><a href="#problem" id="nl-how">How it works</a></li>
+      <li><a href="#how" id="nl-how">How it works</a></li>
       <li><a href="#product" id="nl-product">Product</a></li>
       <li><a href="#pricing" id="nl-pricing">Pricing</a></li>
       <li><a href="#faq" id="nl-faq">FAQ</a></li>
-      <li><a href="#" id="langToggle">ES</a></li>
+      <li><a href="#" id="langToggle">EN</a></li>
     </ul>
     <div class="nav-actions">
       <a href="https://getadcrux.com/login.html" class="btn-ghost" id="signInBtn">Sign in</a>
-      <a href="javascript:void(0)" class="btn-primary" id="ctaBtn" data-action="waitlist">Request a demo</a>
+      <a href="javascript:void(0)" class="btn-primary" id="ctaBtn" data-action="waitlist">Book a demo</a>
     </div>
   </div>
 </nav>
@@ -453,31 +457,31 @@ footer{
   <div>
     <div class="hero-eyebrow fade-up" data-delay="0">
       <div class="hero-eyebrow-dot"></div>
-      <span id="eyebrow-text">Marketing Mix Management Platform</span>
+      <span id="eyebrow-text">For media planners &amp; performance strategists</span>
     </div>
     <h1 class="fade-up" data-delay="1" id="hero-h1">
-      Every platform shows results.<br>
-      <em>None shows the full picture.</em>
+      You have to recommend what to do with the budget.<br>
+      <em>The information isn't always perfect.</em>
     </h1>
     <p class="hero-sub fade-up" data-delay="2" id="hero-sub">
-      AdCrux gives you an independent view of what's actually driving growth —
-      then turns it into a plan you can defend, test, and keep learning from.
+      AdCrux helps you plan media investment using each brand's real history of spend and results —
+      a clearer starting point than intuition or generic assumptions.
     </p>
     <div class="hero-ctas fade-up" data-delay="3">
-      <a href="javascript:void(0)" class="btn-primary" id="heroCta" data-action="waitlist">Request a demo</a>
-      <a href="https://check.getadcrux.com" class="btn-ghost" id="checkDataCta" style="font-size:16px;padding:14px 32px;border-radius:10px">Check your data &rarr;</a>
+      <a href="javascript:void(0)" class="btn-primary" id="heroCta" data-action="waitlist">Book a demo</a>
+      <a href="#product" class="btn-ghost" id="checkDataCta" style="font-size:16px;padding:14px 32px;border-radius:10px">See how it works →</a>
     </div>
-    <p class="hero-note fade-up" data-delay="4" id="hero-note">Setup in minutes · No engineers required · No credit card needed</p>
+    <p class="hero-note fade-up" data-delay="4" id="hero-note">Set up in minutes · Works with the spend and results data you already track</p>
   </div>
 </section>
 
 <!-- ─── PROBLEM ───────────────────────────────────────────────────────────── -->
 <section class="problem container" id="problem">
   <div class="fade-up">
-    <div class="section-eyebrow" id="prob-eyebrow">The problem</div>
-    <h2 class="section-title" id="prob-title">Why your current reporting is misleading</h2>
+    <div class="section-eyebrow" id="prob-eyebrow">The real scene</div>
+    <h2 class="section-title" id="prob-title">Meta says one thing. Google says another. The CRM says a third.</h2>
     <p class="section-sub" id="prob-sub">
-      Most platforms measure performance in isolation — using their own models, their own windows, their own incentives.
+      And you still have to recommend what to move. That's the job — regardless of whether the data lines up.
     </p>
   </div>
   <div class="problem-grid fade-up" data-delay="1">
@@ -505,9 +509,9 @@ footer{
       </div>
     </div>
     <div class="problem-copy">
-      <p id="prob-copy1"><strong>Platforms overclaim.</strong> Each platform counts conversions using its own attribution window. A single customer journey gets counted multiple times — across Google, Meta, and any other channel that touched the path.</p>
-      <p id="prob-copy2">The result: your data shows 192 leads. Your business generated 120. <strong>That 60% gap is where budget decisions go wrong.</strong></p>
-      <p id="prob-copy3">This isn't a flaw in any specific platform. It's a structural problem — platforms have every incentive to show their own numbers in the best light.</p>
+      <p id="prob-copy1">Every source tells its own version. Google says 87. Meta says 74. Your CRM says 120, total. <strong>None of them is exactly wrong — they're each just looking at a different slice.</strong></p>
+      <p id="prob-copy2">Looking at channels one at a time doesn't tell you how the mix actually works together — <strong>and that's exactly what you need to plan the next move.</strong></p>
+      <p id="prob-copy3">This isn't about which platform is lying. It's about needing a single, comparable read before you can recommend anything with confidence.</p>
     </div>
   </div>
 </section>
@@ -516,27 +520,27 @@ footer{
 <section class="recognition" id="recognition">
   <div class="recognition-inner fade-up">
     <div class="section-eyebrow" id="rec-eyebrow">Sound familiar?</div>
-    <h2 class="section-title" id="rec-title">You've probably seen this before</h2>
+    <h2 class="section-title" id="rec-title">What every planning conversation runs into</h2>
     <div class="recognition-grid">
       <div class="recognition-item">
         <div class="ri-icon">📊</div>
-        <p><strong id="ri1-title">Every channel looks like a winner</strong>
-        <span id="ri1-body">Meta looks like your best performer. Google also looks like your best performer. Both show green numbers. But total growth doesn't match the sum.</span></p>
+        <p><strong id="ri1-title">One channel looks like it's working</strong>
+        <span id="ri1-body">The dashboard is green, the ROAS looks fine — but "looks fine in isolation" isn't the same as "is actually worth the next dollar."</span></p>
       </div>
       <div class="recognition-item">
         <div class="ri-icon">💸</div>
-        <p><strong id="ri2-title">You increase spend and results don't follow</strong>
-        <span id="ri2-body">A channel that looked efficient at $5K/month starts underperforming at $15K. The platform dashboard didn't warn you — it just showed more spend going in.</span></p>
+        <p><strong id="ri2-title">Another looks expensive</strong>
+        <span id="ri2-body">High CPA on paper. But expensive compared to what — the rest of the mix, or just to what it used to cost?</span></p>
       </div>
       <div class="recognition-item">
         <div class="ri-icon">🔀</div>
-        <p><strong id="ri3-title">You can't tell what's actually working</strong>
-        <span id="ri3-body">When you pause a campaign, results drop. But you don't know if that channel was the cause, or if you just removed the last touch in a journey that started somewhere else.</span></p>
+        <p><strong id="ri3-title">A third one, nobody's sure</strong>
+        <span id="ri3-body">It might be driving real demand. It might just be riding along on what the other channels already started. Nobody on the team can say for sure.</span></p>
       </div>
       <div class="recognition-item">
         <div class="ri-icon">🤔</div>
-        <p><strong id="ri4-title">Budget decisions feel like guesswork</strong>
-        <span id="ri4-body">You move money between channels based on ROAS reported by the platforms themselves. You're asking Google if you should spend more on Google.</span></p>
+        <p><strong id="ri4-title">And the client still wants an answer</strong>
+        <span id="ri4-body">"What should we do with the budget" doesn't wait for certainty. The recommendation has to be more than a hunch or a generic rule of thumb.</span></p>
       </div>
     </div>
   </div>
@@ -545,30 +549,30 @@ footer{
 <!-- ─── IMPACT ─────────────────────────────────────────────────────────────── -->
 <section class="impact container" id="impact">
   <div class="fade-up">
-    <div class="section-eyebrow" id="impact-eyebrow">What this means</div>
-    <h2 class="section-title" id="impact-title">This leads to bad decisions</h2>
-    <p class="section-sub" id="impact-sub">When your data is biased, every decision downstream inherits that bias.</p>
+    <div class="section-eyebrow" id="impact-eyebrow">What's actually at stake</div>
+    <h2 class="section-title" id="impact-title">A recommendation is only as good as what it's compared against</h2>
+    <p class="section-sub" id="impact-sub">Without a common way to compare the mix, a recommendation ends up resting on opinion more than evidence.</p>
   </div>
   <div class="impact-cards fade-up" data-delay="1">
     <div class="impact-card">
       <div class="ic-icon">📈</div>
-      <h4 id="ic1-title">You scale channels that are already saturated</h4>
-      <p id="ic1-body">The platform shows strong ROAS. You increase spend. Returns flatten. You've pushed past the point of diminishing returns without knowing it.</p>
+      <h4 id="ic1-title">The recommendation doesn't survive the first hard question</h4>
+      <p id="ic1-body">"Why this channel and not that one" needs an answer grounded in something comparable — not just "the dashboard looked better."</p>
     </div>
     <div class="impact-card">
       <div class="ic-icon">✂️</div>
-      <h4 id="ic2-title">You cut channels that are actually working</h4>
-      <p id="ic2-body">A channel with low last-click attribution looks inefficient. You reduce spend. Overall leads drop. The channel was contributing more than the data showed.</p>
+      <h4 id="ic2-title">Every stakeholder is comparing different numbers</h4>
+      <p id="ic2-body">The client is looking at one report, the media team another, finance a third. Nobody's arguing from the same baseline.</p>
     </div>
     <div class="impact-card">
       <div class="ic-icon">🌫️</div>
-      <h4 id="ic3-title">You misread what's driving growth</h4>
-      <p id="ic3-body">Organic traffic, seasonality, and brand momentum get absorbed into paid channel metrics. You attribute to media what was going to happen anyway.</p>
+      <h4 id="ic3-title">Testing becomes a last resort, not a plan</h4>
+      <p id="ic3-body">Without a clear read going in, a test is just "let's try something and see." There's no baseline to compare the result against.</p>
     </div>
     <div class="impact-card">
       <div class="ic-icon">📉</div>
-      <h4 id="ic4-title">You lose efficiency without realizing it</h4>
-      <p id="ic4-body">Budget inefficiency is invisible when everyone's dashboard shows positive numbers. You only notice when you compare spend growth to outcome growth.</p>
+      <h4 id="ic4-title">The same debate repeats every planning cycle</h4>
+      <p id="ic4-body">Without a record of what was tried and what happened, each quarter starts the argument over from scratch.</p>
     </div>
   </div>
 </section>
@@ -578,17 +582,17 @@ footer{
   <div class="solution-inner fade-up">
     <div>
       <div class="solution-badge">⚡ AdCrux</div>
-      <h2 id="sol-title">From independent measurement to a platform you use every month</h2>
-      <p id="sol-body">AdCrux combines your media data into a unified model — then helps you plan where budget should go, defend that call with evidence, monitor what changes, and learn what actually worked.</p>
+      <h2 id="sol-title">Plan using the mix's real history — not one channel at a time</h2>
+      <p id="sol-body">AdCrux uses each brand's real history of spend and results to help you compare scenarios, understand contribution by channel, and plan tests — a clearer starting point than intuition or generic assumptions.</p>
       <div class="solution-pillars">
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp1-title">Plan</strong> — <span id="sp1-body">Budget optimizer, scenario builder, and media on/off — build an investment plan before you move real budget.</span></p></div>
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp2-title">Defend</strong> — <span id="sp2-body">Confidence scores, model diagnostics, and an executive PDF explain why — not just what.</span></p></div>
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp3-title">Monitor</strong> — <span id="sp3-body">QA checks and run history tell you if the account is still healthy or something changed.</span></p></div>
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp4-title">Learn</strong> — <span id="sp4-body">Test Planner and Test Tracker turn every decision into evidence for the next planning cycle.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp1-title">Compare scenarios</strong> — <span id="sp1-body">See what a reallocation would actually do to the whole mix before you propose it — not just to one channel in isolation.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp2-title">Understand contribution</strong> — <span id="sp2-body">Know how much each channel is really adding, separate from baseline and from what the other channels are already driving.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp3-title">Plan the test</strong> — <span id="sp3-body">Turn "let's try something" into a specific, bounded test with an expected range to compare the result against.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp4-title">Build on what you know</strong> — <span id="sp4-body">Every run, scenario, and test adds to the brand's own history — so the next recommendation starts ahead of the last one.</span></p></div>
       </div>
     </div>
     <div class="solution-visual" id="sol-visual">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:8px" id="sv-label">Real impact by channel</div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:8px" id="sv-label">Contribution by channel — this brand's history</div>
       <div class="sv-row">
         <span class="sv-label">Google Ads</span>
         <div class="sv-bar-wrap"><div class="sv-bar" id="bar1" style="width:0%;background:#4285F4"></div></div>
@@ -615,42 +619,7 @@ footer{
         <div class="sv-bar-wrap"><div class="sv-bar" id="bar5" style="width:0%;background:var(--hint)"></div></div>
         <span class="sv-val" style="color:var(--hint)">16%</span>
       </div>
-      <p class="sv-note" id="sv-note">Model-estimated contribution · independent of platform data</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── HOW IT WORKS ───────────────────────────────────────────────────────── -->
-<section class="how container" id="how">
-  <div class="fade-up" style="text-align:center">
-    <div class="section-eyebrow" id="how-eyebrow">How it works</div>
-    <h2 class="section-title" id="how-title">From data to a decision you can act on — and repeat</h2>
-    <p class="section-sub" id="how-sub" style="margin:0 auto">No data scientists. No consultants. A loop you come back to every month.</p>
-  </div>
-  <div class="steps fade-up" data-delay="1">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h4 id="step1-title">Upload your data</h4>
-      <p id="step1-body">A simple CSV with four columns: week, channel, spend, and leads. AdCrux validates and processes it automatically.</p>
-      <span class="step-badge" id="step1-badge">CSV upload</span>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h4 id="step2-title">See what's actually driving growth</h4>
-      <p id="step2-body">AdCrux runs a Marketing Mix Model on your data — estimating real contribution, saturation curves, and baseline effects for every channel.</p>
-      <span class="step-badge" id="step2-badge">~30 seconds</span>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h4 id="step3-title">Plan the move and defend it</h4>
-      <p id="step3-body">Build and save scenarios, run the optimizer, and export an executive PDF with confidence, limitations, and a recommended test — ready to share with your client or CFO.</p>
-      <span class="step-badge" id="step3-badge">Save the plan</span>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h4 id="step4-title">Test it, then come back</h4>
-      <p id="step4-body">Track the test in Test Tracker, log the result, and start the next cycle already knowing what worked.</p>
-      <span class="step-badge" id="step4-badge">Log what you learned</span>
+      <p class="sv-note" id="sv-note">Based on this brand's own numbers, not an industry rule of thumb</p>
     </div>
   </div>
 </section>
@@ -660,7 +629,7 @@ footer{
   <div class="fade-up" style="text-align:center;margin-bottom:48px">
     <div class="section-eyebrow" id="prod-eyebrow">The platform</div>
     <h2 class="section-title" id="prod-title">See inside AdCrux</h2>
-    <p class="section-sub" id="prod-sub" style="margin:0 auto">One workspace to plan the move, defend it, and track what you learn.</p>
+    <p class="section-sub" id="prod-sub" style="margin:0 auto">The workspace for comparing scenarios, reading contribution by channel, and planning the next test.</p>
   </div>
   <div class="fade-up" data-delay="1">
     <div class="product-tabs">
@@ -673,7 +642,7 @@ footer{
       <button class="ptab" id="tab-test-tracker" data-tab="test-tracker">Test Tracker</button>
       <button class="ptab" id="tab-diagnostics" data-tab="diagnostics">Diagnostics</button>
     </div>
-    <p id="tab-desc" style="font-size:14px;color:var(--sub);margin-bottom:16px;min-height:20px;transition:opacity .2s">Your full media performance in one place.</p>
+    <p id="tab-desc" style="font-size:14px;color:var(--sub);margin-bottom:16px;min-height:20px;transition:opacity .2s">One comparable read across the whole mix.</p>
     <div class="product-frame">
       <div class="product-bar">
         <div class="pbar-dot" style="background:#EF4444"></div>
@@ -682,7 +651,7 @@ footer{
         <div class="pbar-url">app.getadcrux.com</div>
       </div>
       <div class="product-panel active" id="panel-overview">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Your full performance, without platform bias</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">One comparable read across the whole mix</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <!-- Header -->
@@ -763,7 +732,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-attribution">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Platforms claim more than what actually happened</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">What each platform claims, next to what the mix model attributes</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <!-- Header -->
@@ -841,7 +810,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-saturation">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">You're past the point of diminishing returns</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Where each channel sits on its own return curve</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -995,7 +964,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-optimizer">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Where to move your next dollar</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">The reallocation, compared to what you're spending today</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -1056,7 +1025,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-scenarios">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Test decisions before committing budget</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Compare reallocations side by side before recommending one</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -1142,7 +1111,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-test-planner">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Design a safe test before you commit budget</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Turn the recommendation into a bounded test</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
 
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -1195,7 +1164,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-test-tracker">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Every test, every result, one place</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">The record of what was tested and what happened</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
 
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -1255,7 +1224,7 @@ footer{
 </div>
       </div>
       <div class="product-panel" id="panel-diagnostics">
-        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Know when to trust the model</span></div>
+        <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">How much to trust this read</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -1363,18 +1332,53 @@ footer{
   </div>
 </section>
 
+<!-- ─── HOW IT WORKS ───────────────────────────────────────────────────────── -->
+<section class="how container" id="how">
+  <div class="fade-up" style="text-align:center">
+    <div class="section-eyebrow" id="how-eyebrow">How it works</div>
+    <h2 class="section-title" id="how-title">From history to a recommendation you can defend</h2>
+    <p class="section-sub" id="how-sub" style="margin:0 auto">No guesswork, no industry rule of thumb — just this brand's own numbers, compared properly.</p>
+  </div>
+  <div class="steps fade-up" data-delay="1">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4 id="step1-title">Upload the history</h4>
+      <p id="step1-body">Spend and results by channel and week — the actual record, not a sample template.</p>
+      <span class="step-badge" id="step1-badge">CSV upload</span>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4 id="step2-title">See how the mix really works</h4>
+      <p id="step2-body">The model reads the full mix together — contribution, saturation, and baseline for every channel, based on this brand's own history.</p>
+      <span class="step-badge" id="step2-badge">~30 seconds</span>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4 id="step3-title">Compare scenarios, pick one</h4>
+      <p id="step3-body">Try different reallocations side by side and see the projected outcome of each — then save the one you'd actually recommend.</p>
+      <span class="step-badge" id="step3-badge">Compare &amp; save</span>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4 id="step4-title">Plan the test, add to the record</h4>
+      <p id="step4-body">Turn the recommendation into a bounded test, log what happened, and it becomes part of this brand's planning history.</p>
+      <span class="step-badge" id="step4-badge">Build the record</span>
+    </div>
+  </div>
+</section>
+
 <!-- ─── OUTPUT CLARITY ─────────────────────────────────────────────────────── -->
 <section class="outputs container" id="outputs">
   <div class="fade-up" style="text-align:center">
-    <div class="section-eyebrow" id="out-eyebrow">What you get</div>
-    <h2 class="section-title" id="out-title">Clear outputs you can act on, defend, and test</h2>
-    <p class="section-sub" id="out-sub" style="margin:0 auto">AdCrux turns model results into decisions — and gives you what you need to defend them and prove what worked.</p>
+    <div class="section-eyebrow" id="out-eyebrow">What you walk away with</div>
+    <h2 class="section-title" id="out-title">What to increase. What to decrease. What to hold. What to test before scaling.</h2>
+    <p class="section-sub" id="out-sub" style="margin:0 auto">Four calls, each grounded in this brand's own history — not a generic rule of thumb.</p>
   </div>
   <div class="output-grid fade-up" data-delay="1">
-    <div class="output-card"><div class="output-icon">📊</div><h4 id="oc1-title">What to increase</h4><p id="oc1-body">Channels with room to grow and efficient returns at current spend levels.</p></div>
-    <div class="output-card"><div class="output-icon">✂️</div><h4 id="oc2-title">What to reduce</h4><p id="oc2-body">Channels past their saturation point where incremental spend is no longer efficient.</p></div>
-    <div class="output-card"><div class="output-icon">⚠️</div><h4 id="oc3-title">Where returns are flattening</h4><p id="oc3-body">Early warnings before you hit diminishing returns.</p></div>
-    <div class="output-card"><div class="output-icon">🎯</div><h4 id="oc4-title">How to reallocate — and how to prove it</h4><p id="oc4-body">A specific budget scenario you can save, defend in an executive PDF, and validate with a recommended test.</p></div>
+    <div class="output-card"><div class="output-icon">📊</div><h4 id="oc1-title">What to increase</h4><p id="oc1-body">Channels with real room left in the mix — worth the next dollar, based on this brand's own curve.</p></div>
+    <div class="output-card"><div class="output-icon">✂️</div><h4 id="oc2-title">What to decrease</h4><p id="oc2-body">Channels past the point where more spend stops adding, even if the platform report still looks fine.</p></div>
+    <div class="output-card"><div class="output-icon">⚖️</div><h4 id="oc3-title">What to hold</h4><p id="oc3-body">Channels doing exactly what they should at the current level — no case yet to move either way.</p></div>
+    <div class="output-card"><div class="output-icon">🎯</div><h4 id="oc4-title">What to test before scaling</h4><p id="oc4-body">A specific, bounded test to validate the move before you commit the full recommendation.</p></div>
   </div>
 </section>
 
@@ -1383,7 +1387,7 @@ footer{
   <div class="fade-up" style="text-align:center">
     <div class="section-eyebrow" id="diff-eyebrow">Built for real teams</div>
     <h2 class="section-title" id="diff-title">Not enterprise-only. Not a black box.</h2>
-    <p class="section-sub" id="diff-sub" style="margin:0 auto">AdCrux brings rigorous measurement to teams without data science resources.</p>
+    <p class="section-sub" id="diff-sub" style="margin:0 auto">Built for the person who has to make the call — not just show a chart.</p>
   </div>
   <div class="diff-grid fade-up" data-delay="1">
     <div class="diff-card">
@@ -1406,7 +1410,7 @@ footer{
   <div class="fade-up" style="text-align:center">
     <div class="section-eyebrow" id="price-eyebrow">Pricing</div>
     <h2 class="section-title" id="price-title">Less than 1% of your media budget</h2>
-    <p class="section-sub" id="price-sub" style="margin:0 auto 32px">If you are spending $10K to $30K per month on ads, AdCrux pays for itself with even small improvements in allocation.</p>
+    <p class="section-sub" id="price-sub" style="margin:0 auto 32px">If you're already planning budget for $10K–$30K/month in spend, this pays for itself the first time it changes a recommendation.</p>
   </div>
   <div class="pricing-toggle fade-up">
     <button class="ptoggle active" id="tog-monthly">Monthly</button>
@@ -1420,7 +1424,7 @@ footer{
       <p class="price-desc" id="p1-desc">For brands and small teams running paid media and looking for their first independent view of performance.</p>
       <hr class="price-divider"/>
       <ul class="price-features"><li id="pf1-1">1 active model</li><li id="pf1-2">4 analysis runs/month</li><li id="pf1-3">Full analysis suite, incl. Test Planner &amp; Tracker</li><li id="pf1-4">Budget optimizer &amp; scenarios</li><li id="pf1-5">Confidence score + diagnostics</li><li id="pf1-6">AI insights</li></ul>
-      <a href="javascript:void(0)" class="price-cta outline" id="cta1" data-action="waitlist">Request a demo</a>
+      <a href="javascript:void(0)" class="price-cta outline" id="cta1" data-action="waitlist">Book a demo</a>
     </div>
     <div class="price-card popular">
       <div class="popular-badge" id="pop-badge">Most popular</div>
@@ -1430,7 +1434,7 @@ footer{
       <p class="price-desc" id="p2-desc">For growing teams managing multiple brands or business units who need a reliable, repeatable measurement process.</p>
       <hr class="price-divider"/>
       <ul class="price-features"><li id="pf2-1">Up to 3 active models</li><li id="pf2-2">12 analysis runs/month</li><li id="pf2-3">Everything in Starter</li><li id="pf2-4">Business unit grouping</li><li id="pf2-5">3 user seats</li><li id="pf2-6">Priority support</li></ul>
-      <a href="javascript:void(0)" class="price-cta primary" id="cta2" data-action="waitlist">Request a demo</a>
+      <a href="javascript:void(0)" class="price-cta primary" id="cta2" data-action="waitlist">Book a demo</a>
     </div>
     <div class="price-card">
       <div class="price-plan" id="p3-plan">Agency</div>
@@ -1439,7 +1443,7 @@ footer{
       <p class="price-desc" id="p3-desc">For agencies that plan budget, defend recommendations, and track tests for their clients — not just a one-time measurement report.</p>
       <hr class="price-divider"/>
       <ul class="price-features"><li id="pf3-1">Up to 10 active models</li><li id="pf3-2">40 analysis runs/month</li><li id="pf3-3">Everything in Growth</li><li id="pf3-4">Client &rarr; Model workspace</li><li id="pf3-5">5 user seats</li><li id="pf3-6">Dedicated support</li></ul>
-      <a href="javascript:void(0)" class="price-cta outline" id="cta3" data-action="waitlist">Request a demo</a>
+      <a href="javascript:void(0)" class="price-cta outline" id="cta3" data-action="waitlist">Book a demo</a>
     </div>
   </div>
   <p class="pricing-note fade-up" id="price-note">All plans include a 14-day free trial. Cancel anytime. Need more? <a href="mailto:hello@getadcrux.com" style="color:var(--accent);text-decoration:none">Contact us</a> about Enterprise.</p>
@@ -1467,10 +1471,10 @@ footer{
 <section class="cta-bottom" id="cta-bottom">
   <div class="cta-bottom-glow"></div>
   <div class="container fade-up">
-    <h2 id="cta-title">Stop guessing where your budget should go.</h2>
-    <p id="cta-sub">Request a demo. We'll walk you through it and get you started.</p>
-    <a href="javascript:void(0)" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:10px" id="ctaFinal" data-action="waitlist">Request a demo &rarr;</a>
-    <p class="hero-note" style="margin-top:16px" id="cta-note">Setup in minutes &middot; No engineers required &middot; No credit card needed</p>
+    <h2 id="cta-title">Plan with more clarity. Not with generic assumptions.</h2>
+    <p id="cta-sub">Book a demo — we'll walk through it using a case close to your own.</p>
+    <a href="javascript:void(0)" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:10px" id="ctaFinal" data-action="waitlist">Book a demo →</a>
+    <p class="hero-note" style="margin-top:16px" id="cta-note">Set up in minutes · Works with the spend and results data you already track</p>
   </div>
 </section>
 
@@ -1498,7 +1502,7 @@ footer{
       <a href="https://getadcrux.com/terms" id="fl-terms">Terms</a>
       <a href="mailto:hello@getadcrux.com" id="fl-contact">Contact</a>
     </div>
-    <span class="footer-copy" id="fl-copy">&copy; 2025 AdCrux. All rights reserved.</span>
+    <span class="footer-copy" id="fl-copy">© 2025 AdCrux. All rights reserved.</span>
   </div>
 </footer>
 
@@ -1507,13 +1511,13 @@ footer{
   <div class="wl-modal">
     <button class="wl-close">&#x2715;</button>
     <div style="font-size:28px;margin-bottom:14px">&#x26A1;</div>
-    <div class="wl-title" id="wl-title">Request a demo</div>
-    <div class="wl-sub" id="wl-sub">See AdCrux with your own data. Request a demo and we'll reach out to schedule a time.</div>
+    <div class="wl-title" id="wl-title">Book a demo</div>
+    <div class="wl-sub" id="wl-sub">We'll walk through a case close to yours, using your own numbers.</div>
     <div class="wl-form" id="wl-form-row">
       <input class="wl-input" type="email" id="wl-email" placeholder="you@company.com"/>
-      <button class="wl-btn" id="wl-btn">Request demo</button>
+      <button class="wl-btn" id="wl-btn">Book demo</button>
     </div>
-    <div class="wl-success" id="wl-success">&#x2705; <strong>Request received.</strong><br>We'll reach out shortly to schedule your demo.</div>
+    <div class="wl-success" id="wl-success">&#x2705; <strong>Request received.</strong> <br>We'll reach out shortly to schedule your demo.</div>
     <div id="wl-error" style="display:none;margin-top:10px;font-size:13px;color:#EF4444;text-align:center;line-height:1.5"></div>
     <p class="wl-note" id="wl-note">Private beta &middot; We reply within 1 business day.</p>
   </div>
@@ -1521,69 +1525,69 @@ footer{
 
 <script>const SB_URL = 'https://utqmhfzrjchbmdvfpkos.supabase.co'
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0cW1oZnpyamNoYm1kdmZwa29zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MjQzODIsImV4cCI6MjA4OTEwMDM4Mn0.80_Dfz_SIP72Kn3QEtCV8sIJMUbYwlEIKFAcyuIC37k'
-var lang = 'en'
+var lang = 'es'
 
 
 const i18n = {
   en: {
-    signInBtn:'Sign in', ctaBtn:'Request a demo', heroCta:'Request a demo',
-    'eyebrow-text':'Marketing Mix Management Platform',
-    'hero-h1':'Every platform shows results.<br><em>None shows the full picture.</em>',
-    'hero-sub':'AdCrux gives you an independent view of what\'s actually driving growth — then turns it into a plan you can defend, test, and keep learning from.',
-    'hero-note':'Setup in minutes · No engineers required · No credit card needed',
+    signInBtn:'Sign in', ctaBtn:'Book a demo', heroCta:'Book a demo',
+    'eyebrow-text':'For media planners & performance strategists',
+    'hero-h1':'You have to recommend what to do with the budget.<br><em>The information isn\'t always perfect.</em>',
+    'hero-sub':'AdCrux helps you plan media investment using each brand\'s real history of spend and results — a clearer starting point than intuition or generic assumptions.',
+    'hero-note':'Set up in minutes · Works with the spend and results data you already track',
     'nl-how':'How it works','nl-product':'Product','nl-pricing':'Pricing','nl-faq':'FAQ',
-    'prob-eyebrow':'The problem','prob-title':'Why your current reporting is misleading',
-    'prob-sub':'Most platforms measure performance in isolation — using their own models, their own windows, their own incentives.',
+    'prob-eyebrow':'The real scene','prob-title':'Meta says one thing. Google says another. The CRM says a third.',
+    'prob-sub':'And you still have to recommend what to move. That\'s the job — regardless of whether the data lines up.',
     'prob-total-label':'Sum of claims','prob-real-label':'Actual leads generated',
-    'prob-copy1':'<strong>Platforms overclaim.</strong> Each platform counts conversions using its own attribution window. A single customer journey gets counted multiple times.',
-    'prob-copy2':'The result: your data shows 192 leads. Your business generated 120. <strong>That 60% gap is where budget decisions go wrong.</strong>',
-    'prob-copy3':'This isn\'t a flaw in any specific platform. It\'s a structural problem — platforms have every incentive to show their own numbers in the best light.',
-    'rec-eyebrow':'Sound familiar?','rec-title':'You\'ve probably seen this before',
-    'ri1-title':'Every channel looks like a winner',
-    'ri1-body':'Meta looks like your best performer. Google also looks like your best performer. Both show green numbers. But total growth doesn\'t match the sum.',
-    'ri2-title':'You increase spend and results don\'t follow',
-    'ri2-body':'A channel that looked efficient at $5K/month starts underperforming at $15K. The platform dashboard didn\'t warn you.',
-    'ri3-title':'You can\'t tell what\'s actually working',
-    'ri3-body':'When you pause a campaign, results drop. But you don\'t know if that channel was the cause, or if you just removed the last touch in a longer journey.',
-    'ri4-title':'Budget decisions feel like guesswork',
-    'ri4-body':'You move money between channels based on ROAS reported by the platforms themselves. You\'re asking Google if you should spend more on Google.',
-    'impact-eyebrow':'What this means','impact-title':'This leads to bad decisions',
-    'impact-sub':'When your data is biased, every decision downstream inherits that bias.',
-    'ic1-title':'You scale channels that are already saturated',
-    'ic1-body':'The platform shows strong ROAS. You increase spend. Returns flatten. You\'ve pushed past the point of diminishing returns without knowing it.',
-    'ic2-title':'You cut channels that are actually working',
-    'ic2-body':'A channel with low last-click attribution looks inefficient. You reduce spend. Overall leads drop.',
-    'ic3-title':'You misread what\'s driving growth',
-    'ic3-body':'Organic traffic, seasonality, and brand momentum get absorbed into paid channel metrics.',
-    'ic4-title':'You lose efficiency without realizing it',
-    'ic4-body':'Budget inefficiency is invisible when everyone\'s dashboard shows positive numbers.',
-    'sol-title':'From independent measurement to a platform you use every month',
-    'sol-body':'AdCrux combines your media data into a unified model — then helps you plan where budget should go, defend that call with evidence, monitor what changes, and learn what actually worked.',
-    'sp1-title':'Plan','sp1-body':'Budget optimizer, scenario builder, and media on/off — build an investment plan before you move real budget.',
-    'sp2-title':'Defend','sp2-body':'Confidence scores, model diagnostics, and an executive PDF explain why — not just what.',
-    'sp3-title':'Monitor','sp3-body':'QA checks and run history tell you if the account is still healthy or something changed.',
-    'sp4-title':'Learn','sp4-body':'Test Planner and Test Tracker turn every decision into evidence for the next planning cycle.',
-    'sv-label':'Real impact by channel','sv-note':'Model-estimated contribution · independent of platform data',
-    'how-eyebrow':'How it works','how-title':'From data to a decision you can act on — and repeat',
-    'how-sub':'No data scientists. No consultants. A loop you come back to every month.',
-    'step1-title':'Upload your data','step1-body':'A simple CSV with four columns: week, channel, spend, and leads. AdCrux validates and processes it automatically.','step1-badge':'CSV upload',
-    'step2-title':'See what\'s actually driving growth','step2-body':'AdCrux runs a Marketing Mix Model on your data — estimating real contribution, saturation curves, and baseline effects.','step2-badge':'~30 seconds',
-    'step3-title':'Plan the move and defend it','step3-body':'Build and save scenarios, run the optimizer, and export an executive PDF with confidence, limitations, and a recommended test.','step3-badge':'Save the plan',
-    'step4-title':'Test it, then come back','step4-body':'Track the test in Test Tracker, log the result, and start the next cycle already knowing what worked.','step4-badge':'Log what you learned',
-    'prod-eyebrow':'The platform','prod-title':'See inside AdCrux','prod-sub':'One workspace to plan the move, defend it, and track what you learn.',
-    'out-eyebrow':'What you get','out-title':'Clear outputs you can act on, defend, and test',
-    'out-sub':'AdCrux turns model results into decisions — and gives you what you need to defend them and prove what worked.',
-    'oc1-title':'What to increase','oc1-body':'Channels with room to grow and efficient returns at current spend levels.',
-    'oc2-title':'What to reduce','oc2-body':'Channels past their saturation point where incremental spend is no longer efficient.',
-    'oc3-title':'Where returns are flattening','oc3-body':'Early warnings before you hit diminishing returns — so you can act before efficiency drops.',
-    'oc4-title':'How to reallocate — and how to prove it','oc4-body':'A specific budget scenario you can save, defend in an executive PDF, and validate with a recommended test.',
+    'prob-copy1':'Every source tells its own version. Google says 87. Meta says 74. Your CRM says 120, total. <strong>None of them is exactly wrong — they\'re each just looking at a different slice.</strong>',
+    'prob-copy2':'Looking at channels one at a time doesn\'t tell you how the mix actually works together — <strong>and that\'s exactly what you need to plan the next move.</strong>',
+    'prob-copy3':'This isn\'t about which platform is lying. It\'s about needing a single, comparable read before you can recommend anything with confidence.',
+    'rec-eyebrow':'Sound familiar?','rec-title':'What every planning conversation runs into',
+    'ri1-title':'One channel looks like it\'s working',
+    'ri1-body':'The dashboard is green, the ROAS looks fine — but "looks fine in isolation" isn\'t the same as "is actually worth the next dollar."',
+    'ri2-title':'Another looks expensive',
+    'ri2-body':'High CPA on paper. But expensive compared to what — the rest of the mix, or just to what it used to cost?',
+    'ri3-title':'A third one, nobody\'s sure',
+    'ri3-body':'It might be driving real demand. It might just be riding along on what the other channels already started. Nobody on the team can say for sure.',
+    'ri4-title':'And the client still wants an answer',
+    'ri4-body':'"What should we do with the budget" doesn\'t wait for certainty. The recommendation has to be more than a hunch or a generic rule of thumb.',
+    'impact-eyebrow':'What\'s actually at stake','impact-title':'A recommendation is only as good as what it\'s compared against',
+    'impact-sub':'Without a common way to compare the mix, a recommendation ends up resting on opinion more than evidence.',
+    'ic1-title':'The recommendation doesn\'t survive the first hard question',
+    'ic1-body':'"Why this channel and not that one" needs an answer grounded in something comparable — not just "the dashboard looked better."',
+    'ic2-title':'Every stakeholder is comparing different numbers',
+    'ic2-body':'The client is looking at one report, the media team another, finance a third. Nobody\'s arguing from the same baseline.',
+    'ic3-title':'Testing becomes a last resort, not a plan',
+    'ic3-body':'Without a clear read going in, a test is just "let\'s try something and see." There\'s no baseline to compare the result against.',
+    'ic4-title':'The same debate repeats every planning cycle',
+    'ic4-body':'Without a record of what was tried and what happened, each quarter starts the argument over from scratch.',
+    'sol-title':'Plan using the mix\'s real history — not one channel at a time',
+    'sol-body':'AdCrux uses each brand\'s real history of spend and results to help you compare scenarios, understand contribution by channel, and plan tests — a clearer starting point than intuition or generic assumptions.',
+    'sp1-title':'Compare scenarios','sp1-body':'See what a reallocation would actually do to the whole mix before you propose it — not just to one channel in isolation.',
+    'sp2-title':'Understand contribution','sp2-body':'Know how much each channel is really adding, separate from baseline and from what the other channels are already driving.',
+    'sp3-title':'Plan the test','sp3-body':'Turn "let\'s try something" into a specific, bounded test with an expected range to compare the result against.',
+    'sp4-title':'Build on what you know','sp4-body':'Every run, scenario, and test adds to the brand\'s own history — so the next recommendation starts ahead of the last one.',
+    'sv-label':'Contribution by channel — this brand\'s history','sv-note':'Based on this brand\'s own numbers, not an industry rule of thumb',
+    'how-eyebrow':'How it works','how-title':'From history to a recommendation you can defend',
+    'how-sub':'No guesswork, no industry rule of thumb — just this brand\'s own numbers, compared properly.',
+    'step1-title':'Upload the history','step1-body':'Spend and results by channel and week — the actual record, not a sample template.','step1-badge':'CSV upload',
+    'step2-title':'See how the mix really works','step2-body':'The model reads the full mix together — contribution, saturation, and baseline for every channel, based on this brand\'s own history.','step2-badge':'~30 seconds',
+    'step3-title':'Compare scenarios, pick one','step3-body':'Try different reallocations side by side and see the projected outcome of each — then save the one you\'d actually recommend.','step3-badge':'Compare & save',
+    'step4-title':'Plan the test, add to the record','step4-body':'Turn the recommendation into a bounded test, log what happened, and it becomes part of this brand\'s planning history.','step4-badge':'Build the record',
+    'prod-eyebrow':'The platform','prod-title':'See inside AdCrux','prod-sub':'The workspace for comparing scenarios, reading contribution by channel, and planning the next test.',
+    'out-eyebrow':'What you walk away with','out-title':'What to increase. What to decrease. What to hold. What to test before scaling.',
+    'out-sub':'Four calls, each grounded in this brand\'s own history — not a generic rule of thumb.',
+    'oc1-title':'What to increase','oc1-body':'Channels with real room left in the mix — worth the next dollar, based on this brand\'s own curve.',
+    'oc2-title':'What to decrease','oc2-body':'Channels past the point where more spend stops adding, even if the platform report still looks fine.',
+    'oc3-title':'What to hold','oc3-body':'Channels doing exactly what they should at the current level — no case yet to move either way.',
+    'oc4-title':'What to test before scaling','oc4-body':'A specific, bounded test to validate the move before you commit the full recommendation.',
     'diff-eyebrow':'Built for real teams','diff-title':'Not enterprise-only. Not a black box.',
-    'diff-sub':'AdCrux brings rigorous measurement to teams without data science resources.',
+    'diff-sub':'Built for the person who has to make the call — not just show a chart.',
     'dc1-title':'Accessible from day one','dc1-body':'Marketing Mix Modeling used to require data scientists and consulting fees. AdCrux makes it available to any team with a CSV file.',
     'dc2-title':'Truly independent','dc2-body':'Built independently from any platform attribution model. No pixel, no SDK, no API key connecting back to Google or Meta.',
     'dc3-title':'Transparent outputs','dc3-body':'Every result comes with a confidence score and model diagnostics. You know when the model is reliable.',
     'price-eyebrow':'Pricing','price-title':'Less than 1% of your media budget',
-    'price-sub':'If you\'re spending $10K–$30K/month on ads, AdCrux pays for itself with even small improvements in allocation.',
+    'price-sub':'If you\'re already planning budget for $10K–$30K/month in spend, this pays for itself the first time it changes a recommendation.',
     'price-note':'All plans include a 14-day free trial. Cancel anytime.',
     'faq-eyebrow':'FAQ','faq-title':'Common questions',
     'fq1':'Do I need a data scientist or technical team?',
@@ -1602,67 +1606,87 @@ const i18n = {
     'fa7':'Yes. Use the Test Planner to design a safe way to validate any recommendation — a temporary budget shift with clear guardrails and an expected range. Save it as a test plan and track the result in Test Tracker.',
     'fq8':'Is AdCrux just a one-time report, or something I use regularly?',
     'fa8':'AdCrux is built to be used every month, not once. Save scenarios, track tests, and keep tabs on what worked — so each planning cycle starts with more evidence than the last.',
-    'cta-title':'Stop guessing where your budget should go.',
-    'cta-sub':'Request a demo. We\'ll walk you through it and get you started.',
-    'cta-note':'Setup in minutes · No engineers required · No credit card needed',
-    'wl-title':'Request a demo',
-    'wl-sub':'See AdCrux with your own data. Request a demo and we\'ll reach out to schedule a time.',
+    'cta-title':'Plan with more clarity. Not with generic assumptions.',
+    'cta-sub':'Book a demo — we\'ll walk through it using a case close to your own.',
+    'cta-note':'Set up in minutes · Works with the spend and results data you already track',
+    'wl-title':'Book a demo',
+    'wl-sub':'We\'ll walk through a case close to yours, using your own numbers.',
     'wl-note':'Private beta · We reply within 1 business day.',
+    'wl-btn':'Book demo',
+    'wl-email-placeholder':'you@company.com',
+    'wl-success':'✅ <strong>Request received.</strong> <br>We\'ll reach out shortly to schedule your demo.',
+    'checkDataCta':'See how it works →',
+    'tab-overview':'Overview','tab-attribution':'Attribution Gap','tab-saturation':'Saturation','tab-optimizer':'Optimizer','tab-scenarios':'Scenarios','tab-test-planner':'Test Planner','tab-test-tracker':'Test Tracker','tab-diagnostics':'Diagnostics',
+    'ctaFinal':'Book a demo →',
+    'tog-monthly':'Monthly','tog-annual':'Annual <span class="save-badge">Save 20%</span>',
+    'pop-badge':'Most popular',
+    'p1-plan':'Starter','p2-plan':'Growth','p3-plan':'Agency',
+    'p1-note':'~1% of a $25K/mo media budget','p2-note':'~1% of a $60K/mo media budget','p3-note':'For agencies managing multiple clients',
+    'p1-desc':'For brands and small teams running paid media and looking for their first independent view of performance.',
+    'p2-desc':'For growing teams managing multiple brands or business units who need a reliable, repeatable measurement process.',
+    'p3-desc':'For agencies that plan budget, defend recommendations, and track tests for their clients — not just a one-time measurement report.',
+    'pf1-1':'1 active model','pf1-2':'4 analysis runs/month','pf1-3':'Full analysis suite, incl. Test Planner & Tracker','pf1-4':'Budget optimizer & scenarios','pf1-5':'Confidence score + diagnostics','pf1-6':'AI insights',
+    'pf2-1':'Up to 3 active models','pf2-2':'12 analysis runs/month','pf2-3':'Everything in Starter','pf2-4':'Business unit grouping','pf2-5':'3 user seats','pf2-6':'Priority support',
+    'pf3-1':'Up to 10 active models','pf3-2':'40 analysis runs/month','pf3-3':'Everything in Growth','pf3-4':'Client → Model workspace','pf3-5':'5 user seats','pf3-6':'Dedicated support',
+    'cta1':'Book a demo','cta2':'Book a demo','cta3':'Book a demo',
+    'price-note':'All plans include a 14-day free trial. Cancel anytime. Need more? <a href="mailto:hello@getadcrux.com" style="color:var(--accent);text-decoration:none">Contact us</a> about Enterprise.',
+    'fl-privacy':'Privacy','fl-terms':'Terms','fl-contact':'Contact',
+    'fl-copy':'© 2025 AdCrux. All rights reserved.',
   },
   es: {
-    signInBtn:'Ingresar', ctaBtn:'Solicitar demo', heroCta:'Solicitar una demo',
-    'eyebrow-text':'Marketing Mix Management Platform',
-    'hero-h1':'Cada plataforma muestra resultados.<br><em>Ninguna muestra el panorama completo.</em>',
-    'hero-sub':'AdCrux te da una visión independiente de lo que realmente impulsa tu crecimiento — y la convierte en un plan que podés defender, testear y del que seguís aprendiendo.',
-    'hero-note':'Configuración en minutos · Sin ingenieros · Sin tarjeta de crédito',
+    signInBtn:'Ingresar', ctaBtn:'Agendar demo', heroCta:'Agendar demo',
+    'eyebrow-text':'Para media planners y performance strategists',
+    'hero-h1':'Tenés que recomendar qué hacer con el presupuesto.<br><em>La información no siempre es perfecta.</em>',
+    'hero-sub':'AdCrux te ayuda a planificar la inversión en medios usando el historial real de inversión y resultados de cada marca — un punto de partida más claro que la intuición o los supuestos genéricos.',
+    'hero-note':'Configuración en minutos · Funciona con los datos de gasto y resultados que ya tenés',
     'nl-how':'Cómo funciona','nl-product':'Producto','nl-pricing':'Precios','nl-faq':'FAQ',
-    'prob-eyebrow':'El problema','prob-title':'Por qué tus reportes actuales son engañosos',
-    'prob-sub':'La mayoría de las plataformas miden el rendimiento de forma aislada — con sus propios modelos, sus propias ventanas, sus propios incentivos.',
+    'prob-eyebrow':'La escena real','prob-title':'Meta dice una cosa. Google otra. El CRM otra.',
+    'prob-sub':'Y vos igual tenés que recomendar qué mover. Ese es el trabajo — más allá de si los datos cierran o no.',
     'prob-total-label':'Suma de atribuciones','prob-real-label':'Leads reales generados',
-    'prob-copy1':'<strong>Las plataformas sobreestiman.</strong> Cada plataforma cuenta conversiones con su propia ventana de atribución. Un mismo recorrido de cliente se cuenta múltiples veces.',
-    'prob-copy2':'El resultado: tus datos muestran 192 leads. Tu negocio generó 120. <strong>Esa brecha del 60% es donde las decisiones de presupuesto se equivocan.</strong>',
-    'prob-copy3':'No es un defecto de ninguna plataforma en particular. Es un problema estructural — las plataformas tienen todos los incentivos para mostrar sus números en el mejor contexto.',
-    'rec-eyebrow':'¿Te suena familiar?','rec-title':'Probablemente ya lo viste',
-    'ri1-title':'Todos los canales parecen ganadores',
-    'ri1-body':'Meta parece tu mejor canal. Google también. Ambos muestran números positivos. Pero el crecimiento total no coincide con la suma.',
-    'ri2-title':'Aumentás el gasto y los resultados no siguen',
-    'ri2-body':'Un canal eficiente a $5K/mes empieza a rendir menos a $15K. El dashboard de la plataforma no te avisó.',
-    'ri3-title':'No podés saber qué está funcionando',
-    'ri3-body':'Cuando pausás una campaña, los resultados caen. Pero no sabés si ese canal fue la causa o si era solo el último toque.',
-    'ri4-title':'Las decisiones de presupuesto se sienten adivinanzas',
-    'ri4-body':'Movés dinero entre canales basándote en el ROAS reportado por las mismas plataformas. Le estás preguntando a Google si deberías gastar más en Google.',
-    'impact-eyebrow':'Lo que esto significa','impact-title':'Esto lleva a malas decisiones',
-    'impact-sub':'Cuando tus datos están sesgados, cada decisión posterior hereda ese sesgo.',
-    'ic1-title':'Escalás canales que ya están saturados',
-    'ic1-body':'La plataforma muestra buen ROAS. Aumentás el gasto. Los retornos se aplanan. Cruzaste el punto de rendimientos decrecientes sin saberlo.',
-    'ic2-title':'Cortás canales que en realidad están funcionando',
-    'ic2-body':'Un canal con baja atribución last-click parece ineficiente. Reducís el gasto. Los leads totales caen.',
-    'ic3-title':'Mal interpretás qué impulsa el crecimiento',
-    'ic3-body':'El tráfico orgánico, la estacionalidad y el momentum de marca quedan absorbidos en las métricas de canales pagos.',
-    'ic4-title':'Perdés eficiencia sin darte cuenta',
-    'ic4-body':'La ineficiencia presupuestaria es invisible cuando todos los dashboards muestran números positivos.',
-    'sol-title':'De medición independiente a una plataforma que usás todos los meses',
-    'sol-body':'AdCrux combina tus datos de medios en un modelo unificado — y te ayuda a planificar dónde debería ir el presupuesto, defender esa decisión con evidencia, monitorear los cambios y aprender qué funcionó realmente.',
-    'sp1-title':'Planificar','sp1-body':'Optimizador de presupuesto, escenarios y prendido/apagado de medios — armá un plan de inversión antes de mover presupuesto real.',
-    'sp2-title':'Defender','sp2-body':'Scores de confianza, diagnósticos del modelo y un PDF ejecutivo explican el por qué, no solo el qué.',
-    'sp3-title':'Monitorear','sp3-body':'Validaciones de calidad e historial de runs te dicen si la cuenta sigue sana o algo cambió.',
-    'sp4-title':'Aprender','sp4-body':'Test Planner y Test Tracker convierten cada decisión en evidencia para el próximo ciclo de planificación.',
-    'sv-label':'Impacto real por canal','sv-note':'Contribución estimada por el modelo · independiente de datos de plataformas',
-    'how-eyebrow':'Cómo funciona','how-title':'De los datos a una decisión que podés accionar — y repetir',
-    'how-sub':'Sin científicos de datos. Sin consultores. Un ciclo al que volvés cada mes.',
-    'step1-title':'Subí tus datos','step1-body':'Un CSV con cuatro columnas: semana, canal, gasto y leads. AdCrux valida y procesa automáticamente.','step1-badge':'Subida de CSV',
-    'step2-title':'Mirá qué impulsa realmente tu crecimiento','step2-body':'AdCrux corre un Marketing Mix Model sobre tus datos — estimando contribución real, curvas de saturación y efectos de baseline.','step2-badge':'~30 segundos',
-    'step3-title':'Planificá el movimiento y defendelo','step3-body':'Armá y guardá escenarios, corré el optimizador, y exportá un PDF ejecutivo con confianza, limitaciones y un test recomendado.','step3-badge':'Guardá el plan',
-    'step4-title':'Testealo, y volvé','step4-body':'Seguí el test en Test Tracker, cargá el resultado, y arrancá el próximo ciclo ya sabiendo qué funcionó.','step4-badge':'Registrá lo aprendido',
-    'prod-eyebrow':'La plataforma','prod-title':'Mirá adentro de AdCrux','prod-sub':'Un solo espacio para planificar el movimiento, defenderlo y hacer seguimiento de lo que aprendés.',
-    'out-eyebrow':'Qué obtenés','out-title':'Resultados claros que podés accionar, defender y testear',
-    'out-sub':'AdCrux convierte los resultados del modelo en decisiones — y te da lo necesario para defenderlas y comprobar qué funcionó.',
-    'oc1-title':'Qué aumentar','oc1-body':'Canales con espacio para crecer y retornos eficientes en los niveles actuales de gasto.',
-    'oc2-title':'Qué reducir','oc2-body':'Canales que pasaron su punto de saturación donde el gasto incremental ya no es eficiente.',
-    'oc3-title':'Dónde los retornos se aplanan','oc3-body':'Alertas tempranas antes de llegar a rendimientos decrecientes — para actuar antes de que caiga la eficiencia.',
-    'oc4-title':'Cómo reasignar — y cómo comprobarlo','oc4-body':'Un escenario de presupuesto que podés guardar, defender en un PDF ejecutivo y validar con un test recomendado.',
+    'prob-copy1':'Cada fuente cuenta su propia versión. Google dice 87. Meta dice 74. Tu CRM dice 120 en total. <strong>Ninguna está exactamente equivocada — cada una mira una porción distinta.</strong>',
+    'prob-copy2':'Mirar los canales de a uno no te dice cómo funciona el mix en conjunto — <strong>y eso es exactamente lo que necesitás para planificar el próximo movimiento.</strong>',
+    'prob-copy3':'Esto no es sobre qué plataforma miente. Es sobre necesitar una lectura única y comparable antes de poder recomendar algo con confianza.',
+    'rec-eyebrow':'¿Te suena familiar?','rec-title':'Con esto se choca toda conversación de planificación',
+    'ri1-title':'Un canal parece que está funcionando',
+    'ri1-body':'El dashboard está en verde, el ROAS se ve bien — pero "se ve bien por separado" no es lo mismo que "vale la pena el próximo dólar."',
+    'ri2-title':'Otro parece caro',
+    'ri2-body':'CPA alto en el papel. ¿Pero caro comparado con qué — con el resto del mix, o solo con lo que costaba antes?',
+    'ri3-title':'De un tercero, nadie está seguro',
+    'ri3-body':'Puede estar generando demanda real. O puede estar acompañando lo que ya arrancaron otros canales. Nadie del equipo lo puede afirmar con seguridad.',
+    'ri4-title':'Y el cliente igual quiere una respuesta',
+    'ri4-body':'"Qué hacemos con el presupuesto" no espera a tener certeza. La recomendación tiene que ser más que una corazonada o una regla genérica.',
+    'impact-eyebrow':'Lo que está en juego','impact-title':'Una recomendación vale lo que valga el punto de comparación',
+    'impact-sub':'Sin una forma común de comparar el mix, la recomendación termina apoyándose más en la opinión que en la evidencia.',
+    'ic1-title':'La recomendación no sobrevive la primera pregunta difícil',
+    'ic1-body':'"Por qué este canal y no el otro" necesita una respuesta basada en algo comparable — no solo "el dashboard se veía mejor."',
+    'ic2-title':'Cada parte está comparando números distintos',
+    'ic2-body':'El cliente mira un reporte, el equipo de medios otro, finanzas un tercero. Nadie está discutiendo desde la misma base.',
+    'ic3-title':'Testear se vuelve el último recurso, no un plan',
+    'ic3-body':'Sin una lectura clara de entrada, un test es solo "probemos algo y vemos." No hay una base contra la cual comparar el resultado.',
+    'ic4-title':'El mismo debate se repite en cada ciclo de planificación',
+    'ic4-body':'Sin un registro de qué se probó y qué pasó, cada trimestre arranca la discusión de cero otra vez.',
+    'sol-title':'Planificá usando el historial real del mix — no canal por canal',
+    'sol-body':'AdCrux usa el historial real de inversión y resultados de cada marca para ayudarte a comparar escenarios, entender aportes por canal y planificar tests — un punto de partida más claro que la intuición o los supuestos genéricos.',
+    'sp1-title':'Comparar escenarios','sp1-body':'Mirá qué haría una reasignación al mix completo antes de proponerla — no solo a un canal aislado.',
+    'sp2-title':'Entender el aporte','sp2-body':'Sabé cuánto suma realmente cada canal, separado del baseline y de lo que ya arrastran los demás canales.',
+    'sp3-title':'Planificar el test','sp3-body':'Convertí un "probemos algo" en un test acotado y específico, con un rango esperado contra el cual comparar el resultado.',
+    'sp4-title':'Construir sobre lo que ya sabés','sp4-body':'Cada run, escenario y test suma al historial propio de la marca — así la próxima recomendación arranca más adelante que la anterior.',
+    'sv-label':'Aporte por canal — historial de esta marca','sv-note':'Basado en los números propios de esta marca, no en una regla genérica',
+    'how-eyebrow':'Cómo funciona','how-title':'Del historial a una recomendación que podés defender',
+    'how-sub':'Sin conjeturas ni reglas genéricas — solo los números propios de la marca, bien comparados.',
+    'step1-title':'Subí el historial','step1-body':'Gasto y resultados por canal y semana — el registro real, no una plantilla de ejemplo.','step1-badge':'Subida de CSV',
+    'step2-title':'Mirá cómo funciona el mix de verdad','step2-body':'El modelo lee el mix completo en conjunto — aporte, saturación y baseline de cada canal, a partir del historial propio de la marca.','step2-badge':'~30 segundos',
+    'step3-title':'Compará escenarios, elegí uno','step3-body':'Probá distintas reasignaciones lado a lado y mirá el resultado proyectado de cada una — después guardá la que realmente recomendarías.','step3-badge':'Comparás y guardás',
+    'step4-title':'Planificá el test, sumalo al historial','step4-body':'Convertí la recomendación en un test acotado, registrá qué pasó, y pasa a formar parte del historial de planificación de la marca.','step4-badge':'Sumá al historial',
+    'prod-eyebrow':'La plataforma','prod-title':'Mirá adentro de AdCrux','prod-sub':'El espacio para comparar escenarios, leer el aporte por canal y planificar el próximo test.',
+    'out-eyebrow':'Lo que te llevás','out-title':'Qué subir. Qué bajar. Qué mantener. Qué testear antes de escalar.',
+    'out-sub':'Cuatro decisiones, cada una basada en el historial propio de la marca — no en una regla genérica.',
+    'oc1-title':'Qué subir','oc1-body':'Canales con margen real dentro del mix — que valen el próximo dólar, según la curva propia de esta marca.',
+    'oc2-title':'Qué bajar','oc2-body':'Canales que ya pasaron el punto donde más gasto deja de sumar, aunque el reporte de la plataforma todavía se vea bien.',
+    'oc3-title':'Qué mantener','oc3-body':'Canales haciendo exactamente lo que deberían en el nivel actual — todavía no hay caso para moverlos en ningún sentido.',
+    'oc4-title':'Qué testear antes de escalar','oc4-body':'Un test específico y acotado para validar el movimiento antes de comprometer la recomendación completa.',
     'diff-eyebrow':'Hecho para equipos reales','diff-title':'No solo para empresas grandes. Sin caja negra.',
-    'diff-sub':'AdCrux lleva medición rigurosa a equipos sin recursos de ciencia de datos.',
+    'diff-sub':'Hecho para quien tiene que tomar la decisión — no solo mostrar un gráfico.',
     'dc1-title':'Accesible desde el primer día','dc1-body':'El Marketing Mix Modeling solía requerir científicos de datos y consultoras. AdCrux lo hace disponible para cualquier equipo con un CSV.',
     'dc2-title':'Verdaderamente independiente','dc2-body':'Construido independientemente de cualquier modelo de atribución. Sin pixel, sin SDK, sin API key que conecte de vuelta a Google o Meta.',
     'dc3-title':'Resultados transparentes','dc3-body':'Cada resultado incluye un score de confianza y diagnósticos del modelo. Sabés cuándo el modelo es confiable.',
@@ -1686,12 +1710,32 @@ const i18n = {
     'fa7':'Sí. Usá el Test Planner para diseñar una forma segura de validar cualquier recomendación — un cambio temporal de presupuesto con guardrails claros y un rango esperado. Guardalo como test plan y seguí el resultado en Test Tracker.',
     'fq8':'¿AdCrux es un reporte de una sola vez o algo que uso regularmente?',
     'fa8':'AdCrux está pensado para usarse todos los meses, no una sola vez. Guardá escenarios, seguí tests y llevá registro de qué funcionó — así cada ciclo de planificación arranca con más evidencia que el anterior.',
-    'cta-title':'Dejá de adivinar dónde va tu presupuesto.',
-    'cta-sub':'Solicitá una demo. Te mostramos AdCrux y te ayudamos a arrancar.',
-    'cta-note':'Configuración en minutos · Sin ingenieros · Sin tarjeta de crédito',
-    'wl-title':'Solicitar una demo',
-    'wl-sub':'Mirá AdCrux con tus propios datos. Solicitá una demo y te contactamos para coordinar un horario.',
+    'cta-title':'Planificación con más claridad. No con supuestos genéricos.',
+    'cta-sub':'Agendá una demo — la recorremos con un caso parecido al tuyo.',
+    'cta-note':'Configuración en minutos · Funciona con los datos de gasto y resultados que ya tenés',
+    'wl-title':'Agendar demo',
+    'wl-sub':'Recorremos un caso parecido al tuyo, con tus propios números.',
     'wl-note':'Beta privada · Te respondemos en menos de 1 día hábil.',
+    'wl-btn':'Agendar demo',
+    'wl-email-placeholder':'vos@empresa.com',
+    'wl-success':'✅ <strong>Solicitud recibida.</strong> <br>Te contactamos a la brevedad para coordinar tu demo.',
+    'checkDataCta':'Ver cómo funciona →',
+    'tab-overview':'Resumen','tab-attribution':'Brecha de Atribución','tab-saturation':'Saturación','tab-optimizer':'Optimizador','tab-scenarios':'Escenarios','tab-test-planner':'Planificador de Tests','tab-test-tracker':'Seguimiento de Tests','tab-diagnostics':'Diagnósticos',
+    'ctaFinal':'Agendar demo →',
+    'tog-monthly':'Mensual','tog-annual':'Anual <span class="save-badge">Ahorrá 20%</span>',
+    'pop-badge':'Más elegido',
+    'p1-plan':'Starter','p2-plan':'Growth','p3-plan':'Agency',
+    'p1-note':'~1% de un presupuesto de medios de $25K/mes','p2-note':'~1% de un presupuesto de medios de $60K/mes','p3-note':'Para agencias que gestionan múltiples clientes',
+    'p1-desc':'Para marcas y equipos chicos que corren medios pagos y buscan su primera lectura independiente de performance.',
+    'p2-desc':'Para equipos en crecimiento que manejan varias marcas o unidades de negocio y necesitan un proceso de medición confiable y repetible.',
+    'p3-desc':'Para agencias que planifican presupuesto, defienden recomendaciones y hacen seguimiento de tests para sus clientes — no solo un reporte de medición puntual.',
+    'pf1-1':'1 modelo activo','pf1-2':'4 corridas de análisis/mes','pf1-3':'Suite de análisis completa, incl. Test Planner y Tracker','pf1-4':'Optimizador de presupuesto y escenarios','pf1-5':'Score de confianza + diagnósticos','pf1-6':'Insights con IA',
+    'pf2-1':'Hasta 3 modelos activos','pf2-2':'12 corridas de análisis/mes','pf2-3':'Todo lo de Starter','pf2-4':'Agrupación por unidad de negocio','pf2-5':'3 usuarios','pf2-6':'Soporte prioritario',
+    'pf3-1':'Hasta 10 modelos activos','pf3-2':'40 corridas de análisis/mes','pf3-3':'Todo lo de Growth','pf3-4':'Espacio Cliente → Modelo','pf3-5':'5 usuarios','pf3-6':'Soporte dedicado',
+    'cta1':'Agendar demo','cta2':'Agendar demo','cta3':'Agendar demo',
+    'price-note':'Todos los planes incluyen 14 días de prueba gratis. Cancelá cuando quieras. ¿Necesitás más? <a href="mailto:hello@getadcrux.com" style="color:var(--accent);text-decoration:none">Escribinos</a> por Enterprise.',
+    'fl-privacy':'Privacidad','fl-terms':'Términos','fl-contact':'Contacto',
+    'fl-copy':'© 2025 AdCrux. Todos los derechos reservados.',
   }
 }
 
@@ -1734,7 +1778,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ── Product tabs ──────────────────────────────────────────────────────────
-  var tabDescs = {"overview":"Your full media performance in one place.","attribution":"See exactly how much each platform is overclaiming.","saturation":"Identify which channels still have room to grow.","optimizer":"Find where to move budget for better returns.","scenarios":"Model different budget allocations before committing.","test-planner":"Design a safe test before you commit real budget.","test-tracker":"Track every test and the verdict it produced.","diagnostics":"Understand how reliable your model results are."}
+  var tabDescs = {
+    en: {"overview":"One comparable read across the whole mix.","attribution":"What each platform claims, next to what the model attributes.","saturation":"Where each channel sits on its own return curve.","optimizer":"The reallocation, compared to what you're spending today.","scenarios":"Compare reallocations side by side before recommending one.","test-planner":"Turn the recommendation into a bounded test.","test-tracker":"The record of what was tested and what happened.","diagnostics":"How much to trust this read."},
+    es: {"overview":"Una lectura comparable de todo el mix.","attribution":"Lo que dice cada plataforma, al lado de lo que el modelo atribuye.","saturation":"Dónde está cada canal en su propia curva de retorno.","optimizer":"La reasignación, comparada con lo que gastás hoy.","scenarios":"Comparar reasignaciones lado a lado antes de recomendar una.","test-planner":"Convertir la recomendación en un test acotado.","test-tracker":"El registro de qué se testeó y qué pasó.","diagnostics":"Cuánto confiar en esta lectura."}
+  }
 
   function switchTab(name) {
     document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active') })
@@ -1744,7 +1791,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var panel = document.getElementById('panel-' + name)
     if (panel) panel.classList.add('active')
     var desc = document.getElementById('tab-desc')
-    if (desc) { desc.style.opacity='0'; setTimeout(function(){ desc.textContent=tabDescs[name]||''; desc.style.opacity='1' }, 150) }
+    if (desc) { desc.style.opacity='0'; setTimeout(function(){ desc.textContent=(tabDescs[lang]&&tabDescs[lang][name])||''; desc.style.opacity='1' }, 150) }
+  }
+
+  function refreshTabDesc() {
+    var activeBtn = document.querySelector('.ptab.active')
+    var desc = document.getElementById('tab-desc')
+    if (activeBtn && desc) { desc.textContent = (tabDescs[lang] && tabDescs[lang][activeBtn.dataset.tab]) || '' }
   }
 
   document.querySelectorAll('.ptab').forEach(function(btn) {
@@ -1820,6 +1873,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (closeBtn) closeBtn.addEventListener('click', closeWaitlist)
 
   // Submit
+  var wlMicrocopy = {
+    en: { saving: 'Saving...', error: 'Something went wrong — try again or email hello@getadcrux.com' },
+    es: { saving: 'Guardando...', error: 'Algo salió mal — probá de nuevo o escribinos a hello@getadcrux.com' }
+  }
+
   async function submitWaitlist() {
     var emailInput = document.getElementById('wl-email')
     var btn        = document.getElementById('wl-btn')
@@ -1829,7 +1887,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!emailInput) return
     var email = emailInput.value.trim()
     if (!email || !email.includes('@')) { emailInput.focus(); return }
-    btn.disabled = true; btn.textContent = 'Saving...'
+    var mc = wlMicrocopy[lang] || wlMicrocopy.en
+    btn.disabled = true; btn.textContent = mc.saving
     if (errEl) errEl.style.display = 'none'
     try {
       var res = await fetch(SB_URL + '/rest/v1/waitlist', {
@@ -1840,7 +1899,7 @@ document.addEventListener('DOMContentLoaded', function() {
           'Authorization': 'Bearer ' + SB_KEY,
           'Prefer': 'return=minimal'
         },
-        body: JSON.stringify({ email: email, source: 'demo_request', created_at: new Date().toISOString() })
+        body: JSON.stringify({ email: email, source: 'demo_request_planner_variant', created_at: new Date().toISOString() })
       })
       if (!res.ok) {
         var body = await res.text()
@@ -1850,9 +1909,10 @@ document.addEventListener('DOMContentLoaded', function() {
       if (successEl) successEl.style.display = 'block'
     } catch(err) {
       console.error('Waitlist error:', err)
-      btn.disabled = false; btn.textContent = 'Request demo'
+      var resetLabel = (i18n[lang] && i18n[lang]['wl-btn']) || 'Book demo'
+      btn.disabled = false; btn.textContent = resetLabel
       if (errEl) {
-        errEl.textContent = 'Something went wrong — try again or email hello@getadcrux.com'
+        errEl.textContent = mc.error
         errEl.style.display = 'block'
       }
     }
@@ -1877,6 +1937,7 @@ document.addEventListener('DOMContentLoaded', function() {
       langToggle.textContent = lang === 'en' ? 'ES' : 'EN'
       document.documentElement.lang = lang
       applyLang()
+      refreshTabDesc()
     })
   }
 
@@ -1885,14 +1946,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyLang() {
     var d = i18n[lang]
     if (!d) return
-    var inlineHtml = {'hero-h1':1,'prob-copy1':1,'prob-copy2':1,'prob-copy3':1,'fa1':1,'fa2':1,'fa3':1,'fa4':1,'fa5':1,'fa6':1}
+    var inlineHtml = {'hero-h1':1,'prob-copy1':1,'prob-copy2':1,'prob-copy3':1,'fa1':1,'fa2':1,'fa3':1,'fa4':1,'fa5':1,'fa6':1,'tog-annual':1,'price-note':1,'wl-success':1}
     Object.keys(d).forEach(function(id) {
       var el = document.getElementById(id)
       if (!el) return
       if (inlineHtml[id]) { el.innerHTML = d[id]; return }
       el.textContent = d[id]
     })
+    var emailEl = document.getElementById('wl-email')
+    if (emailEl && d['wl-email-placeholder']) emailEl.placeholder = d['wl-email-placeholder']
   }
+
+  // ── Default to Spanish (LATAM-first) ─────────────────────────────────────
+  document.documentElement.lang = lang
+  applyLang()
+  refreshTabDesc()
 
 }); // end DOMContentLoaded</script>
 </body>
