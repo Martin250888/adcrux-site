@@ -7,9 +7,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>AdCrux — Plan your media budget with real history, not guesses</title>
-<meta name="description" content="AdCrux helps media planners recommend what to do with the budget using each brand's real investment and results history — a clearer starting point than intuition or generic assumptions."/>
-<meta property="og:title" content="AdCrux — A clearer starting point for your budget recommendation"/>
-<meta property="og:description" content="Compare scenarios, understand channel contribution, and plan tests — grounded in your brand's real history, not assumptions."/>
+<meta name="description" content="AdCrux helps media planners recommend what to do with the budget using each brand's own investment and results history, compared side by side instead of channel by channel."/>
+<meta property="og:title" content="AdCrux — Plan your budget recommendation with data, not guesses"/>
+<meta property="og:description" content="Compare scenarios, understand channel contribution, and plan tests using your brand's own spend and results."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://getadcrux.com"/>
 <link rel="icon" type="image/png" href="favicon.png"/>
@@ -55,6 +55,8 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
 .nav-links a{color:var(--sub);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:var(--text)}
 .nav-actions{display:flex;align-items:center;gap:12px}
+.lang-toggle-btn{color:var(--sub);background:transparent;text-decoration:none;font-size:13px;font-weight:600;padding:6px 10px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:color .15s,border-color .15s}
+.lang-toggle-btn:hover{color:var(--text);border-color:var(--accent)}
 .btn-ghost{color:var(--text);text-decoration:none;font-size:14px;font-weight:600;padding:8px 16px;border-radius:8px;border:1px solid var(--border);transition:border-color .15s,background .15s}
 .btn-ghost:hover{border-color:var(--accent);background:rgba(0,229,190,.06)}
 .btn-primary{background:var(--accent);color:#080810;text-decoration:none;font-size:14px;font-weight:700;padding:9px 20px;border-radius:8px;border:none;cursor:pointer;transition:background .15s,transform .1s;display:inline-block}
@@ -72,14 +74,9 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
   background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(0,229,190,.07) 0%,transparent 70%);
 }
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(0,229,190,.08);border:1px solid rgba(0,229,190,.2);
-  border-radius:100px;padding:6px 14px;
   font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:28px;
+  color:var(--accent);margin-bottom:16px;
 }
-.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:.4;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
 .hero h1{
   font-size:clamp(32px,4.6vw,52px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;margin-bottom:22px;
@@ -142,24 +139,10 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
 
 /* ── IMPACT ── */
 .impact{padding:80px 0}
-.impact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px}
-.impact-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:28px;position:relative;overflow:hidden;
-}
-.impact-card::after{
-  content:'';position:absolute;inset:0;border-radius:14px;
-  background:linear-gradient(135deg,rgba(239,68,68,.04),transparent);
-  pointer-events:none;
-}
-.impact-card .ic-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;margin-bottom:14px;
-}
-.impact-card h4{font-size:15px;font-weight:700;margin-bottom:8px}
-.impact-card p{font-size:13px;color:var(--sub);line-height:1.6}
+.impact-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;margin-top:48px}
+.impact-item{padding:24px 0;border-top:1px solid var(--border)}
+.impact-item h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.impact-item p{font-size:13px;color:var(--sub);line-height:1.6}
 
 /* ── SOLUTION ── */
 .solution{padding:80px 0}
@@ -196,11 +179,6 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
 /* ── HOW IT WORKS ── */
 .how{padding:100px 0}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;position:relative}
-.steps::before{
-  content:'';position:absolute;top:32px;left:calc(12.5% + 32px);right:calc(12.5% + 32px);
-  height:1px;background:linear-gradient(90deg,var(--border),var(--accent),var(--border));
-  opacity:.4;
-}
 .step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;position:relative}
 .step-num{
   width:56px;height:56px;border-radius:50%;
@@ -261,7 +239,13 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
   background:var(--surface);border:1px solid var(--border);border-radius:14px;
   padding:28px 24px;text-align:center;
 }
-.output-icon{font-size:28px;margin-bottom:14px}
+.output-icon-svg{width:26px;height:26px;margin-bottom:14px}
+
+/* ── Status chips ── */
+.status-chip{display:inline-flex;align-items:center;font-size:11px;font-weight:700;border-radius:100px;padding:3px 10px;white-space:nowrap}
+.status-chip--danger{color:#EF4444;background:rgba(239,68,68,.1)}
+.status-chip--warning{color:#F59E0B;background:rgba(245,158,11,.1)}
+.status-chip--success{color:#10B981;background:rgba(16,185,129,.1)}
 .output-card h4{font-size:15px;font-weight:700;margin-bottom:8px}
 .output-card p{font-size:13px;color:var(--sub);line-height:1.6}
 
@@ -272,12 +256,15 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
   background:var(--surface);border:1px solid var(--border);border-radius:14px;
   padding:28px;
 }
-.diff-card .vs{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-.diff-card .vs-row{display:flex;gap:8px;align-items:center;font-size:13px}
-.diff-card .vs-no{color:var(--red);font-weight:600}
-.diff-card .vs-yes{color:var(--accent);font-weight:600}
 .diff-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
 .diff-card p{font-size:13px;color:var(--sub);line-height:1.6}
+.compare-table{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:32px}
+.compare-row{display:grid;grid-template-columns:1fr 1fr}
+.compare-row > div{padding:14px 20px;font-size:13px;color:var(--sub);border-top:1px solid var(--border)}
+.compare-row:first-child > div{border-top:none}
+.compare-row > div:last-child{color:var(--text);border-left:1px solid var(--border)}
+.compare-row--head > div{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);background:var(--surface)}
+.compare-row--head > div:last-child{color:var(--accent)}
 
 /* ── PRICING ── */
 .pricing{padding:100px 0}
@@ -307,7 +294,7 @@ nav.scrolled{background:rgba(8,8,16,.97);border-color:var(--border);backdrop-fil
 .price-divider{border:none;border-top:1px solid var(--border);margin-bottom:20px}
 .price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
 .price-features li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--sub)}
-.price-features li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px}
+.price-features li::before{content:'';display:inline-block;width:14px;height:14px;flex-shrink:0;margin-top:2px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300E5BE' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat;background-position:center}
 .price-cta{
   width:100%;padding:12px;border-radius:9px;font-family:inherit;
   font-size:14px;font-weight:700;cursor:pointer;
@@ -360,6 +347,7 @@ footer{
 .footer-copy{font-size:12px;color:var(--hint)}
 
 /* ── WAITLIST MODAL ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .wl-overlay{position:fixed;inset:0;z-index:1000;background:rgba(8,8,16,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .wl-overlay.open{opacity:1;pointer-events:all}
 .wl-modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:44px 40px;max-width:420px;width:100%;box-shadow:0 40px 80px rgba(0,0,0,.6);transform:translateY(20px);transition:transform .25s;position:relative}
@@ -386,10 +374,13 @@ footer{
 /* ── Responsive ── */
 @media(max-width:768px){
   .problem-grid,.solution-inner,.diff-grid,.output-grid{grid-template-columns:1fr}
+  .compare-row{grid-template-columns:1fr}
+  .compare-row > div:last-child{border-left:none;border-top:1px dashed var(--border)}
+  .compare-row:not(.compare-row--head) > div::before{content:attr(data-th);display:block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  html:lang(es) .compare-row:not(.compare-row--head) > div::before{content:attr(data-th-es)}
   .pricing-grid{grid-template-columns:1fr}
-  .recognition-grid,.impact-cards{grid-template-columns:1fr}
+  .recognition-grid,.impact-list{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
-  .steps::before{display:none}
   .nav-links{display:none}
   .btn-ghost{display:none}
   .btn-primary{font-size:13px;padding:8px 14px}
@@ -406,9 +397,16 @@ footer{
 }
 @media(max-width:480px){
   .nav-actions .btn-primary{font-size:12px;padding:7px 12px}
+  .lang-toggle-btn{font-size:12px;padding:6px 8px}
   .hero{padding:52px 16px 36px}
   .container{padding:0 16px}
   .nav-logo svg{width:80px;height:auto}
+  .output-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .js-ready .fade-up,.js-ready .fade-up.visible{opacity:1;transform:none}
+  .sv-bar{transition:none}
 }
 </style>
 </head>
@@ -421,7 +419,7 @@ footer{
 <!-- ─── NAV ────────────────────────────────────────────────────────────────── -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo"><svg width="120" height="37" viewBox="0 0 489 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a href="/" class="nav-logo" aria-label="AdCrux"><svg width="120" height="37" aria-hidden="true" viewBox="0 0 489 152" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M23.7592 122H2.99787L34.6321 30.3636H59.5994L91.1889 122H70.4276L47.4737 51.304H46.7578L23.7592 122ZM22.4616 85.9808H71.5014V101.104H22.4616V85.9808ZM123.987 123.119C118.766 123.119 114.038 121.776 109.803 119.092C105.597 116.377 102.256 112.395 99.7798 107.145C97.3338 101.865 96.1108 95.392 96.1108 87.7259C96.1108 79.8509 97.3786 73.3033 99.9141 68.0831C102.45 62.8331 105.82 58.9105 110.026 56.3153C114.262 53.6903 118.901 52.3778 123.942 52.3778C127.79 52.3778 130.996 53.0341 133.562 54.3466C136.157 55.6293 138.245 57.2401 139.826 59.179C141.437 61.0881 142.66 62.9673 143.495 64.8168H144.077V30.3636H163.093V122H144.3V110.993H143.495C142.6 112.902 141.332 114.796 139.692 116.675C138.081 118.525 135.978 120.061 133.383 121.284C130.817 122.507 127.685 123.119 123.987 123.119ZM130.027 107.95C133.099 107.95 135.695 107.115 137.812 105.445C139.96 103.744 141.601 101.373 142.734 98.3303C143.898 95.2876 144.479 91.723 144.479 87.6364C144.479 83.5497 143.913 80 142.779 76.9872C141.646 73.9744 140.005 71.6477 137.857 70.0071C135.71 68.3665 133.099 67.5462 130.027 67.5462C126.895 67.5462 124.255 68.3963 122.107 70.0966C119.96 71.7969 118.334 74.1534 117.23 77.1662C116.126 80.179 115.575 83.669 115.575 87.6364C115.575 91.6335 116.126 95.1683 117.23 98.2408C118.364 101.283 119.989 103.67 122.107 105.4C124.255 107.1 126.895 107.95 130.027 107.95Z" fill="#3D5270"/>
 <path d="M255.017 62.4453H235.419C235.062 59.9098 234.331 57.6577 233.227 55.6889C232.123 53.6903 230.706 51.9901 228.976 50.5881C227.246 49.1861 225.248 48.1122 222.981 47.3665C220.743 46.6207 218.312 46.2479 215.687 46.2479C210.944 46.2479 206.813 47.4261 203.293 49.7827C199.773 52.1094 197.044 55.5099 195.105 59.9844C193.166 64.429 192.196 69.8281 192.196 76.1818C192.196 82.7145 193.166 88.2031 195.105 92.6477C197.074 97.0923 199.818 100.448 203.338 102.715C206.858 104.982 210.929 106.116 215.553 106.116C218.148 106.116 220.549 105.773 222.757 105.087C224.994 104.401 226.978 103.401 228.708 102.089C230.438 100.746 231.87 99.1207 233.003 97.2116C234.167 95.3026 234.972 93.125 235.419 90.679L255.017 90.7685C254.51 94.9744 253.243 99.0312 251.214 102.939C249.216 106.817 246.516 110.292 243.115 113.364C239.745 116.407 235.718 118.823 231.035 120.613C226.381 122.373 221.116 123.253 215.24 123.253C207.066 123.253 199.758 121.403 193.315 117.705C186.902 114.006 181.831 108.651 178.102 101.641C174.403 94.6314 172.554 86.1449 172.554 76.1818C172.554 66.1889 174.433 57.6875 178.191 50.6776C181.95 43.6676 187.051 38.3281 193.494 34.6591C199.937 30.9602 207.186 29.1108 215.24 29.1108C220.549 29.1108 225.471 29.8565 230.005 31.348C234.569 32.8395 238.611 35.017 242.131 37.8807C245.651 40.7145 248.515 44.1896 250.722 48.3061C252.959 52.4226 254.391 57.1357 255.017 62.4453ZM268.553 122V53.2727H287.032V65.2642H287.748C289.001 60.9986 291.104 57.777 294.057 55.5994C297.01 53.392 300.411 52.2884 304.259 52.2884C305.213 52.2884 306.242 52.348 307.346 52.4673C308.45 52.5866 309.419 52.7507 310.254 52.9595V69.8729C309.359 69.6044 308.122 69.3658 306.541 69.157C304.96 68.9482 303.513 68.8438 302.2 68.8438C299.396 68.8438 296.891 69.4553 294.683 70.6783C292.506 71.8714 290.776 73.5419 289.493 75.6896C288.24 77.8374 287.614 80.3132 287.614 83.1172V122H268.553ZM364.182 92.7372V53.2727H383.244V122H364.943V109.516H364.227C362.676 113.543 360.096 116.78 356.486 119.226C352.907 121.672 348.537 122.895 343.376 122.895C338.783 122.895 334.741 121.851 331.251 119.763C327.761 117.675 325.031 114.707 323.062 110.859C321.123 107.011 320.139 102.402 320.109 97.0327V53.2727H339.17V93.6321C339.2 97.6889 340.289 100.896 342.437 103.252C344.584 105.609 347.463 106.787 351.072 106.787C353.369 106.787 355.517 106.265 357.516 105.221C359.514 104.147 361.125 102.566 362.348 100.478C363.601 98.3899 364.212 95.8097 364.182 92.7372Z" fill="#F1F5F9"/>
 <path d="M429 148C462.137 148 489 121.137 489 88C489 54.8629 462.137 28 429 28C395.863 28 369 54.8629 369 88C369 121.137 395.863 148 429 148Z" fill="url(#paint0_nav)"/>
@@ -442,9 +440,9 @@ footer{
       <li><a href="#product" id="nl-product">Product</a></li>
       <li><a href="#pricing" id="nl-pricing">Pricing</a></li>
       <li><a href="#faq" id="nl-faq">FAQ</a></li>
-      <li><a href="#" id="langToggle">EN</a></li>
     </ul>
     <div class="nav-actions">
+      <button type="button" class="lang-toggle-btn" id="langToggle" aria-label="Switch language to Spanish">EN</button>
       <a href="https://getadcrux.com/login.html" class="btn-ghost" id="signInBtn">Sign in</a>
       <a href="javascript:void(0)" class="btn-primary" id="ctaBtn" data-action="waitlist">Book a demo</a>
     </div>
@@ -456,7 +454,6 @@ footer{
   <div class="hero-glow"></div>
   <div>
     <div class="hero-eyebrow fade-up" data-delay="0">
-      <div class="hero-eyebrow-dot"></div>
       <span id="eyebrow-text">For media planners &amp; performance strategists</span>
     </div>
     <h1 class="fade-up" data-delay="1" id="hero-h1">
@@ -478,7 +475,7 @@ footer{
 <!-- ─── PROBLEM ───────────────────────────────────────────────────────────── -->
 <section class="problem container" id="problem">
   <div class="fade-up">
-    <div class="section-eyebrow" id="prob-eyebrow">The real scene</div>
+    <div class="section-eyebrow" id="prob-eyebrow">The situation</div>
     <h2 class="section-title" id="prob-title">Meta says one thing. Google says another. The CRM says a third.</h2>
     <p class="section-sub" id="prob-sub">
       And you still have to recommend what to move. That's the job — regardless of whether the data lines up.
@@ -509,8 +506,8 @@ footer{
       </div>
     </div>
     <div class="problem-copy">
-      <p id="prob-copy1">Every source tells its own version. Google says 87. Meta says 74. Your CRM says 120, total. <strong>None of them is exactly wrong — they're each just looking at a different slice.</strong></p>
-      <p id="prob-copy2">Looking at channels one at a time doesn't tell you how the mix actually works together — <strong>and that's exactly what you need to plan the next move.</strong></p>
+      <p id="prob-copy1">Every source tells its own version: Google says 87, Meta says 74, your CRM says 120 total. <strong>Each platform is just measuring a different slice of the same activity.</strong></p>
+      <p id="prob-copy2">Looking at channels one at a time doesn't show how the mix works as a whole, <strong>and that's what you need before recommending the next move.</strong></p>
       <p id="prob-copy3">This isn't about which platform is lying. It's about needing a single, comparable read before you can recommend anything with confidence.</p>
     </div>
   </div>
@@ -519,28 +516,23 @@ footer{
 <!-- ─── YOU'VE SEEN THIS ───────────────────────────────────────────────────── -->
 <section class="recognition" id="recognition">
   <div class="recognition-inner fade-up">
-    <div class="section-eyebrow" id="rec-eyebrow">Sound familiar?</div>
     <h2 class="section-title" id="rec-title">What every planning conversation runs into</h2>
     <div class="recognition-grid">
       <div class="recognition-item">
-        <div class="ri-icon">📊</div>
         <p><strong id="ri1-title">One channel looks like it's working</strong>
-        <span id="ri1-body">The dashboard is green, the ROAS looks fine — but "looks fine in isolation" isn't the same as "is actually worth the next dollar."</span></p>
+        <span id="ri1-body">The dashboard is green and the ROAS looks fine. But looking good in isolation isn't the same as being worth the next dollar.</span></p>
       </div>
       <div class="recognition-item">
-        <div class="ri-icon">💸</div>
         <p><strong id="ri2-title">Another looks expensive</strong>
-        <span id="ri2-body">High CPA on paper. But expensive compared to what — the rest of the mix, or just to what it used to cost?</span></p>
+        <span id="ri2-body">High CPA on paper. But expensive compared to what: the rest of the mix, or what it used to cost?</span></p>
       </div>
       <div class="recognition-item">
-        <div class="ri-icon">🔀</div>
         <p><strong id="ri3-title">A third one, nobody's sure</strong>
-        <span id="ri3-body">It might be driving real demand. It might just be riding along on what the other channels already started. Nobody on the team can say for sure.</span></p>
+        <span id="ri3-body">It might be driving new demand. It might just be riding along on what the other channels started. Nobody on the team can say for sure.</span></p>
       </div>
       <div class="recognition-item">
-        <div class="ri-icon">🤔</div>
         <p><strong id="ri4-title">And the client still wants an answer</strong>
-        <span id="ri4-body">"What should we do with the budget" doesn't wait for certainty. The recommendation has to be more than a hunch or a generic rule of thumb.</span></p>
+        <span id="ri4-body">"What should we do with the budget" doesn't wait for certainty. The recommendation still has to be more than a hunch.</span></p>
       </div>
     </div>
   </div>
@@ -549,30 +541,25 @@ footer{
 <!-- ─── IMPACT ─────────────────────────────────────────────────────────────── -->
 <section class="impact container" id="impact">
   <div class="fade-up">
-    <div class="section-eyebrow" id="impact-eyebrow">What's actually at stake</div>
     <h2 class="section-title" id="impact-title">A recommendation is only as good as what it's compared against</h2>
-    <p class="section-sub" id="impact-sub">Without a common way to compare the mix, a recommendation ends up resting on opinion more than evidence.</p>
+    <p class="section-sub" id="impact-sub">Without a way to compare channels side by side, the decision ends up depending on who argues best in the room, not on the numbers.</p>
   </div>
-  <div class="impact-cards fade-up" data-delay="1">
-    <div class="impact-card">
-      <div class="ic-icon">📈</div>
+  <div class="impact-list fade-up" data-delay="1">
+    <div class="impact-item">
       <h4 id="ic1-title">The recommendation doesn't survive the first hard question</h4>
-      <p id="ic1-body">"Why this channel and not that one" needs an answer grounded in something comparable — not just "the dashboard looked better."</p>
+      <p id="ic1-body">Answering "why this channel and not that one" takes something more comparable than a quick dashboard read.</p>
     </div>
-    <div class="impact-card">
-      <div class="ic-icon">✂️</div>
+    <div class="impact-item">
       <h4 id="ic2-title">Every stakeholder is comparing different numbers</h4>
       <p id="ic2-body">The client is looking at one report, the media team another, finance a third. Nobody's arguing from the same baseline.</p>
     </div>
-    <div class="impact-card">
-      <div class="ic-icon">🌫️</div>
+    <div class="impact-item">
       <h4 id="ic3-title">Testing becomes a last resort, not a plan</h4>
-      <p id="ic3-body">Without a clear read going in, a test is just "let's try something and see." There's no baseline to compare the result against.</p>
+      <p id="ic3-body">Testing without a clear read going in amounts to "let's try something and see," with nothing to compare the result against.</p>
     </div>
-    <div class="impact-card">
-      <div class="ic-icon">📉</div>
+    <div class="impact-item">
       <h4 id="ic4-title">The same debate repeats every planning cycle</h4>
-      <p id="ic4-body">Without a record of what was tried and what happened, each quarter starts the argument over from scratch.</p>
+      <p id="ic4-body">Each quarter starts the argument over from scratch, with no record of what was tried last time.</p>
     </div>
   </div>
 </section>
@@ -581,18 +568,17 @@ footer{
 <section class="solution container" id="solution">
   <div class="solution-inner fade-up">
     <div>
-      <div class="solution-badge">⚡ AdCrux</div>
-      <h2 id="sol-title">Plan using the mix's real history — not one channel at a time</h2>
-      <p id="sol-body">AdCrux uses each brand's real history of spend and results to help you compare scenarios, understand contribution by channel, and plan tests — a clearer starting point than intuition or generic assumptions.</p>
+      <h2 id="sol-title">Plan the whole mix, not one channel at a time</h2>
+      <p id="sol-body">AdCrux uses each brand's spend and results history to help you compare scenarios, understand contribution by channel, and plan tests.</p>
       <div class="solution-pillars">
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp1-title">Compare scenarios</strong> — <span id="sp1-body">See what a reallocation would actually do to the whole mix before you propose it — not just to one channel in isolation.</span></p></div>
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp2-title">Understand contribution</strong> — <span id="sp2-body">Know how much each channel is really adding, separate from baseline and from what the other channels are already driving.</span></p></div>
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp3-title">Plan the test</strong> — <span id="sp3-body">Turn "let's try something" into a specific, bounded test with an expected range to compare the result against.</span></p></div>
-        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp4-title">Build on what you know</strong> — <span id="sp4-body">Every run, scenario, and test adds to the brand's own history — so the next recommendation starts ahead of the last one.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp1-title">Compare scenarios</strong>: <span id="sp1-body">See what a reallocation would do to the whole mix before you propose it.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp2-title">Understand contribution</strong> — <span id="sp2-body">See how much each channel is adding, separate from baseline and from what the other channels are already driving.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp3-title">Plan the test</strong>: <span id="sp3-body">Turn "let's try something" into a specific, bounded test with an expected range to compare the result against.</span></p></div>
+        <div class="pillar"><div class="pillar-dot"></div><p><strong id="sp4-title">Build on what you know</strong> — <span id="sp4-body">Every run, scenario, and test adds to what's already known about this brand — so the next recommendation starts ahead of the last one.</span></p></div>
       </div>
     </div>
     <div class="solution-visual" id="sol-visual">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:8px" id="sv-label">Contribution by channel — this brand's history</div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:8px" id="sv-label">Contribution by channel</div>
       <div class="sv-row">
         <span class="sv-label">Google Ads</span>
         <div class="sv-bar-wrap"><div class="sv-bar" id="bar1" style="width:0%;background:#4285F4"></div></div>
@@ -619,7 +605,7 @@ footer{
         <div class="sv-bar-wrap"><div class="sv-bar" id="bar5" style="width:0%;background:var(--hint)"></div></div>
         <span class="sv-val" style="color:var(--hint)">16%</span>
       </div>
-      <p class="sv-note" id="sv-note">Based on this brand's own numbers, not an industry rule of thumb</p>
+      <p class="sv-note" id="sv-note">Modeled from the uploaded spend and results, not an industry benchmark</p>
     </div>
   </div>
 </section>
@@ -632,15 +618,15 @@ footer{
     <p class="section-sub" id="prod-sub" style="margin:0 auto">The workspace for comparing scenarios, reading contribution by channel, and planning the next test.</p>
   </div>
   <div class="fade-up" data-delay="1">
-    <div class="product-tabs">
-      <button class="ptab active" id="tab-overview" data-tab="overview">Overview</button>
-      <button class="ptab" id="tab-attribution" data-tab="attribution">Attribution Gap</button>
-      <button class="ptab" id="tab-saturation" data-tab="saturation">Saturation</button>
-      <button class="ptab" id="tab-optimizer" data-tab="optimizer">Optimizer</button>
-      <button class="ptab" id="tab-scenarios" data-tab="scenarios">Scenarios</button>
-      <button class="ptab" id="tab-test-planner" data-tab="test-planner">Test Planner</button>
-      <button class="ptab" id="tab-test-tracker" data-tab="test-tracker">Test Tracker</button>
-      <button class="ptab" id="tab-diagnostics" data-tab="diagnostics">Diagnostics</button>
+    <div class="product-tabs" role="tablist" aria-label="Product tour">
+      <button class="ptab active" id="tab-overview" data-tab="overview" role="tab" aria-selected="true" aria-controls="panel-overview" tabindex="0">Overview</button>
+      <button class="ptab" id="tab-attribution" data-tab="attribution" role="tab" aria-selected="false" aria-controls="panel-attribution" tabindex="-1">Attribution Gap</button>
+      <button class="ptab" id="tab-saturation" data-tab="saturation" role="tab" aria-selected="false" aria-controls="panel-saturation" tabindex="-1">Saturation</button>
+      <button class="ptab" id="tab-optimizer" data-tab="optimizer" role="tab" aria-selected="false" aria-controls="panel-optimizer" tabindex="-1">Optimizer</button>
+      <button class="ptab" id="tab-scenarios" data-tab="scenarios" role="tab" aria-selected="false" aria-controls="panel-scenarios" tabindex="-1">Scenarios</button>
+      <button class="ptab" id="tab-test-planner" data-tab="test-planner" role="tab" aria-selected="false" aria-controls="panel-test-planner" tabindex="-1">Test Planner</button>
+      <button class="ptab" id="tab-test-tracker" data-tab="test-tracker" role="tab" aria-selected="false" aria-controls="panel-test-tracker" tabindex="-1">Test Tracker</button>
+      <button class="ptab" id="tab-diagnostics" data-tab="diagnostics" role="tab" aria-selected="false" aria-controls="panel-diagnostics" tabindex="-1">Diagnostics</button>
     </div>
     <p id="tab-desc" style="font-size:14px;color:var(--sub);margin-bottom:16px;min-height:20px;transition:opacity .2s">One comparable read across the whole mix.</p>
     <div class="product-frame">
@@ -650,7 +636,7 @@ footer{
         <div class="pbar-dot" style="background:#10B981"></div>
         <div class="pbar-url">app.getadcrux.com</div>
       </div>
-      <div class="product-panel active" id="panel-overview">
+      <div class="product-panel active" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">One comparable read across the whole mix</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
@@ -731,7 +717,7 @@ footer{
 
 </div>
       </div>
-      <div class="product-panel" id="panel-attribution">
+      <div class="product-panel" id="panel-attribution" role="tabpanel" aria-labelledby="tab-attribution">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">What each platform claims, next to what the mix model attributes</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
@@ -803,19 +789,20 @@ footer{
     </div>
   </div>
 
-  <div style="margin-top:14px;padding:12px 16px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;font-size:13px;color:#EF4444">
-    ⚠️ Platforms are claiming credit for <strong>72 leads that didn't happen</strong> — or happened organically.
+  <div style="margin-top:14px;padding:12px 16px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;font-size:13px;color:#EF4444;display:flex;align-items:flex-start;gap:8px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span>Platforms are claiming credit for <strong>72 leads that didn't happen</strong>, or happened organically.</span>
   </div>
 
 </div>
       </div>
-      <div class="product-panel" id="panel-saturation">
+      <div class="product-panel" id="panel-saturation" role="tabpanel" aria-labelledby="tab-saturation">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Where each channel sits on its own return curve</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
     <div style="font-size:18px;font-weight:700;color:#EEEEF5">Saturation Curves</div>
-    <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:6px 14px;font-size:12px;color:#EF4444">2 channels past optimal</div>
+    <div style="font-size:13px;font-weight:700;color:#EF4444">2 channels past optimal</div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
@@ -823,9 +810,9 @@ footer{
       <div style="margin-bottom:12px">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
     <span style="font-size:12px;font-weight:600;color:#EEEEF5">Google Search</span>
-    <span style="font-size:11px;font-weight:700;color:#EF4444;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🔴 78% saturated</span>
+    <span class="status-chip status-chip--danger">High · 78% saturated</span>
   </div>
-  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+  <svg width="100%" viewBox="0 0 260 100" style="display:block" aria-hidden="true">
     <defs>
       <linearGradient id="sg_Google_Search" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#38BDF8" stop-opacity=".18"/>
@@ -857,9 +844,9 @@ footer{
       <div style="margin-bottom:12px">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
     <span style="font-size:12px;font-weight:600;color:#EEEEF5">Email</span>
-    <span style="font-size:11px;font-weight:700;color:#F59E0B;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🟡 42% saturated</span>
+    <span class="status-chip status-chip--warning">Moderate · 42% saturated</span>
   </div>
-  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+  <svg width="100%" viewBox="0 0 260 100" style="display:block" aria-hidden="true">
     <defs>
       <linearGradient id="sg_Email" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#00E5BE" stop-opacity=".18"/>
@@ -893,9 +880,9 @@ footer{
       <div style="margin-bottom:12px">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
     <span style="font-size:12px;font-weight:600;color:#EEEEF5">Meta Ads</span>
-    <span style="font-size:11px;font-weight:700;color:#EF4444;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🔴 85% saturated</span>
+    <span class="status-chip status-chip--danger">High · 85% saturated</span>
   </div>
-  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+  <svg width="100%" viewBox="0 0 260 100" style="display:block" aria-hidden="true">
     <defs>
       <linearGradient id="sg_Meta_Ads" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#8B5CF6" stop-opacity=".18"/>
@@ -927,9 +914,9 @@ footer{
       <div style="margin-bottom:12px">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
     <span style="font-size:12px;font-weight:600;color:#EEEEF5">YouTube</span>
-    <span style="font-size:11px;font-weight:700;color:#F59E0B;background:rgba(239,68,68,.1) if sat_pct > 70 else rgba(245,158,11,.1);border-radius:100px;padding:2px 8px">🟡 31% saturated</span>
+    <span class="status-chip status-chip--warning">Moderate · 31% saturated</span>
   </div>
-  <svg width="100%" viewBox="0 0 260 100" style="display:block">
+  <svg width="100%" viewBox="0 0 260 100" style="display:block" aria-hidden="true">
     <defs>
       <linearGradient id="sg_YouTube" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#F59E0B" stop-opacity=".18"/>
@@ -963,7 +950,7 @@ footer{
 
 </div>
       </div>
-      <div class="product-panel" id="panel-optimizer">
+      <div class="product-panel" id="panel-optimizer" role="tabpanel" aria-labelledby="tab-optimizer">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">The reallocation, compared to what you're spending today</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
@@ -1024,7 +1011,7 @@ footer{
 
 </div>
       </div>
-      <div class="product-panel" id="panel-scenarios">
+      <div class="product-panel" id="panel-scenarios" role="tabpanel" aria-labelledby="tab-scenarios">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Compare reallocations side by side before recommending one</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
@@ -1110,7 +1097,7 @@ footer{
 
 </div>
       </div>
-      <div class="product-panel" id="panel-test-planner">
+      <div class="product-panel" id="panel-test-planner" role="tabpanel" aria-labelledby="tab-test-planner">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">Turn the recommendation into a bounded test</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
 
@@ -1152,9 +1139,9 @@ footer{
 
   <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Guardrails</div>
   <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;padding:0">
-    <li style="font-size:13px;color:#B4C2D4;display:flex;gap:8px"><span style="color:#00E5BE">✓</span> Increase capped at 40% — core channel, not a full pause</li>
-    <li style="font-size:13px;color:#B4C2D4;display:flex;gap:8px"><span style="color:#00E5BE">✓</span> Recommends reverting the change if the read is still inconclusive by the end of the window</li>
-    <li style="font-size:13px;color:#B4C2D4;display:flex;gap:8px"><span style="color:#00E5BE">✓</span> Compares the actual result against an expected range, not just a single guess</li>
+    <li style="font-size:13px;color:#B4C2D4;display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00E5BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Increase capped at 40% — core channel, not a full pause</li>
+    <li style="font-size:13px;color:#B4C2D4;display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00E5BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Recommends reverting the change if the read is still inconclusive by the end of the window</li>
+    <li style="font-size:13px;color:#B4C2D4;display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00E5BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Compares the result against an expected range, not a single guess</li>
   </ul>
 
   <div style="display:flex;justify-content:flex-end">
@@ -1163,7 +1150,7 @@ footer{
 
 </div>
       </div>
-      <div class="product-panel" id="panel-test-tracker">
+      <div class="product-panel" id="panel-test-tracker" role="tabpanel" aria-labelledby="tab-test-tracker">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">The record of what was tested and what happened</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
 
@@ -1202,7 +1189,7 @@ footer{
     <span style="font-size:13px;color:#EEEEF5">Increase Meta +40%</span>
     <span style="font-size:13px;color:#6B6B8A">Meta Ads</span>
     <span style="font-size:12px;font-weight:700;color:#10B981">Completed</span>
-    <span style="font-size:12px;font-weight:700;color:#10B981">✓ Supported</span>
+    <span style="font-size:12px;font-weight:700;color:#10B981">Supported</span>
   </div>
   <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #1C1C2E">
     <span style="font-size:13px;color:#EEEEF5">Pause YouTube</span>
@@ -1218,18 +1205,18 @@ footer{
   </div>
 
   <div style="margin-top:16px;padding:12px 16px;background:rgba(0,229,190,.06);border:1px solid rgba(0,229,190,.15);border-radius:10px;font-size:13px;color:#00E5BE">
-    Every completed test adds to what you know about the channel — so the next plan starts smarter.
+    Every completed test adds to what you know about the channel, so the next plan starts smarter.
   </div>
 
 </div>
       </div>
-      <div class="product-panel" id="panel-diagnostics">
+      <div class="product-panel" id="panel-diagnostics" role="tabpanel" aria-labelledby="tab-diagnostics">
         <div style="padding:14px 24px 0;background:var(--surface);border-top:1px solid var(--border)"><span style="font-size:13px;color:var(--sub);font-style:italic">How much to trust this read</span></div>
         <div style="background:#131320;padding:28px 32px;border-radius:0 0 14px 14px;min-height:420px">
   
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
     <div style="font-size:18px;font-weight:700;color:#EEEEF5">Model Diagnostics</div>
-    <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:6px 14px;font-size:13px;font-weight:700;color:#10B981">🟢 High confidence</div>
+    <div class="status-chip status-chip--success" style="font-size:13px;padding:6px 14px;border:1px solid rgba(16,185,129,.25)">High confidence</div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
@@ -1278,7 +1265,7 @@ footer{
     <div>
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#00E5BE;margin-bottom:10px">Actual vs predicted</div>
       <div style="background:#0E0E1A;border:1px solid #1C1C2E;border-radius:10px;padding:16px;margin-bottom:14px">
-        <svg viewBox="0 0 220 90" style="width:100%;display:block">
+        <svg viewBox="0 0 220 90" style="width:100%;display:block" aria-hidden="true">
           <!-- CI band -->
           <path d="M10,70 C40,60 70,45 110,38 C150,31 180,28 210,25
                    L210,35 C180,38 150,42 110,50 C70,58 40,72 10,80 Z"
@@ -1328,7 +1315,7 @@ footer{
 </div>
       </div>
     </div>
-    <p id="prod-note" style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">Real dashboard · Your data stays in your account · Export to PDF</p>
+    <p id="prod-note" style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">Sample dashboard · Your data stays in your account · Export to PDF</p>
   </div>
 </section>
 
@@ -1337,25 +1324,25 @@ footer{
   <div class="fade-up" style="text-align:center">
     <div class="section-eyebrow" id="how-eyebrow">How it works</div>
     <h2 class="section-title" id="how-title">From history to a recommendation you can defend</h2>
-    <p class="section-sub" id="how-sub" style="margin:0 auto">No guesswork, no industry rule of thumb — just this brand's own numbers, compared properly.</p>
+    <p class="section-sub" id="how-sub" style="margin:0 auto">Every step below runs on the spend and results you upload.</p>
   </div>
   <div class="steps fade-up" data-delay="1">
     <div class="step">
       <div class="step-num">01</div>
       <h4 id="step1-title">Upload the history</h4>
-      <p id="step1-body">Spend and results by channel and week — the actual record, not a sample template.</p>
+      <p id="step1-body">Spend and results by channel and week, straight from what you upload.</p>
       <span class="step-badge" id="step1-badge">CSV upload</span>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <h4 id="step2-title">See how the mix really works</h4>
-      <p id="step2-body">The model reads the full mix together — contribution, saturation, and baseline for every channel, based on this brand's own history.</p>
+      <h4 id="step2-title">See how the mix works</h4>
+      <p id="step2-body">The model reads the full mix together: contribution, saturation, and baseline for every channel.</p>
       <span class="step-badge" id="step2-badge">~30 seconds</span>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <h4 id="step3-title">Compare scenarios, pick one</h4>
-      <p id="step3-body">Try different reallocations side by side and see the projected outcome of each — then save the one you'd actually recommend.</p>
+      <p id="step3-body">Try different reallocations side by side, see the projected outcome of each, then save the one you'd recommend.</p>
       <span class="step-badge" id="step3-badge">Compare &amp; save</span>
     </div>
     <div class="step">
@@ -1370,36 +1357,37 @@ footer{
 <!-- ─── OUTPUT CLARITY ─────────────────────────────────────────────────────── -->
 <section class="outputs container" id="outputs">
   <div class="fade-up" style="text-align:center">
-    <div class="section-eyebrow" id="out-eyebrow">What you walk away with</div>
     <h2 class="section-title" id="out-title">What to increase. What to decrease. What to hold. What to test before scaling.</h2>
-    <p class="section-sub" id="out-sub" style="margin:0 auto">Four calls, each grounded in this brand's own history — not a generic rule of thumb.</p>
+    <p class="section-sub" id="out-sub" style="margin:0 auto">Four calls, each grounded in the uploaded numbers for this brand.</p>
   </div>
   <div class="output-grid fade-up" data-delay="1">
-    <div class="output-card"><div class="output-icon">📊</div><h4 id="oc1-title">What to increase</h4><p id="oc1-body">Channels with real room left in the mix — worth the next dollar, based on this brand's own curve.</p></div>
-    <div class="output-card"><div class="output-icon">✂️</div><h4 id="oc2-title">What to decrease</h4><p id="oc2-body">Channels past the point where more spend stops adding, even if the platform report still looks fine.</p></div>
-    <div class="output-card"><div class="output-icon">⚖️</div><h4 id="oc3-title">What to hold</h4><p id="oc3-body">Channels doing exactly what they should at the current level — no case yet to move either way.</p></div>
-    <div class="output-card"><div class="output-icon">🎯</div><h4 id="oc4-title">What to test before scaling</h4><p id="oc4-body">A specific, bounded test to validate the move before you commit the full recommendation.</p></div>
+    <div class="output-card"><svg class="output-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#00E5BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><h4 id="oc1-title">What to increase</h4><p id="oc1-body">Channels with room left in the mix, worth the next dollar based on how they're performing now.</p></div>
+    <div class="output-card"><svg class="output-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg><h4 id="oc2-title">What to decrease</h4><p id="oc2-body">Once a channel passes the point where more spend stops adding, it's a candidate to scale back, even if the platform report still looks fine.</p></div>
+    <div class="output-card"><svg class="output-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#6B6B8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><h4 id="oc3-title">What to hold</h4><p id="oc3-body">At the current level, some channels are simply doing what they should. No case yet to move either way.</p></div>
+    <div class="output-card"><svg class="output-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#00E5BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/></svg><h4 id="oc4-title">What to test before scaling</h4><p id="oc4-body">A specific, bounded test to validate the move before you commit the full recommendation.</p></div>
   </div>
 </section>
 
 <!-- ─── DIFFERENTIATOR ─────────────────────────────────────────────────────── -->
 <section class="diff container" id="diff">
   <div class="fade-up" style="text-align:center">
-    <div class="section-eyebrow" id="diff-eyebrow">Built for real teams</div>
     <h2 class="section-title" id="diff-title">Not enterprise-only. Not a black box.</h2>
-    <p class="section-sub" id="diff-sub" style="margin:0 auto">Built for the person who has to make the call — not just show a chart.</p>
+    <p class="section-sub" id="diff-sub" style="margin:0 auto">Built for the person who has to make the call.</p>
   </div>
-  <div class="diff-grid fade-up" data-delay="1">
+  <div class="compare-table fade-up" data-delay="1">
+    <div class="compare-row compare-row--head"><div id="cmp-th1">Traditional approach</div><div id="cmp-th2">AdCrux</div></div>
+    <div class="compare-row"><div id="cmp-r1a" data-th="Traditional approach" data-th-es="Enfoque tradicional">MMM consulting: $50K+ and 8 weeks</div><div id="cmp-r1b" data-th="AdCrux" data-th-es="AdCrux">Results in under 5 minutes</div></div>
+    <div class="compare-row"><div id="cmp-r2a" data-th="Traditional approach" data-th-es="Enfoque tradicional">Platform dashboards: each silo optimizes itself</div><div id="cmp-r2b" data-th="AdCrux" data-th-es="AdCrux">One model across all channels</div></div>
+    <div class="compare-row"><div id="cmp-r3a" data-th="Traditional approach" data-th-es="Enfoque tradicional">Black-box tools: outputs you cannot explain</div><div id="cmp-r3b" data-th="AdCrux" data-th-es="AdCrux">Transparent model diagnostics</div></div>
+  </div>
+  <div class="diff-grid fade-up" data-delay="2">
     <div class="diff-card">
-      <div class="vs"><div class="vs-row"><span class="vs-no">✗</span><span style="color:var(--sub);font-size:13px">MMM consulting: $50K+ and 8 weeks</span></div><div class="vs-row"><span class="vs-yes">✓</span><span style="color:var(--text);font-size:13px">AdCrux: results in under 5 minutes</span></div></div>
       <h4 id="dc1-title">Accessible from day one</h4><p id="dc1-body">Marketing Mix Modeling used to require data scientists. AdCrux makes it available to any team with a CSV file.</p>
     </div>
     <div class="diff-card">
-      <div class="vs"><div class="vs-row"><span class="vs-no">✗</span><span style="color:var(--sub);font-size:13px">Platform dashboards: each silo optimizes itself</span></div><div class="vs-row"><span class="vs-yes">✓</span><span style="color:var(--text);font-size:13px">AdCrux: one model across all channels</span></div></div>
-      <h4 id="dc2-title">Truly independent</h4><p id="dc2-body">Built independently from any platform attribution model. No pixel, no SDK, no API key connecting back to Google or Meta.</p>
+      <h4 id="dc2-title">Independent by design</h4><p id="dc2-body">Built independently from any platform attribution model. No pixel, no SDK, no API key connecting back to Google or Meta.</p>
     </div>
     <div class="diff-card">
-      <div class="vs"><div class="vs-row"><span class="vs-no">✗</span><span style="color:var(--sub);font-size:13px">Black-box tools: outputs you cannot explain</span></div><div class="vs-row"><span class="vs-yes">✓</span><span style="color:var(--text);font-size:13px">AdCrux: transparent model diagnostics</span></div></div>
       <h4 id="dc3-title">Transparent outputs</h4><p id="dc3-body">Every result comes with a confidence score and model diagnostics. You know when the model is reliable.</p>
     </div>
   </div>
@@ -1456,14 +1444,14 @@ footer{
     <h2 class="section-title" id="faq-title">Common questions</h2>
   </div>
   <div class="faq-list fade-up" data-delay="1">
-    <div class="faq-item"><button class="faq-q"><span id="fq1">Do I need a data scientist or technical team?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa1">No. AdCrux is designed for marketing teams. You upload a CSV, the model runs automatically, and results are in plain language.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq2">What data do I need?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa2">A CSV with four columns: week, channel, spend, and leads. You need at least 8 weeks of data across 2+ channels. More history improves accuracy.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq3">How is this different from platform attribution?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa3">Platform attribution assigns credit based on individual touchpoints with built-in incentives. AdCrux uses Marketing Mix Modeling — statistical regression at the aggregate level, independent of any platform tracking.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq4">How long does it take to get results?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa4">First run takes 20 to 30 seconds. After that, results are cached and load in under 2 seconds. From CSV upload to first insight in under 5 minutes.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq5">Is this accurate for small budgets?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa5">Yes, with appropriate expectations. AdCrux shows a confidence score with every result. At smaller budgets, the model gives directional guidance. We never hide uncertainty.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq6">What happens to my data?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa6">Your data is stored in your private account and never shared. You can delete it at any time.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq7">Can I test a recommendation before committing real budget?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa7">Yes. Use the Test Planner to design a safe way to validate any recommendation — a temporary budget shift with clear guardrails and an expected range. Save it as a test plan and track the result in Test Tracker.</div></div></div>
-    <div class="faq-item"><button class="faq-q"><span id="fq8">Is AdCrux just a one-time report, or something I use regularly?</span><span class="faq-arrow">+</span></button><div class="faq-a"><div class="faq-a-inner" id="fa8">AdCrux is built to be used every month, not once. Save scenarios, track tests, and keep tabs on what worked — so each planning cycle starts with more evidence than the last.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn1" aria-expanded="false" aria-controls="faq-panel1"><span id="fq1">Do I need a data scientist or technical team?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel1" aria-hidden="true" role="region" aria-labelledby="faq-btn1"><div class="faq-a-inner" id="fa1">No. AdCrux is designed for marketing teams. You upload a CSV, the model runs automatically, and results are in plain language.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn2" aria-expanded="false" aria-controls="faq-panel2"><span id="fq2">What data do I need?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel2" aria-hidden="true" role="region" aria-labelledby="faq-btn2"><div class="faq-a-inner" id="fa2">A CSV with four columns: week, channel, spend, and leads. You need at least 8 weeks of data across 2+ channels. More history improves accuracy.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn3" aria-expanded="false" aria-controls="faq-panel3"><span id="fq3">How is this different from platform attribution?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel3" aria-hidden="true" role="region" aria-labelledby="faq-btn3"><div class="faq-a-inner" id="fa3">Platform attribution assigns credit based on individual touchpoints with built-in incentives. AdCrux uses Marketing Mix Modeling — statistical regression at the aggregate level, independent of any platform tracking.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn4" aria-expanded="false" aria-controls="faq-panel4"><span id="fq4">How long does it take to get results?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel4" aria-hidden="true" role="region" aria-labelledby="faq-btn4"><div class="faq-a-inner" id="fa4">First run takes 20 to 30 seconds. After that, results are cached and load in under 2 seconds. From CSV upload to first insight in under 5 minutes.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn5" aria-expanded="false" aria-controls="faq-panel5"><span id="fq5">Is this accurate for small budgets?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel5" aria-hidden="true" role="region" aria-labelledby="faq-btn5"><div class="faq-a-inner" id="fa5">Yes, with appropriate expectations. AdCrux shows a confidence score with every result. At smaller budgets, the model gives directional guidance. We never hide uncertainty.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn6" aria-expanded="false" aria-controls="faq-panel6"><span id="fq6">What happens to my data?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel6" aria-hidden="true" role="region" aria-labelledby="faq-btn6"><div class="faq-a-inner" id="fa6">Your data is stored in your private account and never shared. You can delete it at any time.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn7" aria-expanded="false" aria-controls="faq-panel7"><span id="fq7">Can I test a recommendation before committing real budget?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel7" aria-hidden="true" role="region" aria-labelledby="faq-btn7"><div class="faq-a-inner" id="fa7">The Test Planner exists for exactly this: a temporary, guardrailed budget shift with an expected range, saved as a plan and tracked in Test Tracker until there's a verdict.</div></div></div>
+    <div class="faq-item"><button class="faq-q" id="faq-btn8" aria-expanded="false" aria-controls="faq-panel8"><span id="fq8">Is AdCrux just a one-time report, or something I use regularly?</span><span class="faq-arrow" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel8" aria-hidden="true" role="region" aria-labelledby="faq-btn8"><div class="faq-a-inner" id="fa8">AdCrux is built to be used every month, not once. Save scenarios, track tests, and keep tabs on what worked — so each planning cycle starts with more evidence than the last.</div></div></div>
   </div>
 </section>
 
@@ -1471,7 +1459,7 @@ footer{
 <section class="cta-bottom" id="cta-bottom">
   <div class="cta-bottom-glow"></div>
   <div class="container fade-up">
-    <h2 id="cta-title">Plan with more clarity. Not with generic assumptions.</h2>
+    <h2 id="cta-title">See what your own numbers say about the next move.</h2>
     <p id="cta-sub">Book a demo — we'll walk through it using a case close to your own.</p>
     <a href="javascript:void(0)" class="btn-primary" style="font-size:16px;padding:14px 36px;border-radius:10px" id="ctaFinal" data-action="waitlist">Book a demo →</a>
     <p class="hero-note" style="margin-top:16px" id="cta-note">Set up in minutes · Works with the spend and results data you already track</p>
@@ -1481,7 +1469,7 @@ footer{
 <!-- ─── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-inner">
-    <a href="/" class="nav-logo"><svg width="90" height="28" viewBox="0 0 489 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a href="/" class="nav-logo" aria-label="AdCrux"><svg width="90" height="28" aria-hidden="true" viewBox="0 0 489 152" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M23.7592 122H2.99787L34.6321 30.3636H59.5994L91.1889 122H70.4276L47.4737 51.304H46.7578L23.7592 122ZM22.4616 85.9808H71.5014V101.104H22.4616V85.9808ZM123.987 123.119C118.766 123.119 114.038 121.776 109.803 119.092C105.597 116.377 102.256 112.395 99.7798 107.145C97.3338 101.865 96.1108 95.392 96.1108 87.7259C96.1108 79.8509 97.3786 73.3033 99.9141 68.0831C102.45 62.8331 105.82 58.9105 110.026 56.3153C114.262 53.6903 118.901 52.3778 123.942 52.3778C127.79 52.3778 130.996 53.0341 133.562 54.3466C136.157 55.6293 138.245 57.2401 139.826 59.179C141.437 61.0881 142.66 62.9673 143.495 64.8168H144.077V30.3636H163.093V122H144.3V110.993H143.495C142.6 112.902 141.332 114.796 139.692 116.675C138.081 118.525 135.978 120.061 133.383 121.284C130.817 122.507 127.685 123.119 123.987 123.119ZM130.027 107.95C133.099 107.95 135.695 107.115 137.812 105.445C139.96 103.744 141.601 101.373 142.734 98.3303C143.898 95.2876 144.479 91.723 144.479 87.6364C144.479 83.5497 143.913 80 142.779 76.9872C141.646 73.9744 140.005 71.6477 137.857 70.0071C135.71 68.3665 133.099 67.5462 130.027 67.5462C126.895 67.5462 124.255 68.3963 122.107 70.0966C119.96 71.7969 118.334 74.1534 117.23 77.1662C116.126 80.179 115.575 83.669 115.575 87.6364C115.575 91.6335 116.126 95.1683 117.23 98.2408C118.364 101.283 119.989 103.67 122.107 105.4C124.255 107.1 126.895 107.95 130.027 107.95Z" fill="#3D5270"/>
 <path d="M255.017 62.4453H235.419C235.062 59.9098 234.331 57.6577 233.227 55.6889C232.123 53.6903 230.706 51.9901 228.976 50.5881C227.246 49.1861 225.248 48.1122 222.981 47.3665C220.743 46.6207 218.312 46.2479 215.687 46.2479C210.944 46.2479 206.813 47.4261 203.293 49.7827C199.773 52.1094 197.044 55.5099 195.105 59.9844C193.166 64.429 192.196 69.8281 192.196 76.1818C192.196 82.7145 193.166 88.2031 195.105 92.6477C197.074 97.0923 199.818 100.448 203.338 102.715C206.858 104.982 210.929 106.116 215.553 106.116C218.148 106.116 220.549 105.773 222.757 105.087C224.994 104.401 226.978 103.401 228.708 102.089C230.438 100.746 231.87 99.1207 233.003 97.2116C234.167 95.3026 234.972 93.125 235.419 90.679L255.017 90.7685C254.51 94.9744 253.243 99.0312 251.214 102.939C249.216 106.817 246.516 110.292 243.115 113.364C239.745 116.407 235.718 118.823 231.035 120.613C226.381 122.373 221.116 123.253 215.24 123.253C207.066 123.253 199.758 121.403 193.315 117.705C186.902 114.006 181.831 108.651 178.102 101.641C174.403 94.6314 172.554 86.1449 172.554 76.1818C172.554 66.1889 174.433 57.6875 178.191 50.6776C181.95 43.6676 187.051 38.3281 193.494 34.6591C199.937 30.9602 207.186 29.1108 215.24 29.1108C220.549 29.1108 225.471 29.8565 230.005 31.348C234.569 32.8395 238.611 35.017 242.131 37.8807C245.651 40.7145 248.515 44.1896 250.722 48.3061C252.959 52.4226 254.391 57.1357 255.017 62.4453ZM268.553 122V53.2727H287.032V65.2642H287.748C289.001 60.9986 291.104 57.777 294.057 55.5994C297.01 53.392 300.411 52.2884 304.259 52.2884C305.213 52.2884 306.242 52.348 307.346 52.4673C308.45 52.5866 309.419 52.7507 310.254 52.9595V69.8729C309.359 69.6044 308.122 69.3658 306.541 69.157C304.96 68.9482 303.513 68.8438 302.2 68.8438C299.396 68.8438 296.891 69.4553 294.683 70.6783C292.506 71.8714 290.776 73.5419 289.493 75.6896C288.24 77.8374 287.614 80.3132 287.614 83.1172V122H268.553ZM364.182 92.7372V53.2727H383.244V122H364.943V109.516H364.227C362.676 113.543 360.096 116.78 356.486 119.226C352.907 121.672 348.537 122.895 343.376 122.895C338.783 122.895 334.741 121.851 331.251 119.763C327.761 117.675 325.031 114.707 323.062 110.859C321.123 107.011 320.139 102.402 320.109 97.0327V53.2727H339.17V93.6321C339.2 97.6889 340.289 100.896 342.437 103.252C344.584 105.609 347.463 106.787 351.072 106.787C353.369 106.787 355.517 106.265 357.516 105.221C359.514 104.147 361.125 102.566 362.348 100.478C363.601 98.3899 364.212 95.8097 364.182 92.7372Z" fill="#F1F5F9"/>
 <path d="M429 148C462.137 148 489 121.137 489 88C489 54.8629 462.137 28 429 28C395.863 28 369 54.8629 369 88C369 121.137 395.863 148 429 148Z" fill="url(#paint0_foot)"/>
@@ -1502,23 +1490,23 @@ footer{
       <a href="https://getadcrux.com/terms" id="fl-terms">Terms</a>
       <a href="mailto:hello@getadcrux.com" id="fl-contact">Contact</a>
     </div>
-    <span class="footer-copy" id="fl-copy">© 2025 AdCrux. All rights reserved.</span>
+    <span class="footer-copy" id="fl-copy">© 2026 AdCrux. All rights reserved.</span>
   </div>
 </footer>
 
 <!-- ─── WAITLIST MODAL ─────────────────────────────────────────────────────── -->
 <div class="wl-overlay" id="wl-overlay">
-  <div class="wl-modal">
-    <button class="wl-close">&#x2715;</button>
-    <div style="font-size:28px;margin-bottom:14px">&#x26A1;</div>
+  <div class="wl-modal" role="dialog" aria-modal="true" aria-labelledby="wl-title" aria-describedby="wl-sub">
+    <button class="wl-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <div class="wl-title" id="wl-title">Book a demo</div>
-    <div class="wl-sub" id="wl-sub">We'll walk through a case close to yours, using your own numbers.</div>
+    <div class="wl-sub" id="wl-sub">We'll walk through a specific case close to yours.</div>
     <div class="wl-form" id="wl-form-row">
+      <label class="sr-only" for="wl-email" id="wl-email-label">Email address</label>
       <input class="wl-input" type="email" id="wl-email" placeholder="you@company.com"/>
       <button class="wl-btn" id="wl-btn">Book demo</button>
     </div>
-    <div class="wl-success" id="wl-success">&#x2705; <strong>Request received.</strong> <br>We'll reach out shortly to schedule your demo.</div>
-    <div id="wl-error" style="display:none;margin-top:10px;font-size:13px;color:#EF4444;text-align:center;line-height:1.5"></div>
+    <div class="wl-success" id="wl-success" role="status" aria-live="polite" aria-atomic="true"><strong>Request received.</strong> <br>We'll reach out shortly to schedule your demo.</div>
+    <div id="wl-error" role="alert" aria-live="assertive" aria-atomic="true" style="display:none;margin-top:10px;font-size:13px;color:#EF4444;text-align:center;line-height:1.5"></div>
     <p class="wl-note" id="wl-note">Private beta &middot; We reply within 1 business day.</p>
   </div>
 </div>
@@ -1536,55 +1524,60 @@ const i18n = {
     'hero-sub':'AdCrux helps you plan media investment using each brand\'s real history of spend and results — a clearer starting point than intuition or generic assumptions.',
     'hero-note':'Set up in minutes · Works with the spend and results data you already track',
     'nl-how':'How it works','nl-product':'Product','nl-pricing':'Pricing','nl-faq':'FAQ',
-    'prob-eyebrow':'The real scene','prob-title':'Meta says one thing. Google says another. The CRM says a third.',
+    'prob-eyebrow':'The situation','prob-title':'Meta says one thing. Google says another. The CRM says a third.',
     'prob-sub':'And you still have to recommend what to move. That\'s the job — regardless of whether the data lines up.',
     'prob-total-label':'Sum of claims','prob-real-label':'Actual leads generated',
-    'prob-copy1':'Every source tells its own version. Google says 87. Meta says 74. Your CRM says 120, total. <strong>None of them is exactly wrong — they\'re each just looking at a different slice.</strong>',
-    'prob-copy2':'Looking at channels one at a time doesn\'t tell you how the mix actually works together — <strong>and that\'s exactly what you need to plan the next move.</strong>',
+    'prob-copy1':'Every source tells its own version: Google says 87, Meta says 74, your CRM says 120 total. <strong>Each platform is just measuring a different slice of the same activity.</strong>',
+    'prob-copy2':'Looking at channels one at a time doesn\'t show how the mix works as a whole, <strong>and that\'s what you need before recommending the next move.</strong>',
     'prob-copy3':'This isn\'t about which platform is lying. It\'s about needing a single, comparable read before you can recommend anything with confidence.',
-    'rec-eyebrow':'Sound familiar?','rec-title':'What every planning conversation runs into',
+    'rec-title':'What every planning conversation runs into',
     'ri1-title':'One channel looks like it\'s working',
-    'ri1-body':'The dashboard is green, the ROAS looks fine — but "looks fine in isolation" isn\'t the same as "is actually worth the next dollar."',
+    'ri1-body':'The dashboard is green and the ROAS looks fine. But looking good in isolation isn\'t the same as being worth the next dollar.',
     'ri2-title':'Another looks expensive',
-    'ri2-body':'High CPA on paper. But expensive compared to what — the rest of the mix, or just to what it used to cost?',
+    'ri2-body':'High CPA on paper. But expensive compared to what: the rest of the mix, or what it used to cost?',
     'ri3-title':'A third one, nobody\'s sure',
-    'ri3-body':'It might be driving real demand. It might just be riding along on what the other channels already started. Nobody on the team can say for sure.',
+    'ri3-body':'It might be driving new demand. It might just be riding along on what the other channels started. Nobody on the team can say for sure.',
     'ri4-title':'And the client still wants an answer',
-    'ri4-body':'"What should we do with the budget" doesn\'t wait for certainty. The recommendation has to be more than a hunch or a generic rule of thumb.',
-    'impact-eyebrow':'What\'s actually at stake','impact-title':'A recommendation is only as good as what it\'s compared against',
-    'impact-sub':'Without a common way to compare the mix, a recommendation ends up resting on opinion more than evidence.',
+    'ri4-body':'"What should we do with the budget" doesn\'t wait for certainty. The recommendation still has to be more than a hunch.',
+    'impact-title':'A recommendation is only as good as what it\'s compared against',
+    'impact-sub':'Without a way to compare channels side by side, the decision ends up depending on who argues best in the room, not on the numbers.',
     'ic1-title':'The recommendation doesn\'t survive the first hard question',
-    'ic1-body':'"Why this channel and not that one" needs an answer grounded in something comparable — not just "the dashboard looked better."',
+    'ic1-body':'Answering "why this channel and not that one" takes something more comparable than a quick dashboard read.',
     'ic2-title':'Every stakeholder is comparing different numbers',
     'ic2-body':'The client is looking at one report, the media team another, finance a third. Nobody\'s arguing from the same baseline.',
     'ic3-title':'Testing becomes a last resort, not a plan',
-    'ic3-body':'Without a clear read going in, a test is just "let\'s try something and see." There\'s no baseline to compare the result against.',
+    'ic3-body':'Testing without a clear read going in amounts to "let\'s try something and see," with nothing to compare the result against.',
     'ic4-title':'The same debate repeats every planning cycle',
-    'ic4-body':'Without a record of what was tried and what happened, each quarter starts the argument over from scratch.',
-    'sol-title':'Plan using the mix\'s real history — not one channel at a time',
-    'sol-body':'AdCrux uses each brand\'s real history of spend and results to help you compare scenarios, understand contribution by channel, and plan tests — a clearer starting point than intuition or generic assumptions.',
-    'sp1-title':'Compare scenarios','sp1-body':'See what a reallocation would actually do to the whole mix before you propose it — not just to one channel in isolation.',
-    'sp2-title':'Understand contribution','sp2-body':'Know how much each channel is really adding, separate from baseline and from what the other channels are already driving.',
+    'ic4-body':'Each quarter starts the argument over from scratch, with no record of what was tried last time.',
+    'sol-title':'Plan the whole mix, not one channel at a time',
+    'sol-body':'AdCrux uses each brand\'s spend and results history to help you compare scenarios, understand contribution by channel, and plan tests.',
+    'sp1-title':'Compare scenarios','sp1-body':'See what a reallocation would do to the whole mix before you propose it.',
+    'sp2-title':'Understand contribution','sp2-body':'See how much each channel is adding, separate from baseline and from what the other channels are already driving.',
     'sp3-title':'Plan the test','sp3-body':'Turn "let\'s try something" into a specific, bounded test with an expected range to compare the result against.',
-    'sp4-title':'Build on what you know','sp4-body':'Every run, scenario, and test adds to the brand\'s own history — so the next recommendation starts ahead of the last one.',
-    'sv-label':'Contribution by channel — this brand\'s history','sv-note':'Based on this brand\'s own numbers, not an industry rule of thumb',
+    'sp4-title':'Build on what you know','sp4-body':'Every run, scenario, and test adds to what\'s already known about this brand — so the next recommendation starts ahead of the last one.',
+    'sv-label':'Contribution by channel','sv-note':'Modeled from the uploaded spend and results, not an industry benchmark',
     'how-eyebrow':'How it works','how-title':'From history to a recommendation you can defend',
-    'how-sub':'No guesswork, no industry rule of thumb — just this brand\'s own numbers, compared properly.',
-    'step1-title':'Upload the history','step1-body':'Spend and results by channel and week — the actual record, not a sample template.','step1-badge':'CSV upload',
-    'step2-title':'See how the mix really works','step2-body':'The model reads the full mix together — contribution, saturation, and baseline for every channel, based on this brand\'s own history.','step2-badge':'~30 seconds',
-    'step3-title':'Compare scenarios, pick one','step3-body':'Try different reallocations side by side and see the projected outcome of each — then save the one you\'d actually recommend.','step3-badge':'Compare & save',
+    'how-sub':'Every step below runs on the spend and results you upload.',
+    'step1-title':'Upload the history','step1-body':'Spend and results by channel and week, straight from what you upload.','step1-badge':'CSV upload',
+    'step2-title':'See how the mix works','step2-body':'The model reads the full mix together: contribution, saturation, and baseline for every channel.','step2-badge':'~30 seconds',
+    'step3-title':'Compare scenarios, pick one','step3-body':'Try different reallocations side by side, see the projected outcome of each, then save the one you\'d recommend.','step3-badge':'Compare & save',
     'step4-title':'Plan the test, add to the record','step4-body':'Turn the recommendation into a bounded test, log what happened, and it becomes part of this brand\'s planning history.','step4-badge':'Build the record',
     'prod-eyebrow':'The platform','prod-title':'See inside AdCrux','prod-sub':'The workspace for comparing scenarios, reading contribution by channel, and planning the next test.',
-    'out-eyebrow':'What you walk away with','out-title':'What to increase. What to decrease. What to hold. What to test before scaling.',
-    'out-sub':'Four calls, each grounded in this brand\'s own history — not a generic rule of thumb.',
-    'oc1-title':'What to increase','oc1-body':'Channels with real room left in the mix — worth the next dollar, based on this brand\'s own curve.',
-    'oc2-title':'What to decrease','oc2-body':'Channels past the point where more spend stops adding, even if the platform report still looks fine.',
-    'oc3-title':'What to hold','oc3-body':'Channels doing exactly what they should at the current level — no case yet to move either way.',
+    'prod-note':'Sample dashboard · Your data stays in your account · Export to PDF',
+    'out-title':'What to increase. What to decrease. What to hold. What to test before scaling.',
+    'out-sub':'Four calls, each grounded in the uploaded numbers for this brand.',
+    'oc1-title':'What to increase','oc1-body':'Channels with room left in the mix, worth the next dollar based on how they\'re performing now.',
+    'oc2-title':'What to decrease','oc2-body':'Once a channel passes the point where more spend stops adding, it\'s a candidate to scale back, even if the platform report still looks fine.',
+    'oc3-title':'What to hold','oc3-body':'At the current level, some channels are simply doing what they should. No case yet to move either way.',
     'oc4-title':'What to test before scaling','oc4-body':'A specific, bounded test to validate the move before you commit the full recommendation.',
-    'diff-eyebrow':'Built for real teams','diff-title':'Not enterprise-only. Not a black box.',
-    'diff-sub':'Built for the person who has to make the call — not just show a chart.',
+    'diff-title':'Not enterprise-only. Not a black box.',
+    'diff-sub':'Built for the person who has to make the call.',
+    'cmp-th1':'Traditional approach','cmp-th2':'AdCrux',
+    'cmp-r1a':'MMM consulting: $50K+ and 8 weeks','cmp-r1b':'Results in under 5 minutes',
+    'cmp-r2a':'Platform dashboards: each silo optimizes itself','cmp-r2b':'One model across all channels',
+    'cmp-r3a':'Black-box tools: outputs you cannot explain','cmp-r3b':'Transparent model diagnostics',
     'dc1-title':'Accessible from day one','dc1-body':'Marketing Mix Modeling used to require data scientists and consulting fees. AdCrux makes it available to any team with a CSV file.',
-    'dc2-title':'Truly independent','dc2-body':'Built independently from any platform attribution model. No pixel, no SDK, no API key connecting back to Google or Meta.',
+    'dc2-title':'Independent by design','dc2-body':'Built independently from any platform attribution model. No pixel, no SDK, no API key connecting back to Google or Meta.',
     'dc3-title':'Transparent outputs','dc3-body':'Every result comes with a confidence score and model diagnostics. You know when the model is reliable.',
     'price-eyebrow':'Pricing','price-title':'Less than 1% of your media budget',
     'price-sub':'If you\'re already planning budget for $10K–$30K/month in spend, this pays for itself the first time it changes a recommendation.',
@@ -1599,22 +1592,23 @@ const i18n = {
     'fq4':'How long does it take to get results?',
     'fa4':'First run takes 20–30 seconds. After that, results load in under 2 seconds. From CSV upload to first insight in under 5 minutes.',
     'fq5':'Is this accurate for small budgets?',
-    'fa5':'Yes, with appropriate expectations. AdCrux shows a confidence score with every result. We never hide uncertainty.',
+    'fa5':'Yes, with appropriate expectations. AdCrux shows a confidence score with every result. At smaller budgets, the model gives directional guidance. We never hide uncertainty.',
     'fq6':'What happens to my data?',
     'fa6':'Your data is stored in your private account and never shared. You can delete it at any time.',
     'fq7':'Can I test a recommendation before committing real budget?',
-    'fa7':'Yes. Use the Test Planner to design a safe way to validate any recommendation — a temporary budget shift with clear guardrails and an expected range. Save it as a test plan and track the result in Test Tracker.',
+    'fa7':'The Test Planner exists for exactly this: a temporary, guardrailed budget shift with an expected range, saved as a plan and tracked in Test Tracker until there\'s a verdict.',
     'fq8':'Is AdCrux just a one-time report, or something I use regularly?',
     'fa8':'AdCrux is built to be used every month, not once. Save scenarios, track tests, and keep tabs on what worked — so each planning cycle starts with more evidence than the last.',
-    'cta-title':'Plan with more clarity. Not with generic assumptions.',
+    'cta-title':'See what your own numbers say about the next move.',
     'cta-sub':'Book a demo — we\'ll walk through it using a case close to your own.',
     'cta-note':'Set up in minutes · Works with the spend and results data you already track',
     'wl-title':'Book a demo',
-    'wl-sub':'We\'ll walk through a case close to yours, using your own numbers.',
+    'wl-email-label':'Email address',
+    'wl-sub':'We\'ll walk through a specific case close to yours.',
     'wl-note':'Private beta · We reply within 1 business day.',
     'wl-btn':'Book demo',
     'wl-email-placeholder':'you@company.com',
-    'wl-success':'✅ <strong>Request received.</strong> <br>We\'ll reach out shortly to schedule your demo.',
+    'wl-success':'<strong>Request received.</strong> <br>We\'ll reach out shortly to schedule your demo.',
     'checkDataCta':'See how it works →',
     'tab-overview':'Overview','tab-attribution':'Attribution Gap','tab-saturation':'Saturation','tab-optimizer':'Optimizer','tab-scenarios':'Scenarios','tab-test-planner':'Test Planner','tab-test-tracker':'Test Tracker','tab-diagnostics':'Diagnostics',
     'ctaFinal':'Book a demo →',
@@ -1631,7 +1625,7 @@ const i18n = {
     'cta1':'Book a demo','cta2':'Book a demo','cta3':'Book a demo',
     'price-note':'All plans include a 14-day free trial. Cancel anytime. Need more? <a href="mailto:hello@getadcrux.com" style="color:var(--accent);text-decoration:none">Contact us</a> about Enterprise.',
     'fl-privacy':'Privacy','fl-terms':'Terms','fl-contact':'Contact',
-    'fl-copy':'© 2025 AdCrux. All rights reserved.',
+    'fl-copy':'© 2026 AdCrux. All rights reserved.',
   },
   es: {
     signInBtn:'Ingresar', ctaBtn:'Agendar demo', heroCta:'Agendar demo',
@@ -1640,55 +1634,60 @@ const i18n = {
     'hero-sub':'AdCrux te ayuda a planificar la inversión en medios usando el historial real de inversión y resultados de cada marca — un punto de partida más claro que la intuición o los supuestos genéricos.',
     'hero-note':'Configuración en minutos · Funciona con los datos de gasto y resultados que ya tenés',
     'nl-how':'Cómo funciona','nl-product':'Producto','nl-pricing':'Precios','nl-faq':'FAQ',
-    'prob-eyebrow':'La escena real','prob-title':'Meta dice una cosa. Google otra. El CRM otra.',
+    'prob-eyebrow':'La situación','prob-title':'Meta dice una cosa. Google otra. El CRM otra.',
     'prob-sub':'Y vos igual tenés que recomendar qué mover. Ese es el trabajo — más allá de si los datos cierran o no.',
     'prob-total-label':'Suma de atribuciones','prob-real-label':'Leads reales generados',
-    'prob-copy1':'Cada fuente cuenta su propia versión. Google dice 87. Meta dice 74. Tu CRM dice 120 en total. <strong>Ninguna está exactamente equivocada — cada una mira una porción distinta.</strong>',
-    'prob-copy2':'Mirar los canales de a uno no te dice cómo funciona el mix en conjunto — <strong>y eso es exactamente lo que necesitás para planificar el próximo movimiento.</strong>',
+    'prob-copy1':'Cada fuente cuenta su propia versión: Google dice 87, Meta dice 74, tu CRM dice 120 en total. <strong>Cada plataforma está midiendo una porción distinta de la misma actividad.</strong>',
+    'prob-copy2':'Mirar los canales de a uno no muestra cómo funciona el mix en conjunto, <strong>y eso es lo que necesitás antes de recomendar el próximo movimiento.</strong>',
     'prob-copy3':'Esto no es sobre qué plataforma miente. Es sobre necesitar una lectura única y comparable antes de poder recomendar algo con confianza.',
-    'rec-eyebrow':'¿Te suena familiar?','rec-title':'Con esto se choca toda conversación de planificación',
+    'rec-title':'Lo que se repite en toda reunión de planificación',
     'ri1-title':'Un canal parece que está funcionando',
-    'ri1-body':'El dashboard está en verde, el ROAS se ve bien — pero "se ve bien por separado" no es lo mismo que "vale la pena el próximo dólar."',
+    'ri1-body':'El dashboard está en verde y el ROAS se ve bien. Pero verse bien por separado no es lo mismo que valer la pena el próximo dólar.',
     'ri2-title':'Otro parece caro',
-    'ri2-body':'CPA alto en el papel. ¿Pero caro comparado con qué — con el resto del mix, o solo con lo que costaba antes?',
+    'ri2-body':'CPA alto en el papel. ¿Pero caro comparado con qué: con el resto del mix, o con lo que costaba antes?',
     'ri3-title':'De un tercero, nadie está seguro',
-    'ri3-body':'Puede estar generando demanda real. O puede estar acompañando lo que ya arrancaron otros canales. Nadie del equipo lo puede afirmar con seguridad.',
+    'ri3-body':'Puede estar generando demanda nueva. O puede estar acompañando lo que ya arrancaron otros canales. Nadie del equipo lo puede afirmar con seguridad.',
     'ri4-title':'Y el cliente igual quiere una respuesta',
-    'ri4-body':'"Qué hacemos con el presupuesto" no espera a tener certeza. La recomendación tiene que ser más que una corazonada o una regla genérica.',
-    'impact-eyebrow':'Lo que está en juego','impact-title':'Una recomendación vale lo que valga el punto de comparación',
-    'impact-sub':'Sin una forma común de comparar el mix, la recomendación termina apoyándose más en la opinión que en la evidencia.',
+    'ri4-body':'"Qué hacemos con el presupuesto" no espera a tener certeza. La recomendación igual tiene que ser más que una corazonada.',
+    'impact-title':'Toda recomendación depende de con qué se la compare',
+    'impact-sub':'Sin una forma de comparar los canales entre sí, la decisión termina dependiendo de quién argumenta mejor en la reunión, y no de los números.',
     'ic1-title':'La recomendación no sobrevive la primera pregunta difícil',
-    'ic1-body':'"Por qué este canal y no el otro" necesita una respuesta basada en algo comparable — no solo "el dashboard se veía mejor."',
+    'ic1-body':'Para responder "por qué este canal y no el otro" hace falta algo más comparable que una lectura rápida del dashboard.',
     'ic2-title':'Cada parte está comparando números distintos',
     'ic2-body':'El cliente mira un reporte, el equipo de medios otro, finanzas un tercero. Nadie está discutiendo desde la misma base.',
     'ic3-title':'Testear se vuelve el último recurso, no un plan',
-    'ic3-body':'Sin una lectura clara de entrada, un test es solo "probemos algo y vemos." No hay una base contra la cual comparar el resultado.',
+    'ic3-body':'Testear sin una lectura clara de entrada es solo "probemos algo y vemos," sin nada contra qué comparar el resultado.',
     'ic4-title':'El mismo debate se repite en cada ciclo de planificación',
-    'ic4-body':'Sin un registro de qué se probó y qué pasó, cada trimestre arranca la discusión de cero otra vez.',
-    'sol-title':'Planificá usando el historial real del mix — no canal por canal',
-    'sol-body':'AdCrux usa el historial real de inversión y resultados de cada marca para ayudarte a comparar escenarios, entender aportes por canal y planificar tests — un punto de partida más claro que la intuición o los supuestos genéricos.',
-    'sp1-title':'Comparar escenarios','sp1-body':'Mirá qué haría una reasignación al mix completo antes de proponerla — no solo a un canal aislado.',
-    'sp2-title':'Entender el aporte','sp2-body':'Sabé cuánto suma realmente cada canal, separado del baseline y de lo que ya arrastran los demás canales.',
+    'ic4-body':'Cada trimestre arranca la discusión de cero, sin registro de qué se probó la última vez.',
+    'sol-title':'Planificá todo el mix, no canal por canal',
+    'sol-body':'AdCrux usa el historial de inversión y resultados de cada marca para ayudarte a comparar escenarios, entender aportes por canal y planificar tests.',
+    'sp1-title':'Comparar escenarios','sp1-body':'Mirá qué haría una reasignación al mix completo antes de proponerla.',
+    'sp2-title':'Entender el aporte','sp2-body':'Mirá cuánto suma cada canal, separado del baseline y de lo que ya arrastran los demás canales.',
     'sp3-title':'Planificar el test','sp3-body':'Convertí un "probemos algo" en un test acotado y específico, con un rango esperado contra el cual comparar el resultado.',
-    'sp4-title':'Construir sobre lo que ya sabés','sp4-body':'Cada run, escenario y test suma al historial propio de la marca — así la próxima recomendación arranca más adelante que la anterior.',
-    'sv-label':'Aporte por canal — historial de esta marca','sv-note':'Basado en los números propios de esta marca, no en una regla genérica',
+    'sp4-title':'Construir sobre lo que ya sabés','sp4-body':'Cada run, escenario y test suma a lo que ya se sabe de esta marca — así la próxima recomendación arranca más adelante que la anterior.',
+    'sv-label':'Aporte por canal','sv-note':'Modelado a partir del gasto y los resultados subidos, no un benchmark de la industria',
     'how-eyebrow':'Cómo funciona','how-title':'Del historial a una recomendación que podés defender',
-    'how-sub':'Sin conjeturas ni reglas genéricas — solo los números propios de la marca, bien comparados.',
-    'step1-title':'Subí el historial','step1-body':'Gasto y resultados por canal y semana — el registro real, no una plantilla de ejemplo.','step1-badge':'Subida de CSV',
-    'step2-title':'Mirá cómo funciona el mix de verdad','step2-body':'El modelo lee el mix completo en conjunto — aporte, saturación y baseline de cada canal, a partir del historial propio de la marca.','step2-badge':'~30 segundos',
-    'step3-title':'Compará escenarios, elegí uno','step3-body':'Probá distintas reasignaciones lado a lado y mirá el resultado proyectado de cada una — después guardá la que realmente recomendarías.','step3-badge':'Comparás y guardás',
-    'step4-title':'Planificá el test, sumalo al historial','step4-body':'Convertí la recomendación en un test acotado, registrá qué pasó, y pasa a formar parte del historial de planificación de la marca.','step4-badge':'Sumá al historial',
-    'prod-eyebrow':'La plataforma','prod-title':'Mirá adentro de AdCrux','prod-sub':'El espacio para comparar escenarios, leer el aporte por canal y planificar el próximo test.',
-    'out-eyebrow':'Lo que te llevás','out-title':'Qué subir. Qué bajar. Qué mantener. Qué testear antes de escalar.',
-    'out-sub':'Cuatro decisiones, cada una basada en el historial propio de la marca — no en una regla genérica.',
-    'oc1-title':'Qué subir','oc1-body':'Canales con margen real dentro del mix — que valen el próximo dólar, según la curva propia de esta marca.',
-    'oc2-title':'Qué bajar','oc2-body':'Canales que ya pasaron el punto donde más gasto deja de sumar, aunque el reporte de la plataforma todavía se vea bien.',
-    'oc3-title':'Qué mantener','oc3-body':'Canales haciendo exactamente lo que deberían en el nivel actual — todavía no hay caso para moverlos en ningún sentido.',
+    'how-sub':'Cada paso de abajo corre sobre el gasto y los resultados que subís.',
+    'step1-title':'Subí el historial','step1-body':'Gasto y resultados por canal y semana, directo de lo que subís.','step1-badge':'Subida de CSV',
+    'step2-title':'Mirá cómo funciona el mix','step2-body':'El modelo lee el mix completo en conjunto: aporte, saturación y baseline de cada canal.','step2-badge':'~30 segundos',
+    'step3-title':'Compará escenarios, elegí uno','step3-body':'Probá distintas reasignaciones lado a lado, mirá el resultado proyectado de cada una, después guardá la que recomendarías.','step3-badge':'Comparás y guardás',
+    'step4-title':'Planificá el test, sumalo al historial','step4-body':'Convertí la recomendación en un test acotado, registrá el resultado y sumalo al historial de planificación de la marca.','step4-badge':'Sumá al historial',
+    'prod-eyebrow':'La plataforma','prod-title':'Así es AdCrux por dentro','prod-sub':'El espacio para comparar escenarios, leer el aporte por canal y planificar el próximo test.',
+    'prod-note':'Dashboard de muestra · Tus datos quedan en tu cuenta · Exportá a PDF',
+    'out-title':'Qué subir. Qué bajar. Qué mantener. Qué testear antes de escalar.',
+    'out-sub':'Cuatro decisiones, cada una basada en los números subidos de esta marca.',
+    'oc1-title':'Qué subir','oc1-body':'Canales con margen en el mix, donde meter un dólar más todavía rinde, según cómo están funcionando ahora.',
+    'oc2-title':'Qué bajar','oc2-body':'Cuando un canal pasa el punto donde más gasto deja de sumar, conviene bajarle presupuesto, aunque el reporte de la plataforma todavía se vea bien.',
+    'oc3-title':'Qué mantener','oc3-body':'En el nivel actual, algunos canales simplemente hacen lo que deberían. Todavía no hay caso para moverlos en ningún sentido.',
     'oc4-title':'Qué testear antes de escalar','oc4-body':'Un test específico y acotado para validar el movimiento antes de comprometer la recomendación completa.',
-    'diff-eyebrow':'Hecho para equipos reales','diff-title':'No solo para empresas grandes. Sin caja negra.',
-    'diff-sub':'Hecho para quien tiene que tomar la decisión — no solo mostrar un gráfico.',
+    'diff-title':'No solo para empresas grandes. Sin caja negra.',
+    'diff-sub':'Hecho para quien tiene que tomar la decisión.',
+    'cmp-th1':'Enfoque tradicional','cmp-th2':'AdCrux',
+    'cmp-r1a':'Consultoría de MMM: $50K+ y 8 semanas','cmp-r1b':'Resultados en menos de 5 minutos',
+    'cmp-r2a':'Dashboards de plataformas: cada silo se optimiza solo','cmp-r2b':'Un solo modelo para todos los canales',
+    'cmp-r3a':'Herramientas de caja negra: resultados que no podés explicar','cmp-r3b':'Diagnósticos transparentes del modelo',
     'dc1-title':'Accesible desde el primer día','dc1-body':'El Marketing Mix Modeling solía requerir científicos de datos y consultoras. AdCrux lo hace disponible para cualquier equipo con un CSV.',
-    'dc2-title':'Verdaderamente independiente','dc2-body':'Construido independientemente de cualquier modelo de atribución. Sin pixel, sin SDK, sin API key que conecte de vuelta a Google o Meta.',
+    'dc2-title':'Independiente por diseño','dc2-body':'Construido independientemente de cualquier modelo de atribución. Sin pixel, sin SDK, sin API key que conecte de vuelta a Google o Meta.',
     'dc3-title':'Resultados transparentes','dc3-body':'Cada resultado incluye un score de confianza y diagnósticos del modelo. Sabés cuándo el modelo es confiable.',
     'price-eyebrow':'Precios','price-title':'Menos del 1% de tu presupuesto de medios',
     'price-sub':'Si gastás $10K–$30K/mes en publicidad, AdCrux se paga solo con pequeñas mejoras en la asignación.',
@@ -1703,22 +1702,23 @@ const i18n = {
     'fq4':'¿Cuánto tarda en dar resultados?',
     'fa4':'El primer run tarda 20–30 segundos. Después los resultados cargan en menos de 2 segundos. Desde subir el CSV hasta el primer insight en menos de 5 minutos.',
     'fq5':'¿Es preciso para presupuestos pequeños?',
-    'fa5':'Sí, con expectativas adecuadas. AdCrux muestra un score de confianza con cada resultado. Nunca ocultamos la incertidumbre.',
+    'fa5':'Sí, con expectativas adecuadas. AdCrux muestra un score de confianza con cada resultado. Con presupuestos más chicos, el modelo da una guía direccional. Nunca ocultamos la incertidumbre.',
     'fq6':'¿Qué pasa con mis datos?',
     'fa6':'Tus datos se guardan en tu cuenta privada y nunca se comparten. Podés eliminarlos cuando quieras.',
     'fq7':'¿Puedo testear una recomendación antes de comprometer presupuesto real?',
-    'fa7':'Sí. Usá el Test Planner para diseñar una forma segura de validar cualquier recomendación — un cambio temporal de presupuesto con guardrails claros y un rango esperado. Guardalo como test plan y seguí el resultado en Test Tracker.',
+    'fa7':'El Test Planner existe justamente para esto: un cambio temporal de presupuesto con guardrails y un rango esperado, guardado como plan y seguido en Test Tracker hasta tener un veredicto.',
     'fq8':'¿AdCrux es un reporte de una sola vez o algo que uso regularmente?',
     'fa8':'AdCrux está pensado para usarse todos los meses, no una sola vez. Guardá escenarios, seguí tests y llevá registro de qué funcionó — así cada ciclo de planificación arranca con más evidencia que el anterior.',
-    'cta-title':'Planificación con más claridad. No con supuestos genéricos.',
+    'cta-title':'Mirá qué dicen tus propios números sobre el próximo movimiento.',
     'cta-sub':'Agendá una demo — la recorremos con un caso parecido al tuyo.',
     'cta-note':'Configuración en minutos · Funciona con los datos de gasto y resultados que ya tenés',
     'wl-title':'Agendar demo',
-    'wl-sub':'Recorremos un caso parecido al tuyo, con tus propios números.',
+    'wl-email-label':'Correo electrónico',
+    'wl-sub':'Recorremos un caso específico, parecido al tuyo.',
     'wl-note':'Beta privada · Te respondemos en menos de 1 día hábil.',
     'wl-btn':'Agendar demo',
     'wl-email-placeholder':'vos@empresa.com',
-    'wl-success':'✅ <strong>Solicitud recibida.</strong> <br>Te contactamos a la brevedad para coordinar tu demo.',
+    'wl-success':'<strong>Solicitud recibida.</strong> <br>Te contactamos a la brevedad para coordinar tu demo.',
     'checkDataCta':'Ver cómo funciona →',
     'tab-overview':'Resumen','tab-attribution':'Brecha de Atribución','tab-saturation':'Saturación','tab-optimizer':'Optimizador','tab-scenarios':'Escenarios','tab-test-planner':'Planificador de Tests','tab-test-tracker':'Seguimiento de Tests','tab-diagnostics':'Diagnósticos',
     'ctaFinal':'Agendar demo →',
@@ -1735,7 +1735,7 @@ const i18n = {
     'cta1':'Agendar demo','cta2':'Agendar demo','cta3':'Agendar demo',
     'price-note':'Todos los planes incluyen 14 días de prueba gratis. Cancelá cuando quieras. ¿Necesitás más? <a href="mailto:hello@getadcrux.com" style="color:var(--accent);text-decoration:none">Escribinos</a> por Enterprise.',
     'fl-privacy':'Privacidad','fl-terms':'Términos','fl-contact':'Contacto',
-    'fl-copy':'© 2025 AdCrux. Todos los derechos reservados.',
+    'fl-copy':'© 2026 AdCrux. Todos los derechos reservados.',
   }
 }
 
@@ -1784,10 +1784,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function switchTab(name) {
-    document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active') })
+    document.querySelectorAll('.ptab').forEach(function(t) {
+      t.classList.remove('active')
+      t.setAttribute('aria-selected', 'false')
+      t.setAttribute('tabindex', '-1')
+    })
     document.querySelectorAll('.product-panel').forEach(function(p) { p.classList.remove('active') })
     var btn = document.querySelector('[data-tab="' + name + '"]')
-    if (btn) btn.classList.add('active')
+    if (btn) {
+      btn.classList.add('active')
+      btn.setAttribute('aria-selected', 'true')
+      btn.setAttribute('tabindex', '0')
+    }
     var panel = document.getElementById('panel-' + name)
     if (panel) panel.classList.add('active')
     var desc = document.getElementById('tab-desc')
@@ -1805,6 +1813,26 @@ document.addEventListener('DOMContentLoaded', function() {
       switchTab(this.dataset.tab)
     })
   })
+
+  // Arrow-key navigation for the product tablist
+  var ptabList = document.querySelector('.product-tabs')
+  if (ptabList) {
+    ptabList.addEventListener('keydown', function(e) {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].indexOf(e.key) === -1) return
+      var tabs = Array.prototype.slice.call(ptabList.querySelectorAll('.ptab'))
+      var currentIndex = tabs.indexOf(document.activeElement)
+      if (currentIndex === -1) return
+      e.preventDefault()
+      var nextIndex
+      if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length
+      else if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length
+      else if (e.key === 'Home') nextIndex = 0
+      else nextIndex = tabs.length - 1
+      var nextTab = tabs[nextIndex]
+      switchTab(nextTab.dataset.tab)
+      nextTab.focus()
+    })
+  }
 
   // ── Pricing toggle ────────────────────────────────────────────────────────
   var prices = { monthly: [249,599,999], annual: [199,479,799] }
@@ -1826,16 +1854,37 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       var item = btn.closest('.faq-item')
       var isOpen = item.classList.contains('open')
-      document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open') })
-      if (!isOpen) item.classList.add('open')
+      document.querySelectorAll('.faq-item.open').forEach(function(i) {
+        i.classList.remove('open')
+        var q = i.querySelector('.faq-q')
+        if (q) q.setAttribute('aria-expanded', 'false')
+        var a = i.querySelector('.faq-a')
+        if (a) a.setAttribute('aria-hidden', 'true')
+      })
+      if (!isOpen) {
+        item.classList.add('open')
+        btn.setAttribute('aria-expanded', 'true')
+        var panel = item.querySelector('.faq-a')
+        if (panel) panel.setAttribute('aria-hidden', 'false')
+      }
     })
   })
 
   // ── Waitlist modal ────────────────────────────────────────────────────────
-  function openWaitlist() {
+  var wlLastTrigger = null
+  function getFocusableInModal() {
+    var modalEl = document.querySelector('.wl-modal')
+    if (!modalEl) return []
+    return Array.prototype.slice.call(
+      modalEl.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(function(el) { return el.offsetParent !== null })
+  }
+  function openWaitlist(triggerEl) {
     var overlay = document.getElementById('wl-overlay')
     if (overlay) {
+      wlLastTrigger = triggerEl || document.activeElement
       overlay.classList.add('open')
+      document.body.style.overflow = 'hidden'
       setTimeout(function() {
         var emailInput = document.getElementById('wl-email')
         if (emailInput) emailInput.focus()
@@ -1844,14 +1893,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   function closeWaitlist() {
     var overlay = document.getElementById('wl-overlay')
-    if (overlay) overlay.classList.remove('open')
+    if (overlay && overlay.classList.contains('open')) {
+      overlay.classList.remove('open')
+      document.body.style.overflow = ''
+      if (wlLastTrigger && typeof wlLastTrigger.focus === 'function') wlLastTrigger.focus()
+      wlLastTrigger = null
+    }
   }
 
   // Bind all CTA buttons
   document.querySelectorAll('[data-action="waitlist"]').forEach(function(el) {
     el.addEventListener('click', function(e) {
       e.preventDefault()
-      openWaitlist()
+      openWaitlist(el)
     })
   })
 
@@ -1863,9 +1917,22 @@ document.addEventListener('DOMContentLoaded', function() {
     })
   }
 
-  // Close on Escape
+  // Close on Escape + focus trap while open
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeWaitlist()
+    var overlayEl = document.getElementById('wl-overlay')
+    if (!overlayEl || !overlayEl.classList.contains('open')) return
+    if (e.key === 'Escape') { closeWaitlist(); return }
+    if (e.key === 'Tab') {
+      var focusable = getFocusableInModal()
+      if (!focusable.length) return
+      var first = focusable[0]
+      var last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus()
+      }
+    }
   })
 
   // Close button
@@ -1907,6 +1974,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (formRow) formRow.style.display = 'none'
       if (successEl) successEl.style.display = 'block'
+      // formRow (which held the last-focused submit button) is now hidden,
+      // so move focus to the remaining focusable element in the modal —
+      // otherwise focus silently falls back to <body> and the Tab trap
+      // above has nothing to anchor to, letting focus escape the modal.
+      var closeBtnAfterSubmit = document.querySelector('.wl-close')
+      if (closeBtnAfterSubmit) closeBtnAfterSubmit.focus()
     } catch(err) {
       console.error('Waitlist error:', err)
       var resetLabel = (i18n[lang] && i18n[lang]['wl-btn']) || 'Book demo'
@@ -1955,6 +2028,14 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     var emailEl = document.getElementById('wl-email')
     if (emailEl && d['wl-email-placeholder']) emailEl.placeholder = d['wl-email-placeholder']
+
+    // Localized accessible names that live outside the main i18n text-content loop
+    var langBtn = document.getElementById('langToggle')
+    if (langBtn) langBtn.setAttribute('aria-label', lang === 'es' ? 'Cambiar idioma a inglés' : 'Switch language to Spanish')
+    var tabList = document.querySelector('.product-tabs')
+    if (tabList) tabList.setAttribute('aria-label', lang === 'es' ? 'Recorrido del producto' : 'Product tour')
+    var wlCloseBtn = document.querySelector('.wl-close')
+    if (wlCloseBtn) wlCloseBtn.setAttribute('aria-label', lang === 'es' ? 'Cerrar' : 'Close')
   }
 
   // ── Default to Spanish (LATAM-first) ─────────────────────────────────────
